@@ -53,7 +53,7 @@ export type AttributeJsTypeMap = {
   }
 }
 
-interface AttributeBase<T extends AttributeType = AttributeType>
+export interface AttributeBase<T extends AttributeType = AttributeType>
   extends Entity<MetaType.AttributeMetadata> {
   /** Наименование пользовательского поля */
   name: string
