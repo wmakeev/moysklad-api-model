@@ -10,6 +10,7 @@ export type PositionMetaType =
 export type PositionTypeByDocument = {
   [MetaType.CustomerOrder]: MetaType.CustomerOrderPosition
   [MetaType.Demand]: MetaType.DemandPosition
+  [MetaType.RetailDemand]: MetaType.DemandPosition
   [MetaType.PurchaseOrder]: MetaType.PurchaseOrderPosition
 }
 

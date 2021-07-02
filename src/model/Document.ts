@@ -13,6 +13,7 @@ import type { Owned } from './Owned'
 export type DocumentMetaType =
   | MetaType.CustomerOrder
   | MetaType.Demand
+  | MetaType.RetailDemand
   | MetaType.PurchaseOrder
 // TODO Описать остальные
 
