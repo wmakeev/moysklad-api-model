@@ -1,0 +1,46 @@
+// https://www.typescriptlang.org/tsconfig
+{
+  "compilerOptions": {
+    // -- Project Options
+    "declaration": true,
+    "declarationMap": true,
+    "incremental": true,
+    "lib": [
+      "ES2020", // Node 14.x
+      "DOM"
+    ],
+    "module": "CommonJS",
+    "outDir": "build",
+    "plugins": [
+      {
+        "name": "typescript-eslint-language-service"
+      }
+    ],
+    "rootDir": ".",
+    "sourceMap": true,
+    "target": "ES2019", // Node 12.x
+    // -- Strict Checks
+    "strict": true,
+    // -- Module Resolution
+    "esModuleInterop": true,
+    // -- Linter Checks
+    "noImplicitReturns": true,
+    // "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // -- Experimental
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    // -- Advanced
+    "allowUnreachableCode": false,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
+    "newLine": "lf",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "stripInternal": true
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ]
+}

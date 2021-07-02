@@ -1,0 +1,23 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Bootstrap scripts folder
+.bootstrap
+
+# npm
+node_modules
+package-lock.json
+
+# env
+.env*
+!.env.example
+
+# temp
+/__temp*
+
+# build
+/build
+
+
