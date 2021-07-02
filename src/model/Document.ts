@@ -10,12 +10,14 @@ import type { HasUpdated } from './HasUpdated'
 import type { MetaType } from './MetaType'
 import type { Owned } from './Owned'
 
+// TODO Перечислить все документы
 export type DocumentMetaType =
   | MetaType.CustomerOrder
   | MetaType.Demand
   | MetaType.RetailDemand
   | MetaType.PurchaseOrder
-// TODO Описать остальные
+  | MetaType.InvoiceOut
+  | MetaType.InvoiceIn
 
 export interface Document<T extends DocumentMetaType>
   extends Entity<T>,

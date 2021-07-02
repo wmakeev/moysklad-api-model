@@ -12,6 +12,8 @@ export type PositionTypeByDocument = {
   [MetaType.Demand]: MetaType.DemandPosition
   [MetaType.RetailDemand]: MetaType.DemandPosition
   [MetaType.PurchaseOrder]: MetaType.PurchaseOrderPosition
+  [MetaType.InvoiceOut]: MetaType.InvoicePosition
+  [MetaType.InvoiceIn]: MetaType.InvoicePosition
 }
 
 export interface Position<T extends PositionMetaType> extends Entity<T> {

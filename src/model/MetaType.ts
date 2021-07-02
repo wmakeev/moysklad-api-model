@@ -12,6 +12,8 @@ import type {
   RetailDemand,
   State
 } from '.'
+import type { InvoiceIn } from './InvoiceIn'
+import type { InvoiceOut } from './InvoiceOut'
 
 export enum MetaType {
   Account = 'account',
@@ -147,8 +149,8 @@ export type EntityByMetaType = {
   [MetaType.InternalOrderPosition]: Entity<MetaType.InternalOrderPosition>
   [MetaType.Inventory]: Entity<MetaType.Inventory>
   [MetaType.InventoryPosition]: Entity<MetaType.InventoryPosition>
-  [MetaType.InvoiceIn]: Entity<MetaType.InvoiceIn>
-  [MetaType.InvoiceOut]: Entity<MetaType.InvoiceOut>
+  [MetaType.InvoiceIn]: InvoiceIn
+  [MetaType.InvoiceOut]: InvoiceOut
   [MetaType.InvoicePosition]: Entity<MetaType.InvoicePosition>
   [MetaType.Loss]: Entity<MetaType.Loss>
   [MetaType.LossPosition]: Entity<MetaType.LossPosition>
