@@ -1,3 +1,5 @@
+// Добавить новые сущности аналогично в MetaType.ts
+
 export * from './Account'
 export * from './Address'
 export * from './Agent'

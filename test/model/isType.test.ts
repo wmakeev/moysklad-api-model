@@ -1,4 +1,4 @@
-import { CustomerOrder, Demand, MetaType, RetailDemand } from '../../build/src'
+import { CustomerOrder, Demand, MetaType, RetailDemand } from '../../src'
 import { isType } from '../../src/tools'
 import { getTypedVar } from '../tools'
 

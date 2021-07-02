@@ -1,12 +1,17 @@
-import type { Account } from './Account'
-import type { AgentNote } from './AgentNote'
-import type { ContactPerson } from './ContactPerson'
-import type { Counterparty } from './Counterparty'
-import type { CustomerOrder } from './CustomerOrder'
-import type { Employee } from './Employee'
-import type { Entity } from './Entity'
-import type { Group } from './Group'
-import type { Organization } from './Organization'
+import type {
+  Account,
+  AgentNote,
+  ContactPerson,
+  Counterparty,
+  CustomerOrder,
+  Demand,
+  Employee,
+  Entity,
+  Group,
+  Organization,
+  RetailDemand,
+  State
+} from '.'
 
 export enum MetaType {
   Account = 'account',
@@ -126,7 +131,7 @@ export type EntityByMetaType = {
   [MetaType.CustomerOrder]: CustomerOrder
   [MetaType.CustomerOrderPosition]: Entity<MetaType.CustomerOrderPosition>
   [MetaType.CustomTemplate]: Entity<MetaType.CustomTemplate>
-  [MetaType.Demand]: Entity<MetaType.Demand>
+  [MetaType.Demand]: Demand
   [MetaType.DemandPosition]: Entity<MetaType.DemandPosition>
   [MetaType.Discount]: Entity<MetaType.Discount>
   [MetaType.EmbeddedTemplate]: Entity<MetaType.EmbeddedTemplate>
@@ -173,7 +178,7 @@ export type EntityByMetaType = {
   [MetaType.PurchaseReturn]: Entity<MetaType.PurchaseReturn>
   [MetaType.PurchaseReturnPosition]: Entity<MetaType.PurchaseReturnPosition>
   [MetaType.Region]: Entity<MetaType.Region>
-  [MetaType.RetailDemand]: Entity<MetaType.RetailDemand>
+  [MetaType.RetailDemand]: RetailDemand
   [MetaType.RetailDrawerCashIn]: Entity<MetaType.RetailDrawerCashIn>
   [MetaType.RetailDrawerCashOut]: Entity<MetaType.RetailDrawerCashOut>
   [MetaType.RetailSalesReturn]: Entity<MetaType.RetailSalesReturn>
@@ -183,7 +188,7 @@ export type EntityByMetaType = {
   [MetaType.SalesReturnPosition]: Entity<MetaType.SalesReturnPosition>
   [MetaType.Service]: Entity<MetaType.Service>
   [MetaType.SpecialPriceDiscount]: Entity<MetaType.SpecialPriceDiscount>
-  [MetaType.State]: Entity<MetaType.State>
+  [MetaType.State]: State
   [MetaType.Store]: Entity<MetaType.Store>
   [MetaType.Supply]: Entity<MetaType.Supply>
   [MetaType.SupplyPosition]: Entity<MetaType.SupplyPosition>

@@ -1,5 +1,5 @@
-import type { CustomerOrder, CustomerOrderExpand } from '../..'
-import { AttributeType, MediaType, MetaType, TaxSystem } from '../..'
+import type { CustomerOrder, CustomerOrderExpand } from '../../src'
+import { AttributeType, MediaType, MetaType, TaxSystem } from '../../src'
 
 const customerOrderFull1: CustomerOrder = {
   meta: {
