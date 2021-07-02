@@ -1,5 +1,6 @@
 // Добавить новые сущности аналогично в MetaType.ts
 
+// Model
 export * from './Account'
 export * from './Address'
 export * from './Agent'
@@ -44,3 +45,6 @@ export * from './PriceType'
 export * from './RetailDemand'
 export * from './State'
 export * from './TaxSystem'
+
+// Reports
+export * from './reports'
