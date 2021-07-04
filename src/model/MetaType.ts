@@ -4,6 +4,7 @@ import type {
   ContactPerson,
   Counterparty,
   CustomerOrder,
+  CustomerOrderPosition,
   Demand,
   Employee,
   Entity,
@@ -12,6 +13,7 @@ import type {
   RetailDemand,
   State
 } from '.'
+import type { Attribute } from './Attribute'
 import type { InvoiceIn } from './InvoiceIn'
 import type { InvoiceOut } from './InvoiceOut'
 
@@ -110,7 +112,7 @@ export enum MetaType {
 export type EntityByMetaType = {
   [MetaType.Account]: Account
   [MetaType.AccumulationDiscount]: Entity<MetaType.AccumulationDiscount>
-  [MetaType.AttributeMetadata]: Entity<MetaType.AttributeMetadata>
+  [MetaType.AttributeMetadata]: Attribute
   [MetaType.BonusProgram]: Entity<MetaType.BonusProgram>
   [MetaType.Bundle]: Entity<MetaType.Bundle>
   [MetaType.BundleComponent]: Entity<MetaType.BundleComponent>
@@ -131,7 +133,7 @@ export type EntityByMetaType = {
   [MetaType.CustomEntity]: Entity<MetaType.CustomEntity>
   [MetaType.CustomEntityMetadata]: Entity<MetaType.CustomEntityMetadata>
   [MetaType.CustomerOrder]: CustomerOrder
-  [MetaType.CustomerOrderPosition]: Entity<MetaType.CustomerOrderPosition>
+  [MetaType.CustomerOrderPosition]: CustomerOrderPosition
   [MetaType.CustomTemplate]: Entity<MetaType.CustomTemplate>
   [MetaType.Demand]: Demand
   [MetaType.DemandPosition]: Entity<MetaType.DemandPosition>

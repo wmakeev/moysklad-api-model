@@ -1,4 +1,4 @@
-import type { CustomerOrder, Expand } from '../../src'
+import type { CustomerOrder, Expand } from '../../../src'
 
 // Expand EntityRef
 const test1 = {} as Expand<Expand<CustomerOrder, 'agent'>, 'state'>

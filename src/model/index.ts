@@ -20,10 +20,10 @@ export * from './DocumentWithPositions'
 export * from './Employee'
 export * from './Entity'
 export * from './EntityRef'
-export * from './Expand'
 export * from './Group'
 export * from './HasAttributes'
 export * from './HasCreated'
+export * from './HasDeleted'
 export * from './HasFiles'
 export * from './HasProject'
 export * from './HasRate'
@@ -45,6 +45,9 @@ export * from './PriceType'
 export * from './RetailDemand'
 export * from './State'
 export * from './TaxSystem'
+
+// Utility types
+export * from './utils'
 
 // Reports
 export * from './reports'

@@ -1,5 +1,5 @@
-import type { EntityRef } from './EntityRef'
-import type { EntityByMetaType } from './MetaType'
+import type { EntityRef } from '../EntityRef'
+import type { EntityByMetaType } from '../MetaType'
 
 type ExpandEntityRef<T, K extends keyof T> = {
   [P in keyof T]: K extends P
