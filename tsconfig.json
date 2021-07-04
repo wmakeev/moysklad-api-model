@@ -3,8 +3,8 @@
   "compilerOptions": {
     // -- Project Options
     "declaration": true,
-    "declarationMap": true,
-    "incremental": true,
+    "declarationMap": false,
+    "incremental": false,
     "lib": [
       "ES2020", // Node 14.x
       "DOM"
