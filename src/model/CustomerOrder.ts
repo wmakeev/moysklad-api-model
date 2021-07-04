@@ -8,19 +8,19 @@ export type CustomerOrder = Order<MetaType.CustomerOrder> &
   HasVat & {
     taxSystem?: TaxSystem
 
-    reservedSum: number
+    readonly reservedSum: number
 
     purchaseOrders?: EntityRef<MetaType.PurchaseOrder>[]
 
     // TODO Проверить связи (нет в документации?)
 
-    shippedSum: number
+    readonly shippedSum: number
     demands?: EntityRef<MetaType.Demand>[]
 
-    invoicedSum: number
+    readonly invoicedSum: number
     invoicesOut?: EntityRef<MetaType.InvoiceOut>[]
 
-    payedSum: number
+    readonly payedSum: number
     payments?: EntityRef<MetaType.PaymentOut | MetaType.PaymentIn>[]
   }
 

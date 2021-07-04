@@ -2,6 +2,7 @@ import type { Entity } from './Entity'
 import type { EntityRef } from './EntityRef'
 import type { HasAttributes } from './HasAttributes'
 import type { HasCreated } from './HasCreated'
+import type { HasDeleted } from './HasDeleted'
 import type { HasFiles } from './HasFiles'
 import type { HasProject } from './HasProject'
 import type { HasRate } from './HasRate'
@@ -23,6 +24,7 @@ export interface Document<T extends DocumentMetaType>
   extends Entity<T>,
     HasCreated,
     HasUpdated,
+    HasDeleted,
     HasState,
     HasProject,
     HasRate,
@@ -44,16 +46,13 @@ export interface Document<T extends DocumentMetaType>
   /** Дата документа */
   moment: string
 
-  /** Дата последнего удаления документа в корзину */
-  deleted?: string
-
   readonly syncId?: string
 
   /** Договор */
   contract?: EntityRef<MetaType.Contract>
 
   /** Сумма документа */
-  sum: number
+  readonly sum: number
 
   // TODO agent: общий тип можно экспандить только по пересечению
 

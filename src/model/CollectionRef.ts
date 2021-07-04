@@ -2,10 +2,10 @@ import type { EntityRef } from './EntityRef'
 import type { MetaType } from './MetaType'
 
 export type CollectionPageInfo = {
-  size: number
-  limit: number
-  offset: number
-  hextHref?: string
+  readonly size: number
+  readonly limit: number
+  readonly offset: number
+  readonly hextHref?: string
 }
 
 export interface CollectionRef<T extends MetaType = MetaType>

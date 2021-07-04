@@ -49,17 +49,17 @@ export type AttributeJsTypeMap = {
 
   // Custom entity
   [AttributeType.CustomEntity]: EntityRef<MetaType.CustomEntity> & {
-    name: string
+    readonly name: string
   }
 }
 
 export interface AttributeBase<T extends AttributeType = AttributeType>
   extends Entity<MetaType.AttributeMetadata> {
   /** Наименование пользовательского поля */
-  name: string
+  readonly name: string
 
   /** Тип значения пользовательского поля */
-  type: T
+  readonly type: T
 
   value: AttributeJsTypeMap[T]
 }
@@ -68,9 +68,9 @@ export type Attribute<
   T extends AttributeType = AttributeType
 > = T extends AttributeType.File
   ? AttributeBase<T> & {
-      download: {
-        href: string
-        mediaType: MediaType
+      readonly download: {
+        readonly href: string
+        readonly mediaType: MediaType
       }
     }
   : AttributeBase<T>

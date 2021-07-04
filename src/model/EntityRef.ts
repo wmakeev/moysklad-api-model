@@ -7,5 +7,5 @@ import type { MetaType } from './MetaType'
 
 export interface EntityRef<T extends MetaType = MetaType>
   extends MoyskladObject {
-  meta: Meta<T>
+  readonly meta: Meta<T>
 }

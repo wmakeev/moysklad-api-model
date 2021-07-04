@@ -16,15 +16,15 @@ export interface Organization extends Company<MetaType.Organization> {
   chiefAccountant: string
 
   /** Идентификатор в ФСРАР */
-  fsrarId?: string
+  readonly fsrarId?: string
 
   /** IP-адрес УТМ */
-  utmUrl?: string
+  readonly utmUrl?: string
 
-  trackingContractNumber?: string
+  readonly trackingContractNumber?: string
 
-  trackingContractDate?: Date
+  readonly trackingContractDate?: Date
 
   /** Бонусная программа (meta) */
-  bonusProgram?: EntityRef<MetaType.BonusProgram>
+  readonly bonusProgram?: EntityRef<MetaType.BonusProgram>
 }

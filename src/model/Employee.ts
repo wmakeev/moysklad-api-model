@@ -3,7 +3,7 @@ import type { MetaType } from './MetaType'
 
 export interface Employee extends Agent<MetaType.Employee> {
   /** Логин Сотрудника */
-  uid: string
+  readonly uid: string
 
   /** Краткое ФИО */
   shortFio: string
