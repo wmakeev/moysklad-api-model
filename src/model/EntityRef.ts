@@ -7,5 +7,6 @@ import type { MetaType } from './MetaType'
 
 export interface EntityRef<T extends MetaType = MetaType>
   extends MoyskladObject {
+  /** Метаданные сущности */
   readonly meta: Meta<T>
 }

@@ -1,5 +1,6 @@
 export * from './Expand'
 export * from './Patch'
+export * from './Template'
 
 // https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir
 
