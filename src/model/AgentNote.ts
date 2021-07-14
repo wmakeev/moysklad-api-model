@@ -3,10 +3,10 @@ import type { EntityRef } from './EntityRef'
 import type { HasCreated } from './HasCreated'
 import type { MetaType } from './MetaType'
 
-export interface AgentNote extends Entity<MetaType.Note>, HasCreated {
+export interface AgentNote extends Entity<'note'>, HasCreated {
   description?: string
 
-  agent: EntityRef<MetaType.Counterparty>
+  agent: EntityRef<'counterparty'>
 
-  author: EntityRef<MetaType.Employee>
+  author: EntityRef<'employee'>
 }

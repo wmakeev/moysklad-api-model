@@ -10,6 +10,8 @@ export type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X
   ? A
   : B
 
+export type IsExtends<A, B> = A extends B ? true : false
+
 export type ReadonlyKeys<T> = {
   [P in keyof T]-?: IfEquals<
     { [Q in P]: T[P] },

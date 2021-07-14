@@ -1,7 +1,25 @@
-import { Attribute, CustomerOrder, MetaType, Patch } from '../../../src'
+import type {
+  Attribute,
+  CustomerOrder,
+  CustomerOrderPatch,
+  MetaType,
+  Patch,
+  PatchByMetaType,
+  PatchCollection
+} from '../../../src'
+
+const customerOrderMetaType: 'customerorder' = 'customerorder'
+
+const customerOrderPatch1: CustomerOrderPatch = {
+  name: 'Foo'
+}
+
+const customerOrderPatch2: PatchByMetaType['customerorder'] = {
+  name: 'Foo'
+}
 
 //#region Патч объекта
-const t1 = {} as Patch<CustomerOrder>
+const t1 = {} as Patch<'customerorder'>
 
 // @ts-expect-error
 t1.id // should omit readonly fields
@@ -13,7 +31,10 @@ t1.name?.toString()
 
 t1.positions = [
   {
-    meta: { type: MetaType.CustomerOrderPosition, href: '' },
+    meta: {
+      type: 'customerorderposition',
+      href: ''
+    },
     price: 12300,
     discount: 10
   }
@@ -32,7 +53,7 @@ t1.positions = [
 t1.attributes = [
   {
     meta: {
-      type: MetaType.AttributeMetadata,
+      type: 'attributemetadata',
       href: ''
     },
     value: 123
@@ -42,7 +63,7 @@ t1.attributes = [
 t1.attributes = [
   {
     meta: {
-      type: MetaType.AttributeMetadata,
+      type: 'attributemetadata',
       href: ''
     },
     value: ''
@@ -59,7 +80,7 @@ t1.attributes = [
 t1.attributes = [
   {
     meta: {
-      type: MetaType.AttributeMetadata,
+      type: 'attributemetadata',
       href: ''
     },
     // @ts-expect-error
@@ -70,24 +91,24 @@ t1.attributes = [
 //#endregion
 
 //#region Патч коллекции
-const t4: Patch<CustomerOrder[]> = [
+const t4: PatchCollection<'customerorder'> = [
   {
     meta: {
-      type: MetaType.CustomerOrder,
+      type: 'customerorder',
       href: ''
     },
     name: 'foo',
     attributes: [
       {
         meta: {
-          type: MetaType.AttributeMetadata,
+          type: 'attributemetadata',
           href: ''
         }
       }
     ],
     positions: [
       {
-        meta: { type: MetaType.CustomerOrderPosition, href: '' },
+        meta: { type: 'customerorderposition', href: '' },
         price: 45,
         discount: 10
       }
@@ -97,13 +118,19 @@ const t4: Patch<CustomerOrder[]> = [
 //#endregion
 
 //#region Патч вложенной коллекции МойСклад
-const attribute1: Patch<Attribute> = { value: 42 }
+const attribute1: Patch<'attributemetadata'> = {
+  meta: {
+    type: 'attributemetadata',
+    href: ''
+  },
+  value: 42
+}
 
-const attribute2: Patch<Attribute[]> = [
+const attribute2: PatchCollection<'attributemetadata'> = [
   {
     meta: {
       href: '',
-      type: MetaType.AttributeMetadata
+      type: 'attributemetadata'
     },
     value: 42
   }

@@ -4,7 +4,7 @@ import type { CollectionRef } from './CollectionRef'
 import type { EntityRef } from './EntityRef'
 import type { MetaType } from './MetaType'
 
-export type CompanyMetaType = MetaType.Counterparty | MetaType.Organization
+export type CompanyMetaType = 'counterparty' | 'organization'
 
 export enum CompanyType {
   Legal = 'legal',
@@ -13,7 +13,7 @@ export enum CompanyType {
 }
 
 export interface CompanyDiscountData {
-  discount: EntityRef<MetaType.Discount>
+  discount: EntityRef<'discount'>
 
   personalDiscount: number // double
 
@@ -28,7 +28,7 @@ export interface Company<T extends CompanyMetaType> extends Agent<T> {
     | CompanyType.Legal
 
   /** Счета */
-  accounts: CollectionRef<MetaType.Account>
+  accounts: CollectionRef<'account'>
 
   /** Полное наименование */
   legalTitle?: string

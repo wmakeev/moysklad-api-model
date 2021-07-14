@@ -11,3 +11,8 @@ export interface Meta<T extends MetaType = MetaType> {
   // metadataHref!: string // TODO Зависит от типа
   // downloadHref!: string // TODO Зависит от типа
 }
+
+export type MetaPatch<T extends MetaType = MetaType> = Pick<
+  Meta<T>,
+  'type' | 'href'
+>

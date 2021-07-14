@@ -2,9 +2,8 @@ import type { MetaType } from '..'
 import type { CollectionRef } from '../CollectionRef'
 import type { EntityRef } from '../EntityRef'
 
-export interface CounterpartyReportItem
-  extends EntityRef<MetaType.Counterparty> {
-  counterparty: EntityRef<MetaType.Counterparty>
+export interface CounterpartyReportItem extends EntityRef<'counterparty'> {
+  counterparty: EntityRef<'counterparty'>
   firstDemandDate: string | null
   lastDemandDate: string | null
   demandsCount: number
@@ -23,10 +22,9 @@ export interface CounterpartyReportItem
 /**
  * `/report/counterparty`
  */
-export interface CounterpartyReport
-  extends CollectionRef<MetaType.Counterparty> {
+export interface CounterpartyReport extends CollectionRef<'counterparty'> {
   context: {
-    employee: EntityRef<MetaType.Employee>
+    employee: EntityRef<'employee'>
   }
 
   rows: CounterpartyReportItem[]

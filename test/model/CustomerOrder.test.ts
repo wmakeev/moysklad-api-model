@@ -3,20 +3,20 @@ import { AttributeType, MediaType, MetaType, TaxSystem } from '../../src'
 
 const customerOrderFull1: CustomerOrder = {
   meta: {
-    type: MetaType.CustomerOrder,
+    type: 'customerorder',
     href: ''
   },
   id: '',
   accountId: '',
   group: {
     meta: {
-      type: MetaType.Group,
+      type: 'group',
       href: ''
     }
   },
   owner: {
     meta: {
-      type: MetaType.Employee,
+      type: 'employee',
       href: ''
     }
   },
@@ -28,7 +28,7 @@ const customerOrderFull1: CustomerOrder = {
   externalCode: '',
   positions: {
     meta: {
-      type: MetaType.CustomerOrderPosition,
+      type: 'customerorderposition',
       href: '',
       limit: 0,
       offset: 0,
@@ -41,44 +41,44 @@ const customerOrderFull1: CustomerOrder = {
   vatEnabled: false,
   state: {
     meta: {
-      type: MetaType.State,
+      type: 'state',
       href: ''
     }
   },
   store: {
     meta: {
-      type: MetaType.Store,
+      type: 'store',
       href: ''
     }
   },
   agent: {
     meta: {
-      type: MetaType.Counterparty,
+      type: 'counterparty',
       href: ''
     }
   },
   agentAccount: {
     meta: {
-      type: MetaType.Account,
+      type: 'account',
       href: ''
     }
   },
   organization: {
     meta: {
-      type: MetaType.Organization,
+      type: 'organization',
       href: ''
     }
   },
   organizationAccount: {
     meta: {
-      type: MetaType.Account,
+      type: 'account',
       href: ''
     }
   },
   applicable: true,
   currency: {
     meta: {
-      type: MetaType.Currency,
+      type: 'currency',
       href: ''
     }
   },
@@ -86,7 +86,7 @@ const customerOrderFull1: CustomerOrder = {
     {
       meta: {
         href: '',
-        type: MetaType.AttributeMetadata
+        type: 'attributemetadata'
       },
       accountId: '',
       id: '',
@@ -97,7 +97,7 @@ const customerOrderFull1: CustomerOrder = {
     {
       meta: {
         href: '',
-        type: MetaType.AttributeMetadata
+        type: 'attributemetadata'
       },
       accountId: '',
       id: '',
@@ -112,13 +112,13 @@ const customerOrderFull1: CustomerOrder = {
   ],
   contract: {
     meta: {
-      type: MetaType.Contract,
+      type: 'contract',
       href: ''
     }
   },
   project: {
     meta: {
-      type: MetaType.Project,
+      type: 'project',
       href: ''
     }
   },
@@ -127,7 +127,7 @@ const customerOrderFull1: CustomerOrder = {
   files: {
     meta: {
       href: '',
-      type: MetaType.Files,
+      type: 'files',
       limit: 0,
       offset: 0,
       size: 0
@@ -147,7 +147,7 @@ const customerOrderFull1: CustomerOrder = {
 const customerOrderExpand1: Partial<CustomerOrderExpand> = {
   agent: {
     meta: {
-      type: MetaType.Counterparty,
+      type: 'counterparty',
       href: ''
     }
   }

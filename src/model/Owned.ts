@@ -6,8 +6,8 @@ export interface Owned {
   shared: boolean
 
   /** Отдел сотрудника */
-  group: EntityRef<MetaType.Group>
+  group: EntityRef<'group'>
 
   /** Владелец (сотрудник) */
-  owner: EntityRef<MetaType.Employee>
+  owner: EntityRef<'employee'>
 }

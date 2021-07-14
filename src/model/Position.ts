@@ -1,19 +1,42 @@
 import type { Entity } from './Entity'
-import type { EntityRef } from './EntityRef'
-import type { MetaType } from './MetaType'
+import type { EntityPatchRef, EntityRef } from './EntityRef'
 
 export type PositionMetaType =
-  | MetaType.CustomerOrderPosition
-  | MetaType.DemandPosition
-  | MetaType.PurchaseOrderPosition
+  | 'commissionreportinposition'
+  | 'commissionreportoutposition'
+  | 'customerorderposition'
+  | 'demandposition'
+  | 'enterposition'
+  | 'internalorderposition'
+  | 'inventoryposition'
+  | 'invoiceposition'
+  | 'lossposition'
+  | 'moveposition'
+  | 'processingorderposition'
+  | 'purchaseorderposition'
+  | 'purchasereturnposition'
+  | 'salesreturnposition'
+  | 'supplyposition'
 
-export type PositionTypeByDocument = {
-  [MetaType.CustomerOrder]: MetaType.CustomerOrderPosition
-  [MetaType.Demand]: MetaType.DemandPosition
-  [MetaType.RetailDemand]: MetaType.DemandPosition
-  [MetaType.PurchaseOrder]: MetaType.PurchaseOrderPosition
-  [MetaType.InvoiceOut]: MetaType.InvoicePosition
-  [MetaType.InvoiceIn]: MetaType.InvoicePosition
+// TODO Нужно ли сделать динамически `${MetaType}position`?
+export type DocumentPositionType = {
+  commissionreportin: 'commissionreportinposition'
+  commissionreportout: 'commissionreportoutposition'
+  customerorder: 'customerorderposition'
+  demand: 'demandposition'
+  enter: 'enterposition'
+  internalorder: 'internalorderposition'
+  inventory: 'inventoryposition'
+  invoicein: 'invoiceposition'
+  invoiceout: 'invoiceposition'
+  loss: 'lossposition'
+  move: 'moveposition'
+  processingorder: 'processingorderposition'
+  purchaseorder: 'purchaseorderposition'
+  purchasereturn: 'purchasereturnposition'
+  retaildemand: 'demandposition'
+  salesreturn: 'salesreturnposition'
+  supply: 'supplyposition'
 }
 
 export interface Position<T extends PositionMetaType> extends Entity<T> {
@@ -26,6 +49,10 @@ export interface Position<T extends PositionMetaType> extends Entity<T> {
   /** Скидка */
   discount: number
 
+  // TODO Position.assortment: Описать типы
   /** Ассортимент */
   assortment: EntityRef
 }
+
+export type PositionPatch<T extends PositionMetaType> = EntityPatchRef<T> &
+  Partial<Pick<Position<T>, 'quantity' | 'price' | 'discount' | 'assortment'>>

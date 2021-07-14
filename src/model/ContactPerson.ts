@@ -3,9 +3,7 @@ import type { EntityRef } from './EntityRef'
 import type { HasUpdated } from './HasUpdated'
 import type { MetaType } from './MetaType'
 
-export interface ContactPerson
-  extends Entity<MetaType.ContactPerson>,
-    HasUpdated {
+export interface ContactPerson extends Entity<'contactperson'>, HasUpdated {
   /** Наименование */
   name: string
 
@@ -21,5 +19,5 @@ export interface ContactPerson
 
   position?: string
 
-  agent: EntityRef<MetaType.Counterparty>
+  agent: EntityRef<'counterparty'>
 }

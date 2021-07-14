@@ -6,8 +6,7 @@
     "declarationMap": false,
     "incremental": false,
     "lib": [
-      "ES2020", // Node 14.x
-      "DOM"
+      "ES2020" // Node 14.x
     ],
     "module": "CommonJS",
     "outDir": "build",

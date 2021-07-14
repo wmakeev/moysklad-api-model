@@ -12,8 +12,7 @@ export enum StateType {
 /**
  * Состояние документа или сущности
  */
-export interface State<T extends MetaType = MetaType>
-  extends Entity<MetaType.State> {
+export interface State<T extends MetaType = MetaType> extends Entity<'state'> {
   /** Наименование */
   name: string
 

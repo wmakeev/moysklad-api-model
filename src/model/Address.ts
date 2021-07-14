@@ -4,9 +4,9 @@ import type { MetaType } from './MetaType'
 export interface Address {
   postalCode?: string
 
-  country?: EntityRef<MetaType.Country>
+  country?: EntityRef<'country'>
 
-  region?: EntityRef<MetaType.Region>
+  region?: EntityRef<'region'>
 
   city?: string
 

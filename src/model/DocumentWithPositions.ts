@@ -1,12 +1,29 @@
 import type { CollectionRef } from './CollectionRef'
-import type { Document, DocumentExpand } from './Document'
-import type { PositionTypeByDocument } from './Position'
+import type { Document, DocumentExpand, DocumentPatch } from './Document'
+import type { DocumentPositionType, PositionPatch } from './Position'
+import type { Patch } from './utils'
 
-export interface DocumentWithPositions<T extends keyof PositionTypeByDocument>
-  extends Document<T> {
-  positions: CollectionRef<PositionTypeByDocument[T]>
+export type DocumentWithPositionsMetaType = keyof DocumentPositionType
+
+export type DocumentWithPositionsFields<
+  T extends DocumentWithPositionsMetaType
+> = {
+  positions: CollectionRef<DocumentPositionType[T]>
 }
 
+export type DocumentWithPositions<
+  T extends DocumentWithPositionsMetaType
+> = Document<T> & DocumentWithPositionsFields<T>
+
 export type DocumentWithPositionsExpand<
-  T extends keyof PositionTypeByDocument
-> = Pick<DocumentWithPositions<T>, 'positions'> & DocumentExpand<T>
+  T extends DocumentWithPositionsMetaType
+> = Pick<DocumentWithPositionsFields<T>, 'positions'> & DocumentExpand<T>
+
+export type DocumentWithPositionsPatch<
+  T extends DocumentWithPositionsMetaType
+> = DocumentPatch &
+  Partial<{
+    // TODO Добавить вариант с коллекцией?
+    // TODO Для каждого типа документа будет свой PositionPatch (брать из type map)
+    positions: Patch<DocumentPositionType[T]>[]
+  }>

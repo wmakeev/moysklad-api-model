@@ -1,31 +1,38 @@
-import type { EntityRef } from './EntityRef'
-import type { HasVat } from './HasVat'
-import type { MetaType } from './MetaType'
-import type { Order, OrderExpand } from './Order'
-import type { TaxSystem } from './TaxSystem'
+import type {
+  EntityRef,
+  HasVat,
+  Order,
+  OrderExpand,
+  OrderPatch,
+  TaxSystem
+} from '.'
 
-export type CustomerOrder = Order<MetaType.CustomerOrder> &
-  HasVat & {
-    taxSystem?: TaxSystem
+export type CustomerOrderFields = HasVat & {
+  taxSystem?: TaxSystem
 
-    readonly reservedSum: number
+  readonly reservedSum: number
 
-    purchaseOrders?: EntityRef<MetaType.PurchaseOrder>[]
+  purchaseOrders?: EntityRef<'purchaseorder'>[]
 
-    // TODO Проверить связи (нет в документации?)
+  // TODO Проверить связи (нет в документации?)
 
-    readonly shippedSum: number
-    demands?: EntityRef<MetaType.Demand>[]
+  readonly shippedSum: number
+  demands?: EntityRef<'demand'>[]
 
-    readonly invoicedSum: number
-    invoicesOut?: EntityRef<MetaType.InvoiceOut>[]
+  readonly invoicedSum: number
+  invoicesOut?: EntityRef<'invoiceout'>[]
 
-    readonly payedSum: number
-    payments?: EntityRef<MetaType.PaymentOut | MetaType.PaymentIn>[]
-  }
+  readonly payedSum: number
+  payments?: EntityRef<'paymentout' | 'paymentin'>[]
+}
+
+export type CustomerOrder = Order<'customerorder'> & CustomerOrderFields
 
 export type CustomerOrderExpand = Pick<
   CustomerOrder,
   'purchaseOrders' | 'demands' | 'invoicesOut' | 'payments'
 > &
-  OrderExpand<MetaType.CustomerOrder>
+  OrderExpand<'customerorder'>
+
+export type CustomerOrderPatch = OrderPatch<'customerorder'> &
+  Partial<Pick<CustomerOrderFields, 'taxSystem'>>

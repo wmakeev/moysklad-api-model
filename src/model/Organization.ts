@@ -2,7 +2,7 @@ import type { Company } from './Company'
 import type { EntityRef } from './EntityRef'
 import type { MetaType } from './MetaType'
 
-export interface Organization extends Company<MetaType.Organization> {
+export interface Organization extends Company<'organization'> {
   /** Включен ли ЕГАИС для данного юрлица */
   isEgaisEnable: boolean
 
@@ -26,5 +26,5 @@ export interface Organization extends Company<MetaType.Organization> {
   readonly trackingContractDate?: Date
 
   /** Бонусная программа (meta) */
-  readonly bonusProgram?: EntityRef<MetaType.BonusProgram>
+  readonly bonusProgram?: EntityRef<'bonusprogram'>
 }

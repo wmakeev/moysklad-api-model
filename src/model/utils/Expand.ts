@@ -1,25 +1,90 @@
-import type { EntityRef } from '../EntityRef'
-import type { EntityByMetaType } from '../MetaType'
+import type {
+  Collection,
+  CollectionRef,
+  EntityByMetaType,
+  EntityRef,
+  MetaType
+} from '../'
 
-type ExpandEntityRef<T, K extends keyof T> = {
+type t1 = EntityRef<'account'> extends CollectionRef<'account'> ? true : false
+
+// prettier-ignore
+
+/**
+ * Разворачивает конкретное поле в типе
+ */
+type ExpandField<T, K extends keyof T> = {
   [P in keyof T]: K extends P
+    // EntityRef | CollectionRef
     ? T[P] extends EntityRef<infer M> | undefined
-      ? EntityRef<M> extends T[P]
+      // CollectionRef
+      ? T[P] extends CollectionRef<M>
+        ? Collection<M>
+
+      : T[P] extends CollectionRef<M> | undefined
+        ? Collection<M> | undefined
+
+      : T[P] extends EntityRef<M>
         ? EntityByMetaType[M]
-        : EntityByMetaType[M] | undefined
-      : never
+
+      : T[P] extends EntityRef<M> | undefined
+        ? EntityByMetaType[M] | undefined
+        : 'never-eus8s'
+
+      : T[P]
+
+    // default
     : T[P]
 }
 
-export type Expand<T, K extends string> = string extends K
-  ? never
+// prettier-ignore
+
+/**
+ * Разворачивает только одно поле типа по строке expand в формате API МойСклад
+ */
+export type ExpandPath<T, K extends string> =
+  string extends K
+    ? never
+
+  // i.e. `attributes`
+  : T extends Array<infer M>
+      ? Array<ExpandPath<M, K>>
+
+  // i.e. `positions`
+  : T extends Collection
+    ? T & { rows: ExpandPath<T['rows'], K> }
+
+  // 'foo.bar'
   : K extends `${infer Field}.${infer Rest}`
-  ? Field extends keyof T
-    ? ExpandEntityRef<T, Field> &
-        {
-          [Key in Field]: Expand<ExpandEntityRef<T, Field>[Field], Rest>
-        }
-    : never
+    ? Field extends keyof T
+      ? ExpandField<T, Field> &
+          {
+            [Key in Field]: ExpandPath<ExpandField<T, Field>[Field], Rest>
+          }
+      : never
+
+  // 'foo'
   : K extends keyof T
-  ? ExpandEntityRef<T, K>
+    ? ExpandField<T, K>
+
   : never
+
+// prettier-ignore
+
+/**
+ * Разворачивает поля типа по строке expand в формате API МойСклад
+ */
+export type Expand<T, U extends string> =
+  string extends U
+    ? never
+
+  // 'foo.bar,baz'
+  : U extends `${infer Path},${infer Rest}`
+    ? ExpandPath<T, Path> & Expand<T, Rest>
+
+  // 'foo.bar'
+  : ExpandPath<T, U>
+
+// TODO 'positions.assortment,agent.attributes.value'
+// TODO 'attributes.value,agent.attributes.value'
+// TODO 'agent,operations,operations.customerOrder'

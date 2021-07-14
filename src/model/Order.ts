@@ -1,18 +1,25 @@
-import type { MetaType } from './MetaType'
 import type {
   DocumentWithPositions,
-  DocumentWithPositionsExpand
+  DocumentWithPositionsExpand,
+  DocumentWithPositionsPatch
 } from './DocumentWithPositions'
 import type { HasStore } from './HasStore'
 
-export type OrderMetaType = MetaType.CustomerOrder | MetaType.PurchaseOrder
+export type OrderMetaType = 'customerorder' | 'purchaseorder'
 
-export interface Order<T extends OrderMetaType>
-  extends DocumentWithPositions<T>,
-    HasStore {
+export type OrderFields = {
   /** Планируемая дата отгрузки */
   deliveryPlannedMoment?: string
 }
 
+export type Order<T extends OrderMetaType> = DocumentWithPositions<T> &
+  HasStore &
+  OrderFields
+
 export type OrderExpand<T extends OrderMetaType> = Pick<Order<T>, 'store'> &
   DocumentWithPositionsExpand<T>
+
+export type OrderPatch<
+  T extends OrderMetaType
+> = DocumentWithPositionsPatch<T> &
+  Partial<Pick<OrderFields, 'deliveryPlannedMoment'>>

@@ -1,3 +1,4 @@
+import type { AttributePatch } from '.'
 import type { Entity } from './Entity'
 import type { EntityRef } from './EntityRef'
 import type { HasAttributes } from './HasAttributes'
@@ -8,67 +9,92 @@ import type { HasProject } from './HasProject'
 import type { HasRate } from './HasRate'
 import type { HasState } from './HasState'
 import type { HasUpdated } from './HasUpdated'
-import type { MetaType } from './MetaType'
 import type { Owned } from './Owned'
 
-// TODO Перечислить все документы
+// TODO | 'processingplan'
+// TODO | 'processing'?
+
 export type DocumentMetaType =
-  | MetaType.CustomerOrder
-  | MetaType.Demand
-  | MetaType.RetailDemand
-  | MetaType.PurchaseOrder
-  | MetaType.InvoiceOut
-  | MetaType.InvoiceIn
+  | 'cashin'
+  | 'cashout'
+  | 'commissionreportin'
+  | 'commissionreportout'
+  | 'consignment'
+  | 'contract'
+  | 'customerorder'
+  | 'demand'
+  | 'enter'
+  | 'facturein'
+  | 'factureout'
+  | 'internalorder'
+  | 'inventory'
+  | 'invoicein'
+  | 'invoiceout'
+  | 'loss'
+  | 'move'
+  | 'paymentin'
+  | 'paymentout'
+  | 'pricelist'
+  | 'processingorder'
+  | 'purchaseorder'
+  | 'purchasereturn'
+  | 'retaildemand'
+  | 'retaildrawercashin'
+  | 'retaildrawercashout'
+  | 'retailsalesreturn'
+  | 'salesreturn'
+  | 'supply'
 
-export interface Document<T extends DocumentMetaType>
-  extends Entity<T>,
-    HasCreated,
-    HasUpdated,
-    HasDeleted,
-    HasState,
-    HasProject,
-    HasRate,
-    HasAttributes,
-    HasFiles,
-    Owned {
-  /** Наименование документа */
-  name: string
+export type DocumentFieds = HasCreated &
+  HasUpdated &
+  HasDeleted &
+  HasState &
+  HasProject &
+  HasRate &
+  HasAttributes &
+  HasFiles &
+  Owned & {
+    /** Наименование документа */
+    name: string
 
-  /** Проведено */
-  applicable: boolean
+    /** Проведено */
+    applicable: boolean
 
-  /** Комментарий */
-  description?: string
+    /** Комментарий */
+    description?: string
 
-  /** Внешний код */
-  externalCode?: string
+    /** Внешний код */
+    externalCode?: string
 
-  /** Дата документа */
-  moment: string
+    /** Дата документа */
+    moment: string
 
-  readonly syncId?: string
+    readonly syncId?: string
 
-  /** Договор */
-  contract?: EntityRef<MetaType.Contract>
+    /** Договор */
+    contract?: EntityRef<'contract'>
 
-  /** Сумма документа */
-  readonly sum: number
+    /** Сумма документа */
+    readonly sum: number
 
-  // TODO agent: общий тип можно экспандить только по пересечению
+    // TODO agent: общий тип можно экспандить только по пересечению
 
-  /** Контрагент */
-  agent: EntityRef<MetaType.Counterparty | MetaType.Organization>
+    /** Контрагент */
+    agent: EntityRef<'counterparty' | 'organization'>
 
-  /** Счет контрагента */
-  agentAccount?: EntityRef<MetaType.Account>
+    /** Счет контрагента */
+    agentAccount?: EntityRef<'account'>
 
-  /** Организация */
-  organization: EntityRef<MetaType.Organization>
+    /** Организация */
+    organization: EntityRef<'organization'>
 
-  /** Счет организации */
-  organizationAccount?: EntityRef<MetaType.Account>
-}
+    /** Счет организации */
+    organizationAccount?: EntityRef<'account'>
+  }
 
+export type Document<T extends DocumentMetaType> = Entity<T> & DocumentFieds
+
+// TODO Почему объект а не Union?
 /** Поля которе могут быть expand */
 export type DocumentExpand<T extends DocumentMetaType> = Pick<
   Document<T>,
@@ -84,4 +110,29 @@ export type DocumentExpand<T extends DocumentMetaType> = Pick<
   | 'owner'
   | 'project'
   | 'state'
+>
+
+export type DocumentPatch = Partial<
+  Pick<
+    DocumentFieds,
+    | 'agent'
+    | 'agentAccount'
+    | 'applicable'
+    | 'contract'
+    | 'currency'
+    | 'description'
+    | 'externalCode'
+    | 'files'
+    | 'group'
+    | 'moment'
+    | 'name'
+    | 'organization'
+    | 'organizationAccount'
+    | 'owner'
+    | 'project'
+    | 'shared'
+    | 'state'
+  > & {
+    attributes: AttributePatch[]
+  }
 >

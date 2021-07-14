@@ -1,7 +1,6 @@
 import type { Entity } from './Entity'
-import type { EntityRef } from './EntityRef'
+import type { EntityPatchRef, EntityRef } from './EntityRef'
 import type { MediaType } from './MediaType'
-import type { MetaType } from './MetaType'
 
 export enum AttributeType {
   // Base type
@@ -39,22 +38,22 @@ export type AttributeJsTypeMap = {
   [AttributeType.Link]: string
 
   // Embedded entity
-  [AttributeType.Organization]: EntityRef<MetaType.Organization>
-  [AttributeType.Counterparty]: EntityRef<MetaType.Counterparty>
-  [AttributeType.Employee]: EntityRef<MetaType.Employee>
-  [AttributeType.Contract]: EntityRef<MetaType.Contract>
-  [AttributeType.Product]: EntityRef<MetaType.Product>
-  [AttributeType.Project]: EntityRef<MetaType.Project>
-  [AttributeType.Store]: EntityRef<MetaType.Store>
+  [AttributeType.Organization]: EntityRef<'organization'>
+  [AttributeType.Counterparty]: EntityRef<'counterparty'>
+  [AttributeType.Employee]: EntityRef<'employee'>
+  [AttributeType.Contract]: EntityRef<'contract'>
+  [AttributeType.Product]: EntityRef<'product'>
+  [AttributeType.Project]: EntityRef<'project'>
+  [AttributeType.Store]: EntityRef<'store'>
 
   // Custom entity
-  [AttributeType.CustomEntity]: EntityRef<MetaType.CustomEntity> & {
+  [AttributeType.CustomEntity]: EntityRef<'customentity'> & {
     readonly name: string
   }
 }
 
 export interface AttributeBase<T extends AttributeType = AttributeType>
-  extends Entity<MetaType.AttributeMetadata> {
+  extends Entity<'attributemetadata'> {
   /** Наименование пользовательского поля */
   readonly name: string
 
@@ -74,3 +73,8 @@ export type Attribute<
       }
     }
   : AttributeBase<T>
+
+export type AttributePatch<T extends AttributeType = AttributeType> = Partial<
+  Pick<Attribute<T>, 'value'>
+> &
+  EntityPatchRef<'attributemetadata'>

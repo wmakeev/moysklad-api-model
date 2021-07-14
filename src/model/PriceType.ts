@@ -1,7 +1,6 @@
 import type { Entity } from './Entity'
-import type { MetaType } from './MetaType'
 
-export interface PriceType extends Entity<MetaType.PriceType> {
+export interface PriceType extends Entity<'pricetype'> {
   /** Наименование */
   name: string
 

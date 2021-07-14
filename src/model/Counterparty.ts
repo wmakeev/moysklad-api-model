@@ -6,18 +6,18 @@ import type { MetaType } from './MetaType'
 import type { Person } from './Person'
 import type { PriceType } from './PriceType'
 
-export interface CounterpartyBase extends Company<MetaType.Counterparty> {
+export interface CounterpartyBase extends Company<'counterparty'> {
   /** Статус */
-  state: EntityRef<MetaType.State>
+  state: EntityRef<'state'>
 
   /** Группы (теги) */
   tags: string[]
 
   /** Контактные лица */
-  contactpersons: CollectionRef<MetaType.ContactPerson>
+  contactpersons: CollectionRef<'contactperson'>
 
   /** События */
-  notes: EntityRef<MetaType.Note>
+  notes: EntityRef<'note'>
 
   /** Номер дисконтной карты */
   discountCardNumber?: string

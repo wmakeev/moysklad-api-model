@@ -1,8 +1,7 @@
 import type { Entity } from './Entity'
 import type { HasUpdated } from './HasUpdated'
-import type { MetaType } from './MetaType'
 
-export interface Account extends Entity<MetaType.Account>, HasUpdated {
+export interface Account extends Entity<'account'>, HasUpdated {
   /** Является ли счет основным счетом Контрагента */
   isDefault: boolean
 

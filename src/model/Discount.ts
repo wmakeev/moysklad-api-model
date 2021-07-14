@@ -1,8 +1,7 @@
 import type { Entity } from './Entity'
 import type { EntityRef } from './EntityRef'
-import type { MetaType } from './MetaType'
 
-export interface Discount extends Entity<MetaType.Discount> {
+export interface Discount extends Entity<'discount'> {
   name: string
 
   active: boolean
@@ -11,5 +10,5 @@ export interface Discount extends Entity<MetaType.Discount> {
 
   agentTags: string[]
 
-  assortment?: EntityRef<MetaType.Product>[] // TODO Проверить
+  assortment?: EntityRef<'product'>[] // TODO Проверить
 }
