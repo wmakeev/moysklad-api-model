@@ -1,3 +1,11 @@
-import type { DocumentWithPositions, HasVat, MetaType } from '.'
+import type {
+  DocumentWithPositions,
+  DocumentWithPositionsPatch,
+  HasVat,
+  HasVatPatch
+} from '.'
 
 export type InvoiceOut = DocumentWithPositions<'invoiceout'> & HasVat
+
+export type InvoiceOutPatch = DocumentWithPositionsPatch<'invoiceout'> &
+  HasVatPatch

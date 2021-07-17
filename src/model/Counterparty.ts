@@ -2,7 +2,6 @@ import type { CollectionRef } from './CollectionRef'
 import type { Company, CompanyType } from './Company'
 import type { EntityRef } from './EntityRef'
 import type { Legal } from './Legal'
-import type { MetaType } from './MetaType'
 import type { Person } from './Person'
 import type { PriceType } from './PriceType'
 
