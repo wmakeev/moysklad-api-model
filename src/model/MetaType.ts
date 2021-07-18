@@ -14,6 +14,7 @@ import type {
   Group,
   InvoiceIn,
   InvoiceOut,
+  InvoicePosition,
   Organization,
   PaymentIn,
   PaymentOut,
@@ -156,7 +157,7 @@ export type EntityByMetaType = {
   inventoryposition: Entity<'inventoryposition'>
   invoicein: InvoiceIn
   invoiceout: InvoiceOut
-  invoiceposition: Entity<'invoiceposition'>
+  invoiceposition: InvoicePosition
   loss: Entity<'loss'>
   lossposition: Entity<'lossposition'>
   move: Entity<'move'>
