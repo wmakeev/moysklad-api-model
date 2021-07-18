@@ -9,6 +9,7 @@ import type {
 } from '..'
 import type { CashInPatch } from '../CashIn'
 import type { CashOutPatch } from '../CashOut'
+import type { InvoicePosition } from '../InvoicePosition'
 
 export type PatchByMetaType = {
   customerorder: CustomerOrderPatch
@@ -16,6 +17,7 @@ export type PatchByMetaType = {
   attributemetadata: AttributePatch
   invoicein: InvoiceInPatch
   invoiceout: InvoiceOutPatch
+  invoiceposition: InvoicePosition
   cashin: CashInPatch
   cashout: CashOutPatch
 }
