@@ -1,15 +1,15 @@
 import type {
   AttributePatch,
+  CashInPatch,
+  CashOutPatch,
   CustomerOrderPatch,
-  EntityPatchRef,
-  MetaType,
   CustomerOrderPositionPatch,
+  EntityPatchRef,
   InvoiceInPatch,
-  InvoiceOutPatch
+  InvoiceOutPatch,
+  InvoicePositionPatch,
+  MetaType
 } from '..'
-import type { CashInPatch } from '../CashIn'
-import type { CashOutPatch } from '../CashOut'
-import type { InvoicePosition } from '../InvoicePosition'
 
 export type PatchByMetaType = {
   customerorder: CustomerOrderPatch
@@ -17,7 +17,7 @@ export type PatchByMetaType = {
   attributemetadata: AttributePatch
   invoicein: InvoiceInPatch
   invoiceout: InvoiceOutPatch
-  invoiceposition: InvoicePosition
+  invoiceposition: InvoicePositionPatch
   cashin: CashInPatch
   cashout: CashOutPatch
 }
