@@ -16,3 +16,5 @@ export type Template<T extends Document<DocumentMetaType>> = Omit<
   T,
   'meta' | 'id' | 'accountId' | 'updated'
 >
+
+// TODO Необходимо раскрывать позиции для документов с позициями
