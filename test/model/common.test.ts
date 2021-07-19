@@ -9,6 +9,7 @@ const invoiceOut: Patch<'invoiceout'> = {}
 
 invoiceOut.positions?.[0].price
 invoiceOut.customerOrder
+invoiceOut.store
 
 const invoiceOutTemplate = {} as Template<InvoiceOut>
 
