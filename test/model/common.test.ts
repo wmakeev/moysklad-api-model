@@ -5,6 +5,7 @@ const customerorder: Patch<'customerorder'> = {}
 
 testTypeEqual<number | undefined>(customerorder.positions?.[0].reserve)
 
-const invoicein: Patch<'invoiceout'> = {}
+const invoiceOut: Patch<'invoiceout'> = {}
 
-invoicein.positions?.[0].price
+invoiceOut.positions?.[0].price
+invoiceOut.customerOrder
