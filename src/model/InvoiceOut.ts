@@ -10,7 +10,9 @@ export type InvoiceOutFields = {
   customerOrder?: EntityRef<'customerorder'>
 }
 
-export type InvoiceOut = DocumentWithPositions<'invoiceout'> & HasVat
+export type InvoiceOut = DocumentWithPositions<'invoiceout'> &
+  HasVat &
+  InvoiceOutFields
 
 export type InvoiceOutPatch = DocumentWithPositionsPatch<'invoiceout'> &
   HasVatPatch &

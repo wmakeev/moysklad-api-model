@@ -1,4 +1,4 @@
-import type { Patch } from '../../src'
+import type { InvoiceOut, Patch, Template } from '../../src'
 import { testTypeEqual } from '../tools'
 
 const customerorder: Patch<'customerorder'> = {}
@@ -9,3 +9,7 @@ const invoiceOut: Patch<'invoiceout'> = {}
 
 invoiceOut.positions?.[0].price
 invoiceOut.customerOrder
+
+const invoiceOutTemplate = {} as Template<InvoiceOut>
+
+invoiceOutTemplate.customerOrder
