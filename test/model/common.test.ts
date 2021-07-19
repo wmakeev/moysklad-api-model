@@ -1,4 +1,4 @@
-import type { Patch, InvoiceOut } from '../../src'
+import type { Patch } from '../../src'
 import { testTypeEqual } from '../tools'
 
 const customerorder: Patch<'customerorder'> = {}
