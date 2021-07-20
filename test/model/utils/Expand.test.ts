@@ -9,6 +9,16 @@ import {
   Meta
 } from '../../../src'
 
+//#region Пустой Expand
+
+const t71: 'foo' = {} as Expand<'foo', undefined>
+t71
+
+const t70: CustomerOrder = {} as Expand<CustomerOrder, undefined>
+t70
+
+//#endregion
+
 //#region Expand не должен затрагивать прочие поля
 const t00 = {} as Expand<CustomerOrder, 'agent'>
 

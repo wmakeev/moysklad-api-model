@@ -74,8 +74,12 @@ export type ExpandPath<T, K extends string> =
 /**
  * Разворачивает поля типа по строке expand в формате API МойСклад
  */
-export type Expand<T, U extends string> =
-  string extends U
+export type Expand<T, U extends string | undefined> =
+  // Исходный тип если expand не задан
+  U extends undefined
+    ? T
+
+  : string extends U
     ? never
 
   // 'foo.bar,baz'
@@ -83,7 +87,7 @@ export type Expand<T, U extends string> =
     ? ExpandPath<T, Path> & Expand<T, Rest>
 
   // 'foo.bar'
-  : ExpandPath<T, U>
+  : U extends string ? ExpandPath<T, U> : never
 
 // TODO 'positions.assortment,agent.attributes.value'
 // TODO 'attributes.value,agent.attributes.value'
