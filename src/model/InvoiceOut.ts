@@ -8,6 +8,8 @@ import type { EntityRef } from './EntityRef'
 
 export type InvoiceOutFields = {
   customerOrder?: EntityRef<'customerorder'>
+  readonly payedSum: number
+  readonly shippedSum: number
 }
 
 export type InvoiceOut = DocumentWithPositions<'invoiceout'> &
