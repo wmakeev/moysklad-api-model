@@ -8,31 +8,81 @@ import type { DomineEntityMetaType } from './types'
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
+//#region Endpoints
+
+export type AuditCollectionEndpoint = `audit`
+
+export type AuditEndpoint = `audit/${Id}`
+
+export type AuditEventCollectionEndpoint = `audit/${Id}/events`
+
+export type EmployeeContextEndpoint = `context/employee`
+
+export type DownloadEndpoint = `download/${Id}`
+
+export type AssortmentCollectionEndpoint = `entity/assortment`
+
+export type CustomEntityCollectionEndpoint = `entity/customentity/${Id}`
+
+export type CustomEntityEndpoint = `entity/customentity/${Id}/${Id}`
+
+export type CompanyAccountCollectionEndpoint<
+  T extends CompanyMetaType = CompanyMetaType
+> = `entity/${T}/${Id}/accounts`
+
+export type DomineEntityCollectionEndpoint<
+  T extends DomineEntityMetaType = DomineEntityMetaType
+> = `entity/${T}`
+
+export type EntityMetadataEndpoint<
+  T extends DomineEntityMetaType = DomineEntityMetaType
+> = `entity/${T}/metadata`
+
+export type EntityAttributeMetadataEndpoint<
+  T extends DomineEntityMetaType = DomineEntityMetaType
+> = `entity/${T}/metadata/attributes`
+
+export type DomineEntityEndpoint<
+  T extends DomineEntityMetaType = DomineEntityMetaType
+> = `entity/${T}/${Id}`
+
+export type DocumentTemplateEndpoint<
+  T extends DocumentMetaType = DocumentMetaType
+> = `entity/${T}/new`
+
+export type DocumentPositionCollectionEndpoint<
+  T extends DocumentWithPositionsMetaType = DocumentWithPositionsMetaType
+> = `entity/${T}/${Id}/positions`
+
+export type DocumentPositionEndpoint<
+  T extends DocumentWithPositionsMetaType = DocumentWithPositionsMetaType
+> = `entity/${T}/${Id}/positions/${Id}`
+
+//#endregion
+
 export type HttpMethodPath = {
   GET:
-    | `audit`
-    | `audit/${Id}`
-    | `audit/${Id}/events`
-    | `context/employee`
-    | `download/${Id}`
-    | `entity/assortment`
-    | `entity/customentity/${Id}`
-    | `entity/${CompanyMetaType}/${Id}/accounts`
-    | `entity/${DomineEntityMetaType}` // +
-    | `entity/${DomineEntityMetaType}/metadata`
-    | `entity/${DomineEntityMetaType}/metadata/attributes`
-    | `entity/${DomineEntityMetaType}/${Id}`
-    | `entity/${DocumentWithPositionsMetaType}/${Id}/positions`
-    | `entity/${DocumentWithPositionsMetaType}/${Id}/positions/${Id}`
+    | AuditCollectionEndpoint
+    | AuditEndpoint
+    | AuditEventCollectionEndpoint
+    | EmployeeContextEndpoint
+    | DownloadEndpoint
+    | AssortmentCollectionEndpoint
+    | CustomEntityCollectionEndpoint
+    | CompanyAccountCollectionEndpoint
+    | DomineEntityCollectionEndpoint
+    | EntityMetadataEndpoint
+    | EntityAttributeMetadataEndpoint
+    | DomineEntityEndpoint
+    | DocumentPositionCollectionEndpoint
+    | DocumentPositionEndpoint
 
-  POST:
-    | `entity/${DomineEntityMetaType}`
-    | `entity/${DocumentWithPositionsMetaType}/${Id}/positions`
+  POST: DomineEntityCollectionEndpoint | DocumentPositionCollectionEndpoint
 
   // TODO Какие точно типы поддерживают new?
-  PUT: `entity/${DomineEntityMetaType}/${Id}` | `entity/${DocumentMetaType}/new`
+  PUT: DomineEntityEndpoint | DocumentTemplateEndpoint
 
-  DELETE: `entity/${DomineEntityMetaType}/${Id}`
+  DELETE: DomineEntityEndpoint
 }
 
 export type EndpointInterfaceInfo<
@@ -55,7 +105,7 @@ export type EndpointInterface<
     ? EndpointInterfaceInfo<unknown, unknown, undefined>
 
     // entity/{type}/{..}
-    : Endpoint extends `entity/${infer EntityType}/${Id}`
+    : Endpoint extends DomineEntityEndpoint<infer EntityType>
       ? EntityType extends DomineEntityMetaType
         // GET entity/{type}/{id}
         ? Method extends 'GET'
@@ -98,7 +148,8 @@ export type EndpointInterface<
       : EndpointInterfaceInfo<unknown, unknown, undefined>
 
     // entity/{type}
-    : Endpoint extends `entity/${infer EntityType}`
+    : Endpoint extends DomineEntityCollectionEndpoint<infer EntityType>
+      // TODO Эту ветку можно убрать? Стоит ограничение на тип в DomineEntityCollectionEndpoint.
       ? EntityType extends DomineEntityMetaType
         // GET entity/{type}
         ? Method extends 'GET'
