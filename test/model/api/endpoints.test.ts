@@ -18,9 +18,6 @@ const t2: 'foo' = {} as EndpointInterface<
   'entity/customerorder'
 >['response']
 
-const t3: EndpointInterface<'POST', 'entity/customerorder'>['response'] =
-  'unknown'
-
 const t4: IsExtends<
   EndpointInterface<'GET', 'entity/customerorder'>['response'],
   Collection<'customerorder'>
@@ -100,6 +97,9 @@ const t11_1: Partial<CustomerOrder> = {
 // @ts-expect-error
 const t11_2 = request('PUT', 'entity/customerorder/123-456', t11_1)
 
+// TODO [PUT ../new] не реализован
+const t11_3: unknown = request('PUT', 'entity/invoiceout/new', t11_1)
+
 // Expand
 
 const t12_1 = request(
@@ -112,3 +112,18 @@ const t12_1 = request(
 t12_1.rows[0].agent.name
 
 t12_1.rows[0].positions.rows[0].assortment.id
+
+// POST
+
+const t13_1: CustomerOrder[] = request('POST', 'entity/customerorder', [
+  {
+    meta: {
+      type: 'customerorder',
+      href: ''
+    },
+    name: 'foo'
+  },
+  {
+    description: 'bar'
+  }
+])

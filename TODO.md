@@ -1,15 +1,4 @@
-#TODO
-
-- [ ] Расширить Expand для записи полей через запятую
-
-    ```ts
-    Expand<CustomerOrder, 'agent.group,state'>
-    ```
-- [ ] Подумать как работать с обобщенными запросами
-
-    ```ts
-    ms.GET(nextHref, query)
-    ```
+# TODO
 
 - [ ] Нужен еще один слой Create как и для Patch?
 
@@ -17,3 +6,10 @@
 
     Подобная типизация позволит, к примеру, проверить, что корректно указаны
     пользовательские аттрибуты в поле `attributes` по типу сущности в href
+
+- [ ] Переделать тип `EndpointInterface` (response зависит не только от Method
+      и Endpoint, но и от Payload).
+
+      Скорее всего нужно ввести типы:
+        - `PayloadType<Method, Endpoint>`
+        - `ResponseType<Method, Endpoint, Payload>`
