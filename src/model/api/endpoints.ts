@@ -1,5 +1,6 @@
-import type { EntityByMetaType, DocumentWithPositionsMetaType } from '..'
+import type { EntityByMetaType, DocumentWithPositionsMetaType, Id } from '..'
 import type { Collection } from '../Collection'
+import type { CompanyMetaType } from '../Company'
 import type { Document, DocumentMetaType } from '../Document'
 import type { Meta } from '../Meta'
 import type { Expand, Patch, PatchCollection, Template } from '../utils'
@@ -10,28 +11,28 @@ export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
 export type HttpMethodPath = {
   GET:
     | `audit`
-    | `audit/${string}`
-    | `audit/${string}/events`
+    | `audit/${Id}`
+    | `audit/${Id}/events`
     | `context/employee`
-    | `download/${string}`
+    | `download/${Id}`
     | `entity/assortment`
-    | `entity/customentity/${string}`
+    | `entity/customentity/${Id}`
+    | `entity/${CompanyMetaType}/${Id}/accounts`
     | `entity/${DomineEntityMetaType}` // +
     | `entity/${DomineEntityMetaType}/metadata`
     | `entity/${DomineEntityMetaType}/metadata/attributes`
-    | `entity/${DomineEntityMetaType}/${string}`
-    | `entity/${DocumentWithPositionsMetaType}/${string}/positions`
-    | `entity/${DocumentWithPositionsMetaType}/${string}/positions/${string}`
+    | `entity/${DomineEntityMetaType}/${Id}`
+    | `entity/${DocumentWithPositionsMetaType}/${Id}/positions`
+    | `entity/${DocumentWithPositionsMetaType}/${Id}/positions/${Id}`
 
   POST:
     | `entity/${DomineEntityMetaType}`
-    | `entity/${DocumentWithPositionsMetaType}/${string}/positions`
+    | `entity/${DocumentWithPositionsMetaType}/${Id}/positions`
 
-  PUT:
-    | `entity/${DomineEntityMetaType}/${string}`
-    | `entity/${DocumentMetaType}/new` // TODO Какие точно типы поддерживают new
+  // TODO Какие точно типы поддерживают new?
+  PUT: `entity/${DomineEntityMetaType}/${Id}` | `entity/${DocumentMetaType}/new`
 
-  DELETE: `entity/${DomineEntityMetaType}/${string}`
+  DELETE: `entity/${DomineEntityMetaType}/${Id}`
 }
 
 export type EndpointInterfaceInfo<
@@ -54,7 +55,7 @@ export type EndpointInterface<
     ? EndpointInterfaceInfo<unknown, unknown, undefined>
 
     // entity/{type}/{..}
-    : Endpoint extends `entity/${infer EntityType}/${string}`
+    : Endpoint extends `entity/${infer EntityType}/${Id}`
       ? EntityType extends DomineEntityMetaType
         // GET entity/{type}/{id}
         ? Method extends 'GET'
