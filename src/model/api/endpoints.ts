@@ -3,7 +3,12 @@ import type { Collection } from '../Collection'
 import type { CompanyMetaType } from '../Company'
 import type { Document, DocumentMetaType } from '../Document'
 import type { Meta } from '../Meta'
-import type { Expand, Patch, PatchCollection, Template } from '../utils'
+import type {
+  Expand,
+  Patch,
+  PatchCollection,
+  PrefilledDocument
+} from '../utils'
 import type { DomineEntityMetaType } from './types'
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE'
@@ -46,7 +51,7 @@ export type DomineEntityEndpoint<
   T extends DomineEntityMetaType = DomineEntityMetaType
 > = `entity/${T}/${Id}`
 
-export type DocumentTemplateEndpoint<
+export type PrefilledDocumentEndpoint<
   T extends DocumentMetaType = DocumentMetaType
 > = `entity/${T}/new`
 
@@ -80,7 +85,7 @@ export type HttpMethodPath = {
   POST: DomineEntityCollectionEndpoint | DocumentPositionCollectionEndpoint
 
   // TODO Какие точно типы поддерживают new?
-  PUT: DomineEntityEndpoint | DocumentTemplateEndpoint
+  PUT: DomineEntityEndpoint | PrefilledDocumentEndpoint
 
   DELETE: DomineEntityEndpoint
 }
@@ -127,7 +132,7 @@ export type EndpointInterface<
                       // TODO Для разных типов могут быть разные поля
                       any,
                       // TODO Не прописаны сущности для всех документов
-                      unknown, // Template<EntityByMetaType[EntityType]>,
+                      unknown, // PrefilledDocument<EntityByMetaType[EntityType]>,
                       ExpandStr
                     >
                   : never

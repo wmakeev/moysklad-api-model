@@ -1,4 +1,9 @@
-import type { Document, DocumentMetaType } from '../Document'
+import type { DocumentWithPositionsMetaType } from '../DocumentWithPositions'
+import type {
+  EntityByMetaType,
+  ImplementedDocumentsMetaType
+} from '../MetaType'
+import type { Expand } from './Expand'
 
 // TODO Указать конкретные типы документов которые можно создавать этим методом
 
@@ -12,8 +17,10 @@ import type { Document, DocumentMetaType } from '../Document'
 /**
  * Шаблон нового документа `/entity/{type}/new`
  */
-export type Template<T extends Document<DocumentMetaType>> = Omit<
-  T,
+export type PrefilledDocument<T extends ImplementedDocumentsMetaType> = Omit<
+  T extends DocumentWithPositionsMetaType
+    ? Expand<EntityByMetaType[T], 'positions'>
+    : EntityByMetaType[T],
   'meta' | 'id' | 'accountId' | 'updated'
 >
 

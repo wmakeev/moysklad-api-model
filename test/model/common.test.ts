@@ -1,4 +1,4 @@
-import type { InvoiceOut, Patch, Template } from '../../src'
+import type { Patch, PrefilledDocument } from '../../src'
 import { testTypeEqual } from '../tools'
 
 const customerorder: Patch<'customerorder'> = {}
@@ -10,7 +10,3 @@ const invoiceOut: Patch<'invoiceout'> = {}
 invoiceOut.positions?.[0].price
 invoiceOut.customerOrder
 invoiceOut.store
-
-const invoiceOutTemplate = {} as Template<InvoiceOut>
-
-invoiceOutTemplate.customerOrder

@@ -1,6 +1,6 @@
 export * from './Expand'
 export * from './Patch'
-export * from './Template'
+export * from './PrefilledDocument'
 
 // https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir
 
@@ -36,3 +36,7 @@ export type RequireKeys<T, K extends keyof T> = {
   {
     [P in K]-?: T[P]
   }
+
+export type SelectKeysByType<T, V> = {
+  [K in keyof T]: T[K] extends V ? K : never
+}[keyof T]

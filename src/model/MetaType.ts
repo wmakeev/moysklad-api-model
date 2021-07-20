@@ -9,6 +9,8 @@ import type {
   CustomerOrder,
   CustomerOrderPosition,
   Demand,
+  Document,
+  DocumentMetaType,
   Employee,
   Entity,
   Group,
@@ -19,6 +21,7 @@ import type {
   PaymentIn,
   PaymentOut,
   RetailDemand,
+  SelectKeysByType,
   State
 } from '.'
 
@@ -204,3 +207,11 @@ export type EntityByMetaType = {
   uom: Entity<'uom'>
   variant: Entity<'variant'>
 }
+
+/**
+ * MetaType документов для которых реализованы типы.
+ * */
+export type ImplementedDocumentsMetaType = SelectKeysByType<
+  EntityByMetaType,
+  Document<DocumentMetaType>
+>
