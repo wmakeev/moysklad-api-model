@@ -74,7 +74,11 @@ export type Attribute<
     }
   : AttributeBase<T>
 
-export type AttributePatch<T extends AttributeType = AttributeType> = Partial<
-  Pick<Attribute<T>, 'value'>
-> &
-  EntityPatchRef<'attributemetadata'>
+export type AttributePatch<T extends AttributeType = AttributeType> =
+  | (EntityPatchRef<'attributemetadata'> & {
+      file: {
+        filename: string
+        content: string
+      }
+    })
+  | (EntityPatchRef<'attributemetadata'> & Partial<Pick<Attribute<T>, 'value'>>)

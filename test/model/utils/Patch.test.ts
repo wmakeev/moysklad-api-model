@@ -1,5 +1,6 @@
 import type {
   Attribute,
+  AttributeType,
   CustomerOrder,
   CustomerOrderPatch,
   MetaType,
@@ -66,7 +67,14 @@ t1.attributes = [
       type: 'attributemetadata',
       href: ''
     },
-    value: ''
+    value: '',
+    file: { filename: '', content: '' }
+  },
+  {
+    meta: {
+      type: 'attributemetadata',
+      href: ''
+    }
   }
 ]
 
@@ -74,6 +82,13 @@ t1.attributes = [
   // @ts-expect-error
   {
     value: ''
+  }
+]
+
+t1.attributes = [
+  {
+    // @ts-expect-error
+    file: {}
   }
 ]
 
