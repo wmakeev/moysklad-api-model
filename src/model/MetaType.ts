@@ -21,6 +21,7 @@ import type {
   Organization,
   PaymentIn,
   PaymentOut,
+  Position,
   RetailDemand,
   SelectKeysByType,
   State
@@ -128,9 +129,9 @@ export type EntityByMetaType = {
   cashin: CashIn
   cashout: CashOut
   commissionreportin: Entity<'commissionreportin'>
-  commissionreportinposition: Entity<'commissionreportinposition'>
+  commissionreportinposition: Position<'commissionreportinposition'>
   commissionreportout: Entity<'commissionreportout'>
-  commissionreportoutposition: Entity<'commissionreportoutposition'>
+  commissionreportoutposition: Position<'commissionreportoutposition'>
   companysettings: Entity<'companysettings'>
   consignment: Entity<'consignment'>
   contactperson: ContactPerson
@@ -149,23 +150,23 @@ export type EntityByMetaType = {
   embeddedtemplate: Entity<'embeddedtemplate'>
   employee: Employee
   enter: Entity<'enter'>
-  enterposition: Entity<'enterposition'>
+  enterposition: Position<'enterposition'>
   expenseitem: Entity<'expenseitem'>
   facturein: Entity<'facturein'>
   factureout: Entity<'factureout'>
   files: Entity<'files'>
   group: Group
   internalorder: Entity<'internalorder'>
-  internalorderposition: Entity<'internalorderposition'>
+  internalorderposition: Position<'internalorderposition'>
   inventory: Entity<'inventory'>
-  inventoryposition: Entity<'inventoryposition'>
+  inventoryposition: Position<'inventoryposition'>
   invoicein: InvoiceIn
   invoiceout: InvoiceOut
   invoiceposition: InvoicePosition
   loss: Entity<'loss'>
-  lossposition: Entity<'lossposition'>
+  lossposition: Position<'lossposition'>
   move: Entity<'move'>
-  moveposition: Entity<'moveposition'>
+  moveposition: Position<'moveposition'>
   note: AgentNote
   organization: Organization
   paymentin: PaymentIn
@@ -176,7 +177,7 @@ export type EntityByMetaType = {
   pricetype: Entity<'pricetype'>
   processing: Entity<'processing'>
   processingorder: Entity<'processingorder'>
-  processingorderposition: Entity<'processingorderposition'>
+  processingorderposition: Position<'processingorderposition'>
   processingplan: Entity<'processingplan'>
   processingplanmaterial: Entity<'processingplanmaterial'>
   processingplanresult: Entity<'processingplanresult'>
@@ -186,9 +187,9 @@ export type EntityByMetaType = {
   productfolder: Entity<'productfolder'>
   project: Entity<'project'>
   purchaseorder: Entity<'purchaseorder'>
-  purchaseorderposition: Entity<'purchaseorderposition'>
+  purchaseorderposition: Position<'purchaseorderposition'>
   purchasereturn: Entity<'purchasereturn'>
-  purchasereturnposition: Entity<'purchasereturnposition'>
+  purchasereturnposition: Position<'purchasereturnposition'>
   region: Entity<'region'>
   retaildemand: RetailDemand
   retaildrawercashin: Entity<'retaildrawercashin'>
@@ -197,13 +198,13 @@ export type EntityByMetaType = {
   retailshift: Entity<'retailshift'>
   retailstore: Entity<'retailstore'>
   salesreturn: Entity<'salesreturn'>
-  salesreturnposition: Entity<'salesreturnposition'>
+  salesreturnposition: Position<'salesreturnposition'>
   service: Entity<'service'>
   specialpricediscount: Entity<'specialpricediscount'>
   state: State
   store: Entity<'store'>
   supply: Entity<'supply'>
-  supplyposition: Entity<'supplyposition'>
+  supplyposition: Position<'supplyposition'>
   task: Entity<'task'>
   uom: Entity<'uom'>
   variant: Entity<'variant'>
