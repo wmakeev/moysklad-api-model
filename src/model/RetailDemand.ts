@@ -1,7 +1,12 @@
-import type { DocumentWithPositions, MetaType } from '.'
+import type { AbstractDemand, DocumentWithPositions, MetaType } from '.'
+import type { AbstractDemandPatch } from './AbstractDemand'
 
-export interface RetailDemand extends DocumentWithPositions<'retaildemand'> {
+export type RetailDemandFields = {
   readonly cashSum: number
 
   readonly noCashSum: number
 }
+
+export type RetailDemand = AbstractDemand<'retaildemand'> & RetailDemandFields
+
+export type RetailDemandPatch = AbstractDemandPatch<'retaildemand'>

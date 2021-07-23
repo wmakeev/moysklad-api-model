@@ -4,11 +4,14 @@ import type {
   CashOutPatch,
   CustomerOrderPatch,
   CustomerOrderPositionPatch,
+  Demand,
+  DemandPosition,
   EntityPatchRef,
   InvoiceInPatch,
   InvoiceOutPatch,
   InvoicePositionPatch,
-  MetaType
+  MetaType,
+  RetailDemand
 } from '..'
 
 export type PatchByMetaType = {
@@ -20,6 +23,9 @@ export type PatchByMetaType = {
   invoiceposition: InvoicePositionPatch
   cashin: CashInPatch
   cashout: CashOutPatch
+  demand: Demand
+  demandposition: DemandPosition
+  retaildemand: RetailDemand
 }
 
 export type Patch<T extends MetaType> = T extends keyof PatchByMetaType

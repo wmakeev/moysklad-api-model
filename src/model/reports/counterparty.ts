@@ -1,6 +1,4 @@
-import type { MetaType } from '..'
-import type { CollectionRef } from '../CollectionRef'
-import type { EntityRef } from '../EntityRef'
+import type { CollectionRef, EntityRef } from '..'
 
 export interface CounterpartyReportItem extends EntityRef<'counterparty'> {
   counterparty: EntityRef<'counterparty'>
@@ -20,7 +18,7 @@ export interface CounterpartyReportItem extends EntityRef<'counterparty'> {
 }
 
 /**
- * `/report/counterparty`
+ * `report/counterparty`
  */
 export interface CounterpartyReport extends CollectionRef<'counterparty'> {
   context: {

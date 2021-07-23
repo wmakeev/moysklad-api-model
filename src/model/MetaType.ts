@@ -9,6 +9,7 @@ import type {
   CustomerOrder,
   CustomerOrderPosition,
   Demand,
+  DemandPosition,
   Document,
   DocumentMetaType,
   Employee,
@@ -143,7 +144,7 @@ export type EntityByMetaType = {
   customerorderposition: CustomerOrderPosition
   customtemplate: Entity<'customtemplate'>
   demand: Demand
-  demandposition: Entity<'demandposition'>
+  demandposition: DemandPosition
   discount: Entity<'discount'>
   embeddedtemplate: Entity<'embeddedtemplate'>
   employee: Employee

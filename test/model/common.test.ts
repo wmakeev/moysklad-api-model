@@ -10,3 +10,4 @@ const invoiceOut: Patch<'invoiceout'> = {}
 invoiceOut.positions?.[0].price
 invoiceOut.customerOrder
 invoiceOut.store
+invoiceOut.paymentPlannedMoment

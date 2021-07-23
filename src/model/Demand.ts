@@ -1,3 +1,12 @@
-import type { DocumentWithPositions, HasVat, MetaType } from '.'
+import type { AbstractDemand, AbstractDemandPatch } from './AbstractDemand'
 
-export type Demand = DocumentWithPositions<'demand'> & HasVat
+export type DemandFields = {
+  // TODO extension: DemandExtension
+  // TODO overhead: MoneyAmount
+  // TODO overheadDistribution: OverheadDistribution
+}
+
+export type Demand = AbstractDemand<'demand'>
+
+export type DemandPatch = AbstractDemandPatch<'demand'>
+// & Partial<Pick<DemandFields, ''>>
