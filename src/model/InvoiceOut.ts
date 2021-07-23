@@ -1,21 +1,13 @@
-import type {
-  DocumentWithPositions,
-  DocumentWithPositionsPatch,
-  HasVat,
-  HasVatPatch
-} from '.'
-import type { EntityRef } from './EntityRef'
+import type { EntityRef, Invoice, InvoicePatch } from '.'
 
 export type InvoiceOutFields = {
   customerOrder?: EntityRef<'customerorder'>
-  readonly payedSum: number
-  readonly shippedSum: number
+
+  // TODO demands
+  // TODO payments
 }
 
-export type InvoiceOut = DocumentWithPositions<'invoiceout'> &
-  HasVat &
-  InvoiceOutFields
+export type InvoiceOut = Invoice<'invoiceout'> & InvoiceOutFields
 
-export type InvoiceOutPatch = DocumentWithPositionsPatch<'invoiceout'> &
-  HasVatPatch &
+export type InvoiceOutPatch = InvoicePatch<'invoiceout'> &
   Partial<Pick<InvoiceOutFields, 'customerOrder'>>
