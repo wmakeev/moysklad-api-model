@@ -81,3 +81,7 @@ export type DomineEntityMetaType =
   | 'task'
   | 'uom'
   | 'variant'
+
+export type RemapApiHref<
+  T extends string
+> = `https://online.moysklad.ru/api/remap/${string}/${T}`
