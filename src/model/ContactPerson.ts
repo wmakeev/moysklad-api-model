@@ -1,11 +1,11 @@
-import type { Entity } from './Entity'
-import type { EntityRef } from './EntityRef'
-import type { HasUpdated } from './HasUpdated'
-import type { MetaType } from './MetaType'
+import type { Entity, EntityRef } from '.'
 
-export interface ContactPerson extends Entity<'contactperson'>, HasUpdated {
+export type ContactPerson = Entity<'contactperson'> & {
   /** Наименование */
   name: string
+
+  /** Момент последнего обновления */
+  readonly updated: string
 
   /** Описание */
   description?: string

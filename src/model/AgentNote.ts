@@ -1,9 +1,9 @@
-import type { Entity } from './Entity'
-import type { EntityRef } from './EntityRef'
-import type { HasCreated } from './HasCreated'
-import type { MetaType } from './MetaType'
+import type { Entity, EntityRef } from '.'
 
-export interface AgentNote extends Entity<'note'>, HasCreated {
+export type AgentNote = Entity<'note'> & {
+  /** Дата создания сущности */
+  readonly created: string
+
   description?: string
 
   agent: EntityRef<'counterparty'>

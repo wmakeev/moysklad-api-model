@@ -1,6 +1,5 @@
 import type { EntityRef } from './EntityRef'
-import type { MetaType } from './MetaType'
 
-export interface HasProject {
+export type HasProject = {
   project?: EntityRef<'project'>
 }

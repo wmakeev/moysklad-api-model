@@ -2,8 +2,7 @@ import type {
   DocumentWithPositions,
   DocumentWithPositionsPatch,
   EntityRef,
-  HasVat,
-  HasVatPatch
+  HasVat
 } from '.'
 
 export type DemandMetaType = 'demand' | 'retaildemand'
@@ -25,5 +24,5 @@ export type AbstractDemand<
 export type AbstractDemandPatch<
   T extends DemandMetaType
 > = DocumentWithPositionsPatch<T> &
-  HasVatPatch &
-  Partial<Pick<AbstractDemandFields, 'customerOrder'>>
+  Partial<Pick<AbstractDemandFields, 'customerOrder'>> &
+  Partial<HasVat>

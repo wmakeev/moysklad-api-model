@@ -1,15 +1,12 @@
-import type { AttributePatch } from '.'
-import type { Entity } from './Entity'
-import type { EntityRef } from './EntityRef'
-import type { HasAttributes } from './HasAttributes'
-import type { HasCreated } from './HasCreated'
-import type { HasDeleted } from './HasDeleted'
-import type { HasFiles } from './HasFiles'
-import type { HasProject } from './HasProject'
-import type { HasRate } from './HasRate'
-import type { HasState } from './HasState'
-import type { HasUpdated } from './HasUpdated'
-import type { Owned } from './Owned'
+import type {
+  Attribute,
+  AttributePatch,
+  CollectionRef,
+  Entity,
+  EntityRef,
+  Rate,
+  Owned
+} from '.'
 
 // TODO | 'processingplan'
 // TODO | 'processing'?
@@ -45,52 +42,68 @@ export type DocumentMetaType =
   | 'salesreturn'
   | 'supply'
 
-export type DocumentFieds = HasCreated &
-  HasUpdated &
-  HasDeleted &
-  HasState &
-  HasProject &
-  HasRate &
-  HasAttributes &
-  HasFiles &
-  Owned & {
-    /** Наименование документа */
-    name: string
+export type DocumentFieds = Owned & {
+  /** Наименование документа */
+  name: string
 
-    /** Проведено */
-    applicable: boolean
+  /** Проведено */
+  applicable: boolean
 
-    /** Комментарий */
-    description?: string
+  /** Дата создания сущности */
+  readonly created: string
 
-    /** Внешний код */
-    externalCode?: string
+  /** Момент последнего обновления */
+  readonly updated: string
 
-    /** Дата документа */
-    moment: string
+  /** Комментарий */
+  description?: string
 
-    readonly syncId?: string
+  /** Внешний код */
+  externalCode?: string
 
-    /** Договор */
-    contract?: EntityRef<'contract'>
+  /** Дата документа */
+  moment: string
 
-    /** Сумма документа */
-    readonly sum: number
+  /** Статус документа */
+  state?: EntityRef<'state'>
 
-    // TODO agent: общий тип можно экспандить только по пересечению
+  readonly syncId?: string
 
-    /** Контрагент */
-    agent: EntityRef<'counterparty' | 'organization'>
+  /** Договор */
+  contract?: EntityRef<'contract'>
 
-    /** Счет контрагента */
-    agentAccount?: EntityRef<'account'>
+  /** Проект */
+  project?: EntityRef<'project'>
 
-    /** Организация */
-    organization: EntityRef<'organization'>
+  /** Сумма документа */
+  readonly sum: number
 
-    /** Счет организации */
-    organizationAccount?: EntityRef<'account'>
-  }
+  // TODO agent: общий тип можно экспандить только по пересечению
+
+  /** Контрагент */
+  agent: EntityRef<'counterparty' | 'organization'>
+
+  /** Счет контрагента */
+  agentAccount?: EntityRef<'account'>
+
+  /** Организация */
+  organization: EntityRef<'organization'>
+
+  /** Счет организации */
+  organizationAccount?: EntityRef<'account'>
+
+  /** Спосок пользовательских полей */
+  attributes?: Attribute[]
+
+  /** Валюта документа */
+  rate: Rate
+
+  /** Вложенные файлы (максимальное кол-во файлов - 100) */
+  files?: CollectionRef<'files'>
+
+  /** Момент последнего удаления (помещения в корзину) */
+  readonly deleted?: string
+}
 
 export type Document<T extends DocumentMetaType> = Entity<T> & DocumentFieds
 
@@ -102,7 +115,7 @@ export type DocumentExpand<T extends DocumentMetaType> = Pick<
   | 'agentAccount'
   | 'attributes'
   | 'contract'
-  | 'currency'
+  | 'rate'
   | 'files'
   | 'group'
   | 'organization'
@@ -119,7 +132,7 @@ export type DocumentPatch = Partial<
     | 'agentAccount'
     | 'applicable'
     | 'contract'
-    | 'currency'
+    | 'rate'
     | 'description'
     | 'externalCode'
     | 'files'

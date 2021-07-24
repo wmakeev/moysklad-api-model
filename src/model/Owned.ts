@@ -1,7 +1,6 @@
 import type { EntityRef } from './EntityRef'
-import type { MetaType } from './MetaType'
 
-export interface Owned {
+export type Owned = {
   /** Общий доступ */
   shared: boolean
 

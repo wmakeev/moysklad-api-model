@@ -1,19 +1,21 @@
 import type {
   DocumentWithPositions,
   DocumentWithPositionsExpand,
-  DocumentWithPositionsPatch
-} from './DocumentWithPositions'
-import type { HasStore } from './HasStore'
+  DocumentWithPositionsPatch,
+  EntityRef
+} from '.'
 
 export type OrderMetaType = 'customerorder' | 'purchaseorder'
 
 export type OrderFields = {
   /** Планируемая дата отгрузки */
   deliveryPlannedMoment?: string
+
+  /** Склад */
+  store?: EntityRef<'store'>
 }
 
 export type Order<T extends OrderMetaType> = DocumentWithPositions<T> &
-  HasStore &
   OrderFields
 
 export type OrderExpand<T extends OrderMetaType> = Pick<Order<T>, 'store'> &
@@ -22,4 +24,4 @@ export type OrderExpand<T extends OrderMetaType> = Pick<Order<T>, 'store'> &
 export type OrderPatch<
   T extends OrderMetaType
 > = DocumentWithPositionsPatch<T> &
-  Partial<Pick<OrderFields, 'deliveryPlannedMoment'>>
+  Partial<Pick<OrderFields, 'deliveryPlannedMoment' | 'store'>>

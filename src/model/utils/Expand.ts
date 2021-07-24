@@ -51,8 +51,9 @@ export type ExpandPath<T, K extends string> =
       ? Array<ExpandPath<M, K>>
 
   // i.e. `positions`
-  : T extends Collection
-    ? T & { rows: ExpandPath<T['rows'], K> }
+  : T extends Collection<infer M>
+    // ? T & { rows: ExpandPath<T['rows'], K> }
+    ? CollectionRef<M> & { rows: ExpandPath<EntityByMetaType[M], K>[] }
 
   // 'foo.bar'
   : K extends `${infer Field}.${infer Rest}`

@@ -1,17 +1,14 @@
-import type { Entity } from './Entity'
-import type { HasAttributes } from './HasAttributes'
-import type { HasCreated } from './HasCreated'
-import type { HasUpdated } from './HasUpdated'
-import type { Owned } from './Owned'
+import type { Attribute, Entity, Owned } from '.'
 
 export type AgentMetaType = 'employee' | 'counterparty' | 'organization'
 
-export interface Agent<T extends AgentMetaType>
-  extends Entity<T>,
-    Owned,
-    HasCreated,
-    HasUpdated,
-    HasAttributes {
+export interface Agent<T extends AgentMetaType> extends Entity<T>, Owned {
+  /** Дата создания сущности */
+  readonly created: string
+
+  /** Момент последнего обновления */
+  readonly updated: string
+
   /** Наименование */
   name: string
 
@@ -32,4 +29,7 @@ export interface Agent<T extends AgentMetaType>
 
   /** Номер телефона */
   phone?: string
+
+  /** Спосок пользовательских полей */
+  attributes?: Attribute[]
 }

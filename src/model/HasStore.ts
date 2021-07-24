@@ -1,6 +1,6 @@
 import type { EntityRef } from './EntityRef'
 
-export interface HasStore {
+export type HasStore = {
   /** Склад */
   store?: EntityRef<'store'>
 }

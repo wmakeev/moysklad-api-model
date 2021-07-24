@@ -1,7 +1,9 @@
-import type { Entity } from './Entity'
-import type { HasUpdated } from './HasUpdated'
+import type { Entity } from '.'
 
-export interface Account extends Entity<'account'>, HasUpdated {
+export type Account = Entity<'account'> & {
+  /** Момент последнего обновления */
+  readonly updated: string
+
   /** Является ли счет основным счетом Контрагента */
   isDefault: boolean
 

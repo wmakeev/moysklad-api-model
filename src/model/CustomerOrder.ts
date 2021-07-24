@@ -35,4 +35,5 @@ export type CustomerOrderExpand = Pick<
   OrderExpand<'customerorder'>
 
 export type CustomerOrderPatch = OrderPatch<'customerorder'> &
-  Partial<Pick<CustomerOrderFields, 'taxSystem'>>
+  Partial<Pick<CustomerOrderFields, 'taxSystem'>> &
+  Partial<HasVat>

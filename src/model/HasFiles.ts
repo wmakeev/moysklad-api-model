@@ -1,7 +1,6 @@
 import type { CollectionRef } from './CollectionRef'
-import type { MetaType } from './MetaType'
 
-export interface HasFiles {
+export type HasFiles = {
   /** Вложенные файлы (максимальное кол-во файлов - 100) */
   files?: CollectionRef<'files'>
 }

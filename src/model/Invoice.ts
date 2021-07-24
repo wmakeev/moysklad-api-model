@@ -1,8 +1,7 @@
 import type {
   DocumentWithPositions,
   DocumentWithPositionsPatch,
-  HasVat,
-  HasVatPatch
+  HasVat
 } from '.'
 
 export type InvoiceMetaType = 'invoicein' | 'invoiceout'
@@ -16,10 +15,11 @@ export type InvoiceFields = {
 }
 
 export type Invoice<T extends InvoiceMetaType> = DocumentWithPositions<T> &
+  InvoiceFields &
   HasVat
 
 export type InvoicePatch<
   T extends InvoiceMetaType
 > = DocumentWithPositionsPatch<T> &
   Partial<Pick<InvoiceFields, 'paymentPlannedMoment'>> &
-  HasVatPatch
+  Partial<HasVat>

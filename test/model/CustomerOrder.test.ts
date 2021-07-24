@@ -1,4 +1,4 @@
-import type { CustomerOrder, CustomerOrderExpand } from '../../src'
+import type { CustomerOrder, CustomerOrderExpand, Patch } from '../../src'
 import { AttributeType, MediaType, MetaType, TaxSystem } from '../../src'
 
 const customerOrderFull1: CustomerOrder = {
@@ -76,10 +76,12 @@ const customerOrderFull1: CustomerOrder = {
     }
   },
   applicable: true,
-  currency: {
-    meta: {
-      type: 'currency',
-      href: ''
+  rate: {
+    currency: {
+      meta: {
+        type: 'currency',
+        href: ''
+      }
     }
   },
   attributes: [
@@ -152,3 +154,52 @@ const customerOrderExpand1: Partial<CustomerOrderExpand> = {
     }
   }
 }
+
+//#region Зависимые поля НДС
+
+const t10_1 = {} as CustomerOrder
+
+t10_1.vatEnabled
+
+// @ts-expect-error
+t10_1.vatIncluded
+
+// @ts-expect-error
+t10_1.vatSum
+
+if (t10_1.vatEnabled === true) {
+  const t1: boolean = t10_1.vatIncluded
+  const t2: number = t10_1.vatSum
+}
+
+const t10_2 = {} as Patch<'customerorder'>
+
+// @ts-expect-error
+t10_2.vatIncluded
+
+t10_2.vatEnabled = true
+
+// @ts-expect-error
+t10_2.vatIncluded
+
+if (t10_2.vatEnabled) {
+  t10_2.vatIncluded = true
+}
+
+// Несовместимые значения полей
+
+const t10_3: Patch<'customerorder'> = {
+  // по хорошему, тут нельзя установить поле если нет vatEnabled ..
+  vatIncluded: true
+}
+t10_3
+
+const t10_4: Patch<'customerorder'> = {
+  vatEnabled: false,
+  // .. нужно явно указывать vatEnabled
+  // @ts-expect-error
+  vatIncluded: true
+}
+t10_4
+
+//#endregion
