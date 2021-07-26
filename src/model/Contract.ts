@@ -1,0 +1,103 @@
+import type { Entity } from '.'
+import type { Attribute, AttributePatch } from './Attribute'
+import type { EntityRef } from './EntityRef'
+import type { Owned, OwnedPatch } from './Owned'
+import type { Rate } from './Rate'
+
+type ContractTypeFileds =
+  | {
+      /**
+       * Тип Договора.
+       *
+       * Возможные значения:
+       * - Договор комиссии
+       * - Договор купли-продажи
+       */
+      contractType: 'Sales'
+    }
+  | {
+      contractType: 'Commission'
+
+      /**
+       * Тип Вознаграждения.
+       *
+       * Указывается когда `contractType` = `Commission`
+       *
+       * Возможные значения:
+       * - Процент от суммы продажи
+       * - Не рассчитывать
+       * */
+      rewardType: 'None'
+    }
+  | {
+      contractType: 'Commission'
+
+      /**
+       * Тип Вознаграждения.
+       *
+       * Указывается когда `contractType` = `Commission`
+       *
+       * Возможные значения:
+       * - Процент от суммы продажи
+       * - Не рассчитывать
+       * */
+      rewardType: 'PercentOfSales'
+
+      /** Вознаграждение в процентах (от 0 до 100) */
+      rewardPercent: number
+    }
+
+type ContractFields = ContractTypeFileds & {
+  readonly updated: string
+
+  name: string
+
+  description?: string
+
+  code?: string
+
+  externalCode?: string
+
+  archived: boolean
+
+  moment: string
+
+  /** Сумма Договора */
+  sum: number
+
+  ownAgent: EntityRef<'organization'>
+
+  agent: EntityRef<'counterparty' | 'organization'>
+
+  state?: EntityRef<'state'>
+
+  organizationAccount: EntityRef<'account'>
+
+  agentAccount?: EntityRef<'account'>
+
+  rate: Rate
+
+  attributes: Attribute[]
+}
+
+export type Contract = Entity<'contract'> & Owned & ContractFields
+
+export type ContractPatch = Partial<
+  Pick<
+    ContractFields,
+    | 'name'
+    | 'description'
+    | 'code'
+    | 'externalCode'
+    | 'archived'
+    | 'ownAgent'
+    | 'agent'
+    | 'state'
+    | 'organizationAccount'
+    | 'agentAccount'
+    | 'rate'
+  > &
+    ContractTypeFileds
+> & {
+  attributes?: AttributePatch[]
+} & OwnedPatch

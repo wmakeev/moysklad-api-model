@@ -2,6 +2,7 @@ import type {
   AttributePatch,
   CashInPatch,
   CashOutPatch,
+  ContractPatch,
   CustomerOrderPatch,
   CustomerOrderPositionPatch,
   DemandPatch,
@@ -20,6 +21,7 @@ export type PatchByMetaType = {
   attributemetadata: AttributePatch
   cashin: CashInPatch
   cashout: CashOutPatch
+  contract: ContractPatch
   customerorder: CustomerOrderPatch
   customerorderposition: CustomerOrderPositionPatch
   demand: DemandPatch

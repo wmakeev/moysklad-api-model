@@ -5,6 +5,7 @@ import type {
   CashIn,
   CashOut,
   ContactPerson,
+  Contract,
   Counterparty,
   CustomerOrder,
   CustomerOrderPosition,
@@ -140,7 +141,7 @@ export type EntityByMetaType = {
   companysettings: Entity<'companysettings'>
   consignment: Entity<'consignment'>
   contactperson: ContactPerson
-  contract: Entity<'contract'>
+  contract: Contract
   counterparty: Counterparty
   country: Entity<'country'>
   currency: Entity<'currency'>
