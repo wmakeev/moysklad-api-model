@@ -1,6 +1,6 @@
 import type { Entity } from './Entity'
 
-export interface PriceType extends Entity<'pricetype'> {
+export type PriceType = Omit<Entity<'pricetype'>, 'accountId'> & {
   /** Наименование */
   name: string
 

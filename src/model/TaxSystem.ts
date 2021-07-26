@@ -1,3 +1,4 @@
+/** Код системы налогообложения. */
 export enum TaxSystem {
   /** Совпадает с группой */
   TAX_SYSTEM_SAME_AS_GROUP = 'TAX_SYSTEM_SAME_AS_GROUP',

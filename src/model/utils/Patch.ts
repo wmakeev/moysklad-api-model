@@ -4,27 +4,31 @@ import type {
   CashOutPatch,
   CustomerOrderPatch,
   CustomerOrderPositionPatch,
-  Demand,
+  DemandPatch,
   DemandPosition,
   EntityPatchRef,
   InvoiceInPatch,
   InvoiceOutPatch,
   InvoicePositionPatch,
   MetaType,
+  ProductFolderPatch,
+  ProductPatch,
   RetailDemand
 } from '..'
 
 export type PatchByMetaType = {
+  attributemetadata: AttributePatch
+  cashin: CashInPatch
+  cashout: CashOutPatch
   customerorder: CustomerOrderPatch
   customerorderposition: CustomerOrderPositionPatch
-  attributemetadata: AttributePatch
+  demand: DemandPatch
+  demandposition: DemandPosition
   invoicein: InvoiceInPatch
   invoiceout: InvoiceOutPatch
   invoiceposition: InvoicePositionPatch
-  cashin: CashInPatch
-  cashout: CashOutPatch
-  demand: Demand
-  demandposition: DemandPosition
+  product: ProductPatch
+  productfolder: ProductFolderPatch
   retaildemand: RetailDemand
 }
 

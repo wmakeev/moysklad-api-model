@@ -10,3 +10,5 @@ export type Owned = {
   /** Владелец (сотрудник) */
   owner: EntityRef<'employee'>
 }
+
+export type OwnedPatch = Partial<Owned>

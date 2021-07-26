@@ -7,6 +7,7 @@ import type {
   Rate,
   Owned
 } from '.'
+import type { OwnedPatch } from './Owned'
 
 // TODO | 'processingplan'
 // TODO | 'processing'?
@@ -42,7 +43,7 @@ export type DocumentMetaType =
   | 'salesreturn'
   | 'supply'
 
-export type DocumentFieds = Owned & {
+export type DocumentFieds = {
   /** Наименование документа */
   name: string
 
@@ -105,7 +106,9 @@ export type DocumentFieds = Owned & {
   readonly deleted?: string
 }
 
-export type Document<T extends DocumentMetaType> = Entity<T> & DocumentFieds
+export type Document<T extends DocumentMetaType> = Entity<T> &
+  DocumentFieds &
+  Owned
 
 // TODO Почему объект а не Union?
 /** Поля которе могут быть expand */
@@ -136,16 +139,13 @@ export type DocumentPatch = Partial<
     | 'description'
     | 'externalCode'
     | 'files'
-    | 'group'
     | 'moment'
     | 'name'
     | 'organization'
     | 'organizationAccount'
-    | 'owner'
     | 'project'
-    | 'shared'
     | 'state'
   > & {
     attributes: AttributePatch[]
-  }
+  } & OwnedPatch
 >

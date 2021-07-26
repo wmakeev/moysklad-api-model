@@ -111,7 +111,8 @@ const t12_1 = request(
 
 t12_1.rows[0].agent.name
 
-t12_1.rows[0].positions.rows[0].assortment.id
+const t12_2: string = t12_1.rows[0].positions.rows[0].assortment.id
+t12_2
 
 // POST
 
@@ -127,3 +128,4 @@ const t13_1: CustomerOrder[] = request('POST', 'entity/customerorder', [
     description: 'bar'
   }
 ])
+t13_1

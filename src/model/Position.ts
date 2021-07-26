@@ -51,7 +51,9 @@ export interface Position<T extends PositionMetaType> extends Entity<T> {
 
   // TODO Position.assortment: Описать типы
   /** Ассортимент */
-  assortment: EntityRef
+  assortment: EntityRef<
+    'product' | 'service' | 'bundle' | 'consignment' | 'variant'
+  >
 }
 
 export type PositionPatch<T extends PositionMetaType> = EntityPatchRef<T> &

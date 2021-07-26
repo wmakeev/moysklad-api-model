@@ -14,7 +14,9 @@ import type {
   DocumentMetaType,
   Employee,
   Entity,
+  File,
   Group,
+  Image,
   InvoiceIn,
   InvoiceOut,
   InvoicePosition,
@@ -22,6 +24,8 @@ import type {
   PaymentIn,
   PaymentOut,
   Position,
+  Product,
+  ProductFolder,
   RetailDemand,
   SelectKeysByType,
   State
@@ -65,6 +69,7 @@ export type MetaType =
   | 'factureout'
   | 'files'
   | 'group'
+  | 'image'
   | 'internalorder'
   | 'internalorderposition'
   | 'inventory'
@@ -154,8 +159,9 @@ export type EntityByMetaType = {
   expenseitem: Entity<'expenseitem'>
   facturein: Entity<'facturein'>
   factureout: Entity<'factureout'>
-  files: Entity<'files'>
+  files: File
   group: Group
+  image: Image
   internalorder: Entity<'internalorder'>
   internalorderposition: Position<'internalorderposition'>
   inventory: Entity<'inventory'>
@@ -183,8 +189,8 @@ export type EntityByMetaType = {
   processingplanresult: Entity<'processingplanresult'>
   processingpositionmaterial: Entity<'processingpositionmaterial'>
   processingpositionresult: Entity<'processingpositionresult'>
-  product: Entity<'product'>
-  productfolder: Entity<'productfolder'>
+  product: Product
+  productfolder: ProductFolder
   project: Entity<'project'>
   purchaseorder: Entity<'purchaseorder'>
   purchaseorderposition: Position<'purchaseorderposition'>
