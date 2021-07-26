@@ -56,5 +56,7 @@ export interface Position<T extends PositionMetaType> extends Entity<T> {
   >
 }
 
-export type PositionPatch<T extends PositionMetaType> = EntityPatchRef<T> &
-  Partial<Pick<Position<T>, 'quantity' | 'price' | 'discount' | 'assortment'>>
+export type PositionPatch<T extends PositionMetaType> = Partial<
+  EntityPatchRef<T> &
+    Pick<Position<T>, 'quantity' | 'price' | 'discount' | 'assortment'>
+>
