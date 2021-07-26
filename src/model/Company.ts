@@ -1,8 +1,4 @@
-import type { Address } from './Address'
-import type { Agent } from './Agent'
-import type { CollectionRef } from './CollectionRef'
-import type { EntityRef } from './EntityRef'
-import type { MetaType } from './MetaType'
+import type { Address, Agent, CollectionRef, EntityRef } from '.'
 
 export type CompanyMetaType = 'counterparty' | 'organization'
 
@@ -21,6 +17,8 @@ export interface CompanyDiscountData {
 }
 
 export interface Company<T extends CompanyMetaType> extends Agent<T> {
+  code: string
+
   /** Тип Контрагента */
   companyType:
     | CompanyType.Individual

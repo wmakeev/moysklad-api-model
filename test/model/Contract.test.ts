@@ -31,3 +31,6 @@ if (t20.contractType === 'Commission') {
     t20.rewardPercent = 50
   }
 }
+
+const t30 = {} as Contract & { contractType: 'Commission' }
+t30.rewardType

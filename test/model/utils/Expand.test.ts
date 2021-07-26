@@ -139,6 +139,7 @@ const t50 = {} as Expand<CustomerOrder, 'agent.group,state'>
 t50.owner.meta
 
 t50.agent.name // expand
+t50.agent.code
 
 // @ts-expect-error
 t50.project?.id
