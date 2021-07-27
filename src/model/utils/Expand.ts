@@ -129,7 +129,7 @@ export type Expand<T, U extends string | undefined> =
     ? T
 
   : string extends U
-    ? '[Error] Expand: Неизвестный путь - string'
+    ? never
 
   // 'foo.bar,baz'
   : U extends `${infer Path},${infer Rest}`
