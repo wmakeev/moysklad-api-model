@@ -6,8 +6,8 @@
 
 import type { Collection, CustomerOrder, Expand } from '../../src'
 
-let t10_1 = {} as Expand<Collection<'customerorder'>, 'state'>
-const t10_2 = {} as Expand<Collection<'customerorder'>, 'state'>
+let t10_1 = {} as Expand<Collection<CustomerOrder>, 'state'>
+const t10_2 = {} as Expand<Collection<CustomerOrder>, 'state'>
 
 t10_1.rows = [...t10_1.rows, ...t10_2.rows]
 
@@ -33,7 +33,8 @@ function mapOrder1(row: Expand<CustomerOrder, 'state'>) {
 
 // .. до этого map обрезал исходный тип до CustomerOrder
 const t10_3 = t10_1.rows.map(row => mapOrder1(row))
-t10_3
+const name: string = t10_3[0].name
+name
 
 // Но такой вариант тоже не работает
 
@@ -41,4 +42,4 @@ t10_3
 const t10_4: Expand<CustomerOrder, 'state'>[] = t10_1.rows.map(row =>
   mapOrder1(row)
 )
-t10_4
+t10_4[0].state?.name

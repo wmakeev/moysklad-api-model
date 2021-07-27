@@ -1,11 +1,13 @@
 import type { EntityByMetaType } from '.'
 
-export type Assortment = EntityByMetaType[
+export type AssortmentMetaType =
   | 'product'
   | 'service'
   | 'bundle'
   | 'consignment'
-  | 'variant'] & {
+  | 'variant'
+
+export type Assortment = EntityByMetaType[AssortmentMetaType] & {
   stock: number
   reserve: number
   inTransit: number

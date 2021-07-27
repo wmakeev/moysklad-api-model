@@ -20,7 +20,7 @@ const t2: 'foo' = {} as EndpointInterface<
 
 const t4: IsExtends<
   EndpointInterface<'GET', 'entity/customerorder'>['response'],
-  Collection<'customerorder'>
+  Collection<CustomerOrder>
 > = true
 
 const t5: IsExtends<
@@ -41,7 +41,7 @@ function request<
   return { method, path, body, expand } as any
 }
 
-const t6: Collection<'customerorder'> = request('GET', `entity/customerorder`)
+const t6: Collection<CustomerOrder> = request('GET', `entity/customerorder`)
 
 const id = '123-456'
 
@@ -51,7 +51,7 @@ const t7: CustomerOrder = request('GET', `entity/customerorder/${id}`)
 const t7e: EntityRef = request('GET', `entity/customerorder3/${id}`)
 
 // @ts-expect-error
-const t6e: Collection<'customerorder'> = request(
+const t6e: Collection<CustomerOrder> = request(
   'GET',
   `entity/customerorder/123`
 )

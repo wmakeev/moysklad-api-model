@@ -158,7 +158,7 @@ export type EndpointInterface<
       ? EntityType extends DomineEntityMetaType
         // GET entity/{type}
         ? Method extends 'GET'
-          ? EndpointInterfaceInfo<never, Collection<EntityType>, ExpandStr>
+          ? EndpointInterfaceInfo<never, Collection<EntityByMetaType[EntityType]>, ExpandStr>
 
         // FIXME Нужно переделать с зависимостью от Payload
         // POST entity/{type}

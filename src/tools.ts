@@ -1,4 +1,4 @@
-import type { EntityByMetaType, MetaType } from './model'
+import type { EntityByMetaType, EntityRef, MetaType } from './model'
 
 export function isType<T extends MetaType>(
   metaType: T,

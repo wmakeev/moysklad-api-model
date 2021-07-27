@@ -105,7 +105,7 @@ const customerOrderFull1: CustomerOrder = {
       id: '',
       name: '',
       type: AttributeType.File,
-      value: {},
+      value: '',
       download: {
         href: '',
         mediaType: MediaType.ApplicationJson
@@ -161,25 +161,27 @@ const t10_1 = {} as CustomerOrder
 
 t10_1.vatEnabled
 
-// @ts-expect-error
+// TODO vatEnabled: @ts-expect-error
 t10_1.vatIncluded
 
-// @ts-expect-error
+// TODO vatEnabled: @ts-expect-error
 t10_1.vatSum
 
+/* TODO vatEnabled:
 if (t10_1.vatEnabled === true) {
   const t1: boolean = t10_1.vatIncluded
   const t2: number = t10_1.vatSum
 }
+*/
 
 const t10_2 = {} as Patch<'customerorder'>
 
-// @ts-expect-error
+// TODO vatEnabled: @ts-expect-error
 t10_2.vatIncluded
 
 t10_2.vatEnabled = true
 
-// @ts-expect-error
+// TODO vatEnabled: @ts-expect-error
 t10_2.vatIncluded
 
 if (t10_2.vatEnabled) {
@@ -197,7 +199,7 @@ t10_3
 const t10_4: Patch<'customerorder'> = {
   vatEnabled: false,
   // .. нужно явно указывать vatEnabled
-  // @ts-expect-error
+  // TODO vatEnabled: @ts-expect-error
   vatIncluded: true
 }
 t10_4

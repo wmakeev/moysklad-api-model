@@ -31,7 +31,7 @@ export type AttributeJsTypeMap = {
   [AttributeType.String]: string
   [AttributeType.Long]: number
   [AttributeType.Time]: string
-  [AttributeType.File]: object // TODO AttributeType.File
+  [AttributeType.File]: string
   [AttributeType.Double]: number
   [AttributeType.Boolean]: boolean
   [AttributeType.Text]: string
