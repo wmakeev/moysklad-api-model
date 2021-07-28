@@ -13,7 +13,9 @@ import {
   ExpandPath,
   Meta,
   Counterparty,
-  Organization
+  Organization,
+  AttributeBase,
+  Entity
 } from '../../../src'
 
 //#region
@@ -207,6 +209,72 @@ const t50_name: string | undefined = t50.state?.name
 t50.agent.group.name // OK: 2-nd level expanded
 //#endregion
 
+//#region Expand attributes.value
+// String
+const t55_1 = {} as ExpandField<AttributeBase<AttributeType.String>, 'value'>
+const t55_2: string = t55_1.value
+t55_2
+
+// CustomEntity
+const t55_3 = {} as ExpandField<
+  AttributeBase<AttributeType.CustomEntity>,
+  'value'
+>
+const t55_4: Entity<'customentity'> = t55_3.value
+t55_4
+
+const t55_5 = {} as ExpandField<
+  AttributeBase<AttributeType.Counterparty>,
+  'value'
+>
+const t55_6: Counterparty = t55_5.value
+t55_6
+
+const t55_7 = {} as Expand<CustomerOrder, 'attributes.value'>
+
+const t55_attr = t55_7.attributes?.[0]
+
+if (t55_attr?.type === AttributeType.Counterparty) {
+  const t55_val: Counterparty = t55_attr.value
+  t55_val.inn
+}
+//#endregion
+
+//#region Expand deep agent.attributes.value
+const t56_1 = {} as Expand<CustomerOrder, 'agent.attributes.value'>
+const t56_attr = t56_1.agent.attributes?.[0]
+
+if (typeof t56_attr?.value === 'object') {
+  t56_attr.value.id
+}
+
+if (t56_attr?.type === AttributeType.Counterparty) {
+  t56_attr.value.inn
+}
+//#endregion
+
+//#region Expand attributes with intersection
+const t57_1 = {} as Expand<CustomerOrder, 'agent.attributes.value,agent'>
+const t57_attr = t57_1.agent.attributes?.[0]
+
+if (typeof t57_attr?.value === 'object') {
+  t57_attr.value.id
+}
+
+if (t57_attr?.type === AttributeType.Counterparty) {
+  t57_attr.value.inn
+}
+//#endregion
+
+//#region Expand attributes with deep intersection
+const t58_1 = {} as Expand<CustomerOrder, 'agent.attributes.value,agent.state'>
+const t58_attr = t58_1.agent.attributes?.[0]
+
+if (t58_attr?.type === AttributeType.Counterparty) {
+  t58_attr.value.inn
+}
+//#endregion
+
 //#region Комплексный Expand
 const t60 = {} as Expand<
   CustomerOrder,
@@ -217,7 +285,7 @@ t60.owner.meta
 
 t60.agent.name // expand
 
-// @ts-expect-error
+// @ts-expect-error: project not expanded
 t60.project?.id
 
 const name4: string | undefined = t60.state?.name
@@ -226,11 +294,10 @@ t60.agent.group.name // OK: 2-nd level expanded
 
 const t60_agentAttr = t60.agent.attributes?.[0]
 
-/* TODO expand: attributes.value
+// TODO expand: attributes.value
 if (t60_agentAttr?.type === AttributeType.Counterparty) {
   const inn: string | undefined = t60_agentAttr.value.inn
 }
-*/
 
 const t60_assortmentId: string = t60.positions.rows[0].assortment.id
 

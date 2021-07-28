@@ -26,8 +26,15 @@ export type ExpandedField<T, K extends string> =
 
   : K extends keyof T
     ? T[K] extends EntityRef<infer M> | undefined
+      // Уже раскрытая сущность
+      ? T[K] extends { id: string }
+        ? T[K]
 
-      ? T[K] extends CollectionRef<M>
+      // Уже раскрытая коллекция
+      : T[K] extends { rows: Array<any> }
+        ? T[K]
+
+      : T[K] extends CollectionRef<M>
         ? Collection<EntityByMetaType[M]>
 
       : T[K] extends CollectionRef<M> | undefined
@@ -54,8 +61,16 @@ export type ExpandField<T, K extends keyof T> = {
   [P in keyof T]: K extends P
     // EntityRef | CollectionRef
     ? T[P] extends EntityRef<infer M> | undefined
+      // Уже раскрытая сущность
+      ? T[P] extends { id: string }
+        ? T[P]
+
+      // Уже раскрытая коллекция
+      : T[P] extends { rows: Array<any> }
+        ? T[P]
+
       // CollectionRef
-      ? T[P] extends CollectionRef<M>
+      : T[P] extends CollectionRef<M>
         ? Collection<EntityByMetaType[M]>
 
       : T[P] extends CollectionRef<M> | undefined
