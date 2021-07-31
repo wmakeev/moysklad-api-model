@@ -26,6 +26,17 @@ export enum AttributeType {
   CustomEntity = 'customentity'
 }
 
+/** Типы атрибутов, значение которых является сущностью (ссылкой на сущность) */
+export type EntityRefAttributeType =
+  | AttributeType.Organization
+  | AttributeType.Counterparty
+  | AttributeType.Employee
+  | AttributeType.Contract
+  | AttributeType.Product
+  | AttributeType.Project
+  | AttributeType.Store
+  | AttributeType.CustomEntity
+
 export type AttributeJsTypeMap = {
   // Base type
   [AttributeType.String]: string
@@ -63,16 +74,15 @@ export interface AttributeBase<T extends AttributeType = AttributeType>
   value: AttributeJsTypeMap[T]
 }
 
-export type Attribute<
-  T extends AttributeType = AttributeType
-> = T extends AttributeType.File
-  ? AttributeBase<T> & {
-      readonly download: {
-        readonly href: string
-        readonly mediaType: MediaType
+export type Attribute<T extends AttributeType = AttributeType> =
+  T extends AttributeType.File
+    ? AttributeBase<T> & {
+        readonly download: {
+          readonly href: string
+          readonly mediaType: MediaType
+        }
       }
-    }
-  : AttributeBase<T>
+    : AttributeBase<T>
 
 export type AttributePatch<T extends AttributeType = AttributeType> =
   | (EntityPatchRef<'attributemetadata'> & {
