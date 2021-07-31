@@ -46,7 +46,7 @@ export type ExpandedField<T, K extends string> =
       : T[K] extends EntityRef<M> | undefined
         ? EntityByMetaType[M] | undefined
 
-      : '[Error] never-eus8s'
+      : '[Error] never-pDw3s'
 
     : T[K]
 

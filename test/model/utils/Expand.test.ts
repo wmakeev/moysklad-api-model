@@ -238,6 +238,11 @@ if (t55_attr?.type === AttributeType.Counterparty) {
   const t55_val: Counterparty = t55_attr.value
   t55_val.inn
 }
+
+if (t55_attr?.type === AttributeType.CustomEntity) {
+  const t55_val = t55_attr.value
+  const code: string | undefined = t55_val.code
+}
 //#endregion
 
 //#region Expand deep agent.attributes.value

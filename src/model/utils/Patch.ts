@@ -3,6 +3,7 @@ import type {
   CashInPatch,
   CashOutPatch,
   ContractPatch,
+  CustomEntityPatch,
   CustomerOrderPatch,
   CustomerOrderPositionPatch,
   DemandPatch,
@@ -32,6 +33,7 @@ export type PatchByMetaType = {
   product: ProductPatch
   productfolder: ProductFolderPatch
   retaildemand: RetailDemand
+  customentity: CustomEntityPatch
 }
 
 export type Patch<T extends MetaType> = T extends keyof PatchByMetaType

@@ -7,6 +7,7 @@ import type {
   ContactPerson,
   Contract,
   Counterparty,
+  CustomEntity,
   CustomerOrder,
   CustomerOrderPosition,
   Demand,
@@ -145,7 +146,7 @@ export type EntityByMetaType = {
   counterparty: Counterparty
   country: Entity<'country'>
   currency: Entity<'currency'>
-  customentity: Entity<'customentity'>
+  customentity: CustomEntity
   customentitymetadata: Entity<'customentitymetadata'>
   customerorder: CustomerOrder
   customerorderposition: CustomerOrderPosition
