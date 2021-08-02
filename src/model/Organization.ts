@@ -1,6 +1,4 @@
-import type { Company } from './Company'
-import type { EntityRef } from './EntityRef'
-import type { MetaType } from './MetaType'
+import type { Company, EntityRef } from '.'
 
 export interface Organization extends Company<'organization'> {
   /** Включен ли ЕГАИС для данного юрлица */
