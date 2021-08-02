@@ -15,7 +15,8 @@ import {
   Counterparty,
   Organization,
   AttributeBase,
-  Entity
+  Entity,
+  Product
 } from '../../../src'
 
 //#region
@@ -172,11 +173,17 @@ const t40_name: string = t40.agent.group.name // OK: 2-nd level expanded
 //#endregion
 
 //#region Многоуровневый Expand CollectionRef
-const t41 = {} as Expand<CustomerOrder, 'positions.assortment'>
+const t41 = {} as Expand<CustomerOrder, 'positions.assortment.country'>
 
 t41.positions
 
 const t41_id: string = t41.positions.rows[0].assortment.id
+
+const t41_asort = t41.positions.rows[0].assortment
+
+if ('country' in t41_asort) {
+  const p: string | undefined = t41_asort.country?.id
+}
 //#endregion
 
 //#region Многоуровневый Expand Array
@@ -307,3 +314,7 @@ if (t60_agentAttr?.type === AttributeType.Counterparty) {
 const t60_assortmentId: string = t60.positions.rows[0].assortment.id
 
 //#endregion
+
+// TODO 'positions.assortment,agent.attributes.value'
+// TODO 'attributes.value,agent.attributes.value'
+// TODO 'agent,operations,operations.customerOrder'

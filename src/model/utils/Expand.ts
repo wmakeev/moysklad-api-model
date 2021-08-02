@@ -6,8 +6,6 @@ import type {
   MetaType
 } from '../'
 
-type t1 = EntityRef<'account'> extends CollectionRef<'account'> ? true : false
-
 // prettier-ignore
 
 /**
@@ -96,7 +94,7 @@ export type ExpandField<T, K extends keyof T> = {
  */
 export type ExpandPath<T, K extends string> =
   string extends K
-    ? '[Error] ExpandPath: Неизвестный путь - string'
+    ? never
 
   // i.e. `attributes`
   : T extends Array<infer M>
@@ -104,9 +102,6 @@ export type ExpandPath<T, K extends string> =
 
   // i.e. `positions`
   : T extends Collection<infer U>
-    // ? T & { rows: ExpandPath<T['rows'], K> }
-    // ? CollectionRef<M> & { rows: ExpandPath<EntityByMetaType[M], K>[] }
-    // TODO Протестировано?
     ? {
         [P in keyof T]: P extends 'rows'
           ? ExpandPath<U, K>[]
@@ -115,12 +110,6 @@ export type ExpandPath<T, K extends string> =
 
   // 'foo.bar'
   : K extends `${infer Field}.${infer Rest}`
-    // ? Field extends keyof T
-      // ? ExpandField<T, Field> &
-      //     {
-      //       [Key in Field]: ExpandPath<ExpandField<T, Field>[Field], Rest>
-      //     }
-    // : never
     ? {
         [P in keyof T]: Field extends P
           ? ExpandPath<ExpandedField<T, Field>, Rest>
@@ -131,7 +120,7 @@ export type ExpandPath<T, K extends string> =
   : K extends keyof T
     ? ExpandField<T, K>
 
-  : never // `[Error] ExpandPath: Неизвестный путь - ${K}`
+  : never
 
 // prettier-ignore
 
@@ -139,11 +128,7 @@ export type ExpandPath<T, K extends string> =
  * Разворачивает поля типа по строке expand в формате API МойСклад
  */
 export type Expand<T, U extends string | undefined> =
-  // Исходный тип если expand не задан
-  U extends undefined
-    ? T
-
-  : string extends U
+  string extends U
     ? never
 
   // 'foo.bar,baz'
@@ -154,8 +139,5 @@ export type Expand<T, U extends string | undefined> =
   : U extends string
     ? ExpandPath<T, U>
 
-  : `[Error] Expand: Неизвестный путь - ${U}`
-
-// TODO 'positions.assortment,agent.attributes.value'
-// TODO 'attributes.value,agent.attributes.value'
-// TODO 'agent,operations,operations.customerOrder'
+  // Исходный тип если expand не задан
+  : T
