@@ -65,7 +65,6 @@ t1.attributes = [
       type: 'attributemetadata',
       href: ''
     },
-    value: '',
     file: { filename: '', content: '' }
   },
   {
@@ -77,8 +76,8 @@ t1.attributes = [
 ]
 
 t1.attributes = [
-  // @ts-expect-error
   {
+    // @ts-expect-error
     value: ''
   }
 ]
@@ -90,15 +89,28 @@ t1.attributes = [
   }
 ]
 
+// TODO Нужно оптимизировать проверку типа в attributes #dhg06qfl ..
+// .. не понятная ошибка, когда указано лишнее поле
+
 t1.attributes = [
   {
     meta: {
       type: 'attributemetadata',
       href: ''
     },
-    // @ts-expect-error
-    name: '',
+    // foo: '', // #dhg06qfl
     value: ''
+  }
+]
+
+t1.attributes = [
+  {
+    meta: {
+      type: 'attributemetadata',
+      href: ''
+    },
+    // foo: '', // #dhg06qfl
+    value: { meta: { type: 'customentity', href: '' } }
   }
 ]
 //#endregion

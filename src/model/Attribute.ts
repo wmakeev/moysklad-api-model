@@ -84,11 +84,22 @@ export type Attribute<T extends AttributeType = AttributeType> =
       }
     : AttributeBase<T>
 
+// TODO Попробовать оптимизировать см. #dhg06qfl
+
+// prettier-ignore
+
 export type AttributePatch<T extends AttributeType = AttributeType> =
-  | (EntityPatchRef<'attributemetadata'> & {
-      file: {
+  T extends AttributeType.File
+    ? EntityPatchRef<'attributemetadata'> & {
+      file?: {
         filename: string
         content: string
       }
-    })
-  | (EntityPatchRef<'attributemetadata'> & Partial<Pick<Attribute<T>, 'value'>>)
+    }
+
+  : T extends AttributeType.CustomEntity
+    ? EntityPatchRef<'attributemetadata'> & {
+      value: EntityRef<'customentity'>
+    }
+
+  : EntityPatchRef<'attributemetadata'> & Partial<Pick<Attribute<T>, 'value'>>
