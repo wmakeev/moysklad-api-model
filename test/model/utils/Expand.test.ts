@@ -41,6 +41,7 @@ const t08_11_1 = {} as ExpandedField<
 >
 const t08_11_2: AssortmentMetaType = t08_11_1.meta.type
 
+// TODO Что это за тест? Удалить?
 // const t80_20_1 = {} as ExpandField<CustomerOrder, 'positions'>
 // const t80_20_2: EntityRef<
 //   'product' | 'service' | 'bundle' | 'consignment' | 'variant'
@@ -56,8 +57,15 @@ const t08_11_2: AssortmentMetaType = t08_11_1.meta.type
 const t71: 'foo' = {} as Expand<'foo', undefined>
 t71
 
-const t70: CustomerOrder = {} as Expand<CustomerOrder, undefined>
-t70
+const t70 = {} as Expand<CustomerOrder, undefined>
+t70.shippedSum
+
+const t72 = {} as Expand<Collection<Account>, string | undefined>
+t72.rows[0].accountNumber
+
+// @ts-expect-error only string or undefined
+const t73 = {} as Expand<Collection<Account>, 42>
+t73
 
 //#endregion
 
@@ -228,14 +236,14 @@ const t55_3 = {} as ExpandField<
   'value'
 >
 const t55_4: Entity<'customentity'> = t55_3.value
-t55_4
+t55_4.id
 
 const t55_5 = {} as ExpandField<
   AttributeBase<AttributeType.Counterparty>,
   'value'
 >
 const t55_6: Counterparty = t55_5.value
-t55_6
+t55_6.actualAddress
 
 const t55_7 = {} as Expand<CustomerOrder, 'attributes.value'>
 
