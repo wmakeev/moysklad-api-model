@@ -1,6 +1,6 @@
 {
   "name": "moysklad-api-model",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "Объектная модель API МойСклад для TypeScript проектов",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
@@ -8,11 +8,12 @@
     "build/src/"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"no tests\"",
     "compile": "tsc",
     "build": "rm -rf build/ && npm run compile",
+    "ver:patch": "json -I -f package.json -e \"this.version = '$(semver -i patch $(cat package.json | json version))'\" && git add package.json && git commit -m \"version patch\"",
     "git:tag": "git tag \"v$(cat package.json | json version)\"",
-    "npm:publish": "npm run build && npm publish && npm run git:tag && git push"
+    "npm:publish:patch": "npm run build && npm run ver:patch && npm publish && npm run git:tag && git push"
   },
   "keywords": [
     "moysklad",
@@ -33,6 +34,7 @@
     "json": "^11.0.0",
     "moysklad": "^0.10.0",
     "prettier": "^2.3.2",
+    "semver": "^7.3.5",
     "typescript": "^4.3.5"
   }
 }
