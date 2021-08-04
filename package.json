@@ -1,6 +1,6 @@
 {
   "name": "moysklad-api-model",
-  "version": "0.4.6",
+  "version": "0.5.0",
   "description": "Объектная модель API МойСклад для TypeScript проектов",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
@@ -13,6 +13,7 @@
     "build": "rm -rf build/ && npm run compile",
     "ver:patch": "json -I -f package.json -e \"this.version = '$(semver -i patch $(cat package.json | json version))'\" && git add package.json && git commit -m \"version patch\"",
     "git:tag": "git tag \"v$(cat package.json | json version)\"",
+    "npm:publish": "npm run build && npm publish && npm run git:tag && git push",
     "npm:publish:patch": "npm run build && npm run ver:patch && npm publish && npm run git:tag && git push"
   },
   "keywords": [
