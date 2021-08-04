@@ -1,3 +1,4 @@
+import type { PartialNullable } from '../tools'
 import type { Entity } from './Entity'
 import type { EntityPatchRef, EntityRef } from './EntityRef'
 import type { MediaType } from './MediaType'
@@ -102,4 +103,4 @@ export type AttributePatch<T extends AttributeType = AttributeType> =
       value: EntityRef<'customentity'>
     }
 
-  : EntityPatchRef<'attributemetadata'> & Partial<Pick<Attribute<T>, 'value'>>
+  : EntityPatchRef<'attributemetadata'> & PartialNullable<Pick<Attribute<T>, 'value'>>

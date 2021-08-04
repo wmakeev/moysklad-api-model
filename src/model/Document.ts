@@ -7,6 +7,7 @@ import type {
   Rate,
   Owned
 } from '.'
+import type { PartialNullable } from '../tools'
 import type { OwnedPatch } from './Owned'
 
 // TODO | 'processingplan'
@@ -128,10 +129,9 @@ export type DocumentExpand<T extends DocumentMetaType> = Pick<
   | 'state'
 >
 
-export type DocumentPatch = Partial<
+export type DocumentPatch = PartialNullable<
   Pick<
     DocumentFieds,
-    | 'agent'
     | 'agentAccount'
     | 'applicable'
     | 'contract'
@@ -141,11 +141,11 @@ export type DocumentPatch = Partial<
     | 'files'
     | 'moment'
     | 'name'
-    | 'organization'
     | 'organizationAccount'
     | 'project'
     | 'state'
-  > & {
-    attributes: AttributePatch[]
+  >
+> &
+  Partial<Pick<DocumentFieds, 'agent' | 'organization'>> & {
+    attributes?: AttributePatch[]
   } & OwnedPatch
->

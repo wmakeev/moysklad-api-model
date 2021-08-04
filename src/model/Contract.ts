@@ -1,8 +1,13 @@
-import type { Entity } from '.'
-import type { Attribute, AttributePatch } from './Attribute'
-import type { EntityRef } from './EntityRef'
-import type { Owned, OwnedPatch } from './Owned'
-import type { Rate } from './Rate'
+import type {
+  Attribute,
+  AttributePatch,
+  Entity,
+  EntityRef,
+  Owned,
+  OwnedPatch,
+  Rate
+} from '.'
+import type { PartialNullable } from '../tools'
 
 type ContractTypeFileds =
   | {
@@ -82,7 +87,7 @@ type ContractFields = ContractTypeFileds & {
 
 export type Contract = Entity<'contract'> & Owned & ContractFields
 
-export type ContractPatch = Partial<
+export type ContractPatch = PartialNullable<
   Pick<
     ContractFields,
     | 'name'

@@ -1,3 +1,4 @@
+import type { PartialNullable } from '../tools'
 import type { Position, PositionPatch } from './Position'
 
 export type DemandPositionFields = {
@@ -12,4 +13,4 @@ export type DemandPositionFields = {
 export type DemandPosition = Position<'demandposition'> & DemandPositionFields
 
 export type DemandPositionPatch = PositionPatch<'demandposition'> &
-  Partial<Pick<DemandPositionFields, 'vat' | 'overhead'>>
+  PartialNullable<Pick<DemandPositionFields, 'vat' | 'overhead'>>

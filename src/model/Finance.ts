@@ -1,6 +1,5 @@
-import type { Document, DocumentPatch } from './Document'
-import type { EntityRef } from './EntityRef'
-import type { MetaType } from './MetaType'
+import type { Document, DocumentPatch, EntityRef, MetaType } from '.'
+import type { PartialNullable } from '../tools'
 
 // TODO FinaceOperation: наложить ограничения на возможные MetaType
 export interface FinaceOperation extends EntityRef<MetaType> {
@@ -24,4 +23,6 @@ export type FinanceFields = {
 export type Finance<T extends FinanceMetaType> = Document<T> & FinanceFields
 
 export type FinancePatch = DocumentPatch &
-  Partial<Pick<FinanceFields, 'operations' | 'paymentPurpose' | 'vatSum'>>
+  PartialNullable<
+    Pick<FinanceFields, 'operations' | 'paymentPurpose' | 'vatSum'>
+  >

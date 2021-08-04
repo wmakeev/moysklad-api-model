@@ -1,3 +1,4 @@
+import type { PartialNullable } from '../tools'
 import type { CollectionRef } from './CollectionRef'
 import type { Document, DocumentExpand, DocumentPatch } from './Document'
 import type { EntityRef } from './EntityRef'
@@ -13,9 +14,8 @@ export type DocumentWithPositionsFields<
   positions: CollectionRef<DocumentPositionType[T]>
 }
 
-export type DocumentWithPositions<
-  T extends DocumentWithPositionsMetaType
-> = Document<T> & DocumentWithPositionsFields<T>
+export type DocumentWithPositions<T extends DocumentWithPositionsMetaType> =
+  Document<T> & DocumentWithPositionsFields<T>
 
 export type DocumentWithPositionsExpand<
   T extends DocumentWithPositionsMetaType
@@ -25,10 +25,10 @@ export type DocumentWithPositionsExpand<
 export type DocumentWithPositionsPatch<
   T extends DocumentWithPositionsMetaType
 > = DocumentPatch &
-  Partial<
-    {
-      // TODO Добавить вариант с коллекцией?
-      // TODO Для каждого типа документа будет свой PositionPatch (брать из type map)
-      positions: Patch<DocumentPositionType[T]>[]
-    } & Pick<DocumentWithPositionsFields<T>, 'store'>
-  >
+  // FIXME Где-то store не может быть null
+  PartialNullable<Pick<DocumentWithPositionsFields<T>, 'store'>> &
+  Partial<{
+    // TODO Добавить вариант с коллекцией?
+    // TODO Для каждого типа документа будет свой PositionPatch (брать из type map)
+    positions: Patch<DocumentPositionType[T]>[]
+  }>

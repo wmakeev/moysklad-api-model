@@ -6,3 +6,5 @@ export function isType<T extends MetaType>(
 ): entity is EntityByMetaType[T] {
   return (entity as any)?.meta?.type === metaType
 }
+
+export type PartialNullable<T> = { [P in keyof T]?: T[P] | undefined | null }

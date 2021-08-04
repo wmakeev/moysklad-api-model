@@ -3,7 +3,7 @@ import { testTypeEqual } from '../tools'
 
 const customerorder: Patch<'customerorder'> = {}
 
-testTypeEqual<number | undefined>(customerorder.positions?.[0].reserve)
+testTypeEqual<number | undefined | null>(customerorder.positions?.[0].reserve)
 
 const invoiceOut: Patch<'invoiceout'> = {}
 

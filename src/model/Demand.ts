@@ -9,4 +9,4 @@ export type DemandFields = {
 export type Demand = AbstractDemand<'demand'>
 
 export type DemandPatch = AbstractDemandPatch<'demand'>
-// & Partial<Pick<DemandFields, ''>>
+// & PartialNullable<Pick<DemandFields, ''>>
