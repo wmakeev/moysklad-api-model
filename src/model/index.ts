@@ -4,6 +4,7 @@
 export * from './AbstractDemand'
 export * from './AbstractFile'
 export * from './AbstractGood'
+export * from './AbstractReturn'
 export * from './Account'
 export * from './Address'
 export * from './Agent'
@@ -67,6 +68,9 @@ export * from './ProductFolder'
 export * from './Rate'
 export * from './RetailDemand'
 export * from './State'
+export * from './SalesReturn'
+export * from './RetailSalesReturn'
+export * from './SalesReturnPosition'
 export * from './TaxSystem'
 
 // Utility types

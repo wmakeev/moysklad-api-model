@@ -37,6 +37,7 @@ export type DocumentPositionType = {
   purchasereturn: 'purchasereturnposition'
   retaildemand: 'demandposition'
   salesreturn: 'salesreturnposition'
+  retailsalesreturn: 'salesreturnposition'
   supply: 'supplyposition'
 }
 

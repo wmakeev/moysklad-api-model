@@ -15,7 +15,9 @@ import type {
   MetaType,
   ProductFolderPatch,
   ProductPatch,
-  RetailDemand
+  RetailDemand,
+  SalesReturnPatch,
+  SalesReturnPositionPatch
 } from '..'
 
 export type PatchByMetaType = {
@@ -34,6 +36,8 @@ export type PatchByMetaType = {
   productfolder: ProductFolderPatch
   retaildemand: RetailDemand
   customentity: CustomEntityPatch
+  salesreturn: SalesReturnPatch
+  salesreturnposition: SalesReturnPositionPatch
 }
 
 export type Patch<T extends MetaType> = T extends keyof PatchByMetaType

@@ -30,7 +30,10 @@ import type {
   ProductFolder,
   RetailDemand,
   SelectKeysByType,
-  State
+  State,
+  SalesReturn,
+  RetailSalesReturn,
+  SalesReturnPosition
 } from '.'
 
 export type MetaType =
@@ -202,11 +205,11 @@ export type EntityByMetaType = {
   retaildemand: RetailDemand
   retaildrawercashin: Entity<'retaildrawercashin'>
   retaildrawercashout: Entity<'retaildrawercashout'>
-  retailsalesreturn: Entity<'retailsalesreturn'>
+  retailsalesreturn: RetailSalesReturn
   retailshift: Entity<'retailshift'>
   retailstore: Entity<'retailstore'>
-  salesreturn: Entity<'salesreturn'>
-  salesreturnposition: Position<'salesreturnposition'>
+  salesreturn: SalesReturn
+  salesreturnposition: SalesReturnPosition
   service: Entity<'service'>
   specialpricediscount: Entity<'specialpricediscount'>
   state: State
