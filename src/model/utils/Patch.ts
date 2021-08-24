@@ -9,6 +9,8 @@ import type {
   DemandPatch,
   DemandPosition,
   EntityPatchRef,
+  InventoryPatch,
+  InventoryPositionPatch,
   InvoiceInPatch,
   InvoiceOutPatch,
   InvoicePositionPatch,
@@ -32,6 +34,8 @@ export type PatchByMetaType = {
   invoicein: InvoiceInPatch
   invoiceout: InvoiceOutPatch
   invoiceposition: InvoicePositionPatch
+  inventory: InventoryPatch
+  inventoryposition: InventoryPositionPatch
   product: ProductPatch
   productfolder: ProductFolderPatch
   retaildemand: RetailDemand

@@ -33,7 +33,9 @@ import type {
   State,
   SalesReturn,
   RetailSalesReturn,
-  SalesReturnPosition
+  SalesReturnPosition,
+  Inventory,
+  InventoryPosition
 } from '.'
 
 export type MetaType =
@@ -169,8 +171,8 @@ export type EntityByMetaType = {
   image: Image
   internalorder: Entity<'internalorder'>
   internalorderposition: Position<'internalorderposition'>
-  inventory: Entity<'inventory'>
-  inventoryposition: Position<'inventoryposition'>
+  inventory: Inventory
+  inventoryposition: InventoryPosition
   invoicein: InvoiceIn
   invoiceout: InvoiceOut
   invoiceposition: InvoicePosition
