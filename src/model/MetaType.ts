@@ -140,9 +140,9 @@ export type EntityByMetaType = {
   cashier: Entity<'cashier'>
   cashin: CashIn
   cashout: CashOut
-  commissionreportin: Entity<'commissionreportin'>
+  commissionreportin: Document<'commissionreportin'>
   commissionreportinposition: Position<'commissionreportinposition'>
-  commissionreportout: Entity<'commissionreportout'>
+  commissionreportout: Document<'commissionreportout'>
   commissionreportoutposition: Position<'commissionreportoutposition'>
   companysettings: Entity<'companysettings'>
   consignment: Entity<'consignment'>
@@ -161,35 +161,35 @@ export type EntityByMetaType = {
   discount: Entity<'discount'>
   embeddedtemplate: Entity<'embeddedtemplate'>
   employee: Employee
-  enter: Entity<'enter'>
+  enter: Document<'enter'>
   enterposition: Position<'enterposition'>
   expenseitem: Entity<'expenseitem'>
-  facturein: Entity<'facturein'>
-  factureout: Entity<'factureout'>
+  facturein: Document<'facturein'>
+  factureout: Document<'factureout'>
   files: File
   group: Group
   image: Image
-  internalorder: Entity<'internalorder'>
+  internalorder: Document<'internalorder'>
   internalorderposition: Position<'internalorderposition'>
   inventory: Inventory
   inventoryposition: InventoryPosition
   invoicein: InvoiceIn
   invoiceout: InvoiceOut
   invoiceposition: InvoicePosition
-  loss: Entity<'loss'>
+  loss: Document<'loss'>
   lossposition: Position<'lossposition'>
-  move: Entity<'move'>
+  move: Document<'move'>
   moveposition: Position<'moveposition'>
   note: AgentNote
   organization: Organization
   paymentin: PaymentIn
   paymentout: PaymentOut
   personaldiscount: Entity<'personaldiscount'>
-  pricelist: Entity<'pricelist'>
+  pricelist: Document<'pricelist'>
   pricelistrow: Entity<'pricelistrow'>
   pricetype: Entity<'pricetype'>
   processing: Entity<'processing'>
-  processingorder: Entity<'processingorder'>
+  processingorder: Document<'processingorder'>
   processingorderposition: Position<'processingorderposition'>
   processingplan: Entity<'processingplan'>
   processingplanmaterial: Entity<'processingplanmaterial'>
@@ -199,14 +199,14 @@ export type EntityByMetaType = {
   product: Product
   productfolder: ProductFolder
   project: Entity<'project'>
-  purchaseorder: Entity<'purchaseorder'>
+  purchaseorder: Document<'purchaseorder'>
   purchaseorderposition: Position<'purchaseorderposition'>
-  purchasereturn: Entity<'purchasereturn'>
+  purchasereturn: Document<'purchasereturn'>
   purchasereturnposition: Position<'purchasereturnposition'>
   region: Entity<'region'>
   retaildemand: RetailDemand
-  retaildrawercashin: Entity<'retaildrawercashin'>
-  retaildrawercashout: Entity<'retaildrawercashout'>
+  retaildrawercashin: Document<'retaildrawercashin'>
+  retaildrawercashout: Document<'retaildrawercashout'>
   retailsalesreturn: RetailSalesReturn
   retailshift: Entity<'retailshift'>
   retailstore: Entity<'retailstore'>
@@ -216,17 +216,9 @@ export type EntityByMetaType = {
   specialpricediscount: Entity<'specialpricediscount'>
   state: State
   store: Entity<'store'>
-  supply: Entity<'supply'>
+  supply: Document<'supply'>
   supplyposition: Position<'supplyposition'>
   task: Entity<'task'>
   uom: Entity<'uom'>
   variant: Entity<'variant'>
 }
-
-/**
- * MetaType документов для которых реализованы типы.
- * */
-export type ImplementedDocumentsMetaType = SelectKeysByType<
-  EntityByMetaType,
-  Document<DocumentMetaType>
->
