@@ -13,12 +13,14 @@ import type {
   Demand,
   DemandPosition,
   Document,
-  DocumentMetaType,
+  DocumentWithPositions,
   Employee,
   Entity,
   File,
   Group,
   Image,
+  Inventory,
+  InventoryPosition,
   InvoiceIn,
   InvoiceOut,
   InvoicePosition,
@@ -29,13 +31,10 @@ import type {
   Product,
   ProductFolder,
   RetailDemand,
-  SelectKeysByType,
-  State,
-  SalesReturn,
   RetailSalesReturn,
+  SalesReturn,
   SalesReturnPosition,
-  Inventory,
-  InventoryPosition
+  State
 } from '.'
 
 export type MetaType =
@@ -140,9 +139,9 @@ export type EntityByMetaType = {
   cashier: Entity<'cashier'>
   cashin: CashIn
   cashout: CashOut
-  commissionreportin: Document<'commissionreportin'>
+  commissionreportin: DocumentWithPositions<'commissionreportin'>
   commissionreportinposition: Position<'commissionreportinposition'>
-  commissionreportout: Document<'commissionreportout'>
+  commissionreportout: DocumentWithPositions<'commissionreportout'>
   commissionreportoutposition: Position<'commissionreportoutposition'>
   companysettings: Entity<'companysettings'>
   consignment: Entity<'consignment'>
@@ -161,7 +160,7 @@ export type EntityByMetaType = {
   discount: Entity<'discount'>
   embeddedtemplate: Entity<'embeddedtemplate'>
   employee: Employee
-  enter: Document<'enter'>
+  enter: DocumentWithPositions<'enter'>
   enterposition: Position<'enterposition'>
   expenseitem: Entity<'expenseitem'>
   facturein: Document<'facturein'>
@@ -169,16 +168,16 @@ export type EntityByMetaType = {
   files: File
   group: Group
   image: Image
-  internalorder: Document<'internalorder'>
+  internalorder: DocumentWithPositions<'internalorder'>
   internalorderposition: Position<'internalorderposition'>
   inventory: Inventory
   inventoryposition: InventoryPosition
   invoicein: InvoiceIn
   invoiceout: InvoiceOut
   invoiceposition: InvoicePosition
-  loss: Document<'loss'>
+  loss: DocumentWithPositions<'loss'>
   lossposition: Position<'lossposition'>
-  move: Document<'move'>
+  move: DocumentWithPositions<'move'>
   moveposition: Position<'moveposition'>
   note: AgentNote
   organization: Organization
@@ -199,9 +198,9 @@ export type EntityByMetaType = {
   product: Product
   productfolder: ProductFolder
   project: Entity<'project'>
-  purchaseorder: Document<'purchaseorder'>
+  purchaseorder: DocumentWithPositions<'purchaseorder'>
   purchaseorderposition: Position<'purchaseorderposition'>
-  purchasereturn: Document<'purchasereturn'>
+  purchasereturn: DocumentWithPositions<'purchasereturn'>
   purchasereturnposition: Position<'purchasereturnposition'>
   region: Entity<'region'>
   retaildemand: RetailDemand
@@ -216,7 +215,7 @@ export type EntityByMetaType = {
   specialpricediscount: Entity<'specialpricediscount'>
   state: State
   store: Entity<'store'>
-  supply: Document<'supply'>
+  supply: DocumentWithPositions<'supply'>
   supplyposition: Position<'supplyposition'>
   task: Entity<'task'>
   uom: Entity<'uom'>

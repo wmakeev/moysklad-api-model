@@ -16,7 +16,8 @@ import {
   Organization,
   AttributeBase,
   Entity,
-  Product
+  Product,
+  DocumentWithPositions
 } from '../../../src'
 
 //#region
@@ -321,6 +322,17 @@ if (t60_agentAttr?.type === AttributeType.Counterparty) {
 
 const t60_assortmentId: string = t60.positions.rows[0].assortment.id
 
+//#endregion
+
+//#region Expand abstract DocumentWithPositions
+const t80 = {} as Expand<
+  DocumentWithPositions<'supply'>,
+  'agent,positions.assortment'
+>
+
+t80.agent.name
+
+t80.positions.rows[0].assortment.id
 //#endregion
 
 // TODO 'positions.assortment,agent.attributes.value'
