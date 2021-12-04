@@ -16,3 +16,5 @@
 
 - [ ] Возможно имеет смысл выносить поля не по типу обекта по по его смысловой
       группе. Например, все доменные сущности.
+
+- [ ] [Tail-Recursion Elimination on Conditional Types](https://devblogs.microsoft.com/typescript/announcing-typescript-4-5-beta/#tailrec-conditional) - будет ли полезно?
