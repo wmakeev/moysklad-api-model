@@ -1,4 +1,4 @@
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 import type { Position, PositionPatch } from './Position'
 
 export type InvoicePositionFields = {
@@ -12,4 +12,4 @@ export type InvoicePosition = Position<'invoiceposition'> &
   InvoicePositionFields
 
 export type InvoicePositionPatch = PositionPatch<'invoiceposition'> &
-  PartialNullable<Pick<InvoicePositionFields, 'vat'>>
+  OptionalNullablePartial<Pick<InvoicePositionFields, 'vat'>>

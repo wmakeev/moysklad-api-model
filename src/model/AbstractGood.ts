@@ -7,7 +7,7 @@ import type {
   ProductFolderFields,
   TaxSystem
 } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 import type { Attribute } from './Attribute'
 import type { Barcode } from './Barcode'
 import type { CollectionRef } from './CollectionRef'
@@ -177,7 +177,7 @@ export type AbstractGoodFields = ProductFolderFields & {
 export type AbstractGood<T extends GoodMetaType> = Entity<T> &
   AbstractGoodFields
 
-export type AbstractGoodPatch = PartialNullable<
+export type AbstractGoodPatch = OptionalNullablePartial<
   Pick<
     AbstractGoodFields,
     | 'uom'

@@ -6,7 +6,7 @@ import type {
   OrderPatch,
   TaxSystem
 } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 
 export type CustomerOrderFields = HasVat & {
   taxSystem?: TaxSystem
@@ -36,5 +36,5 @@ export type CustomerOrderExpand = Pick<
   OrderExpand<'customerorder'>
 
 export type CustomerOrderPatch = OrderPatch<'customerorder'> &
-  PartialNullable<Pick<CustomerOrderFields, 'taxSystem'>> &
+  OptionalNullablePartial<Pick<CustomerOrderFields, 'taxSystem'>> &
   Partial<HasVat>

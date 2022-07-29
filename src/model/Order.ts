@@ -4,7 +4,7 @@ import type {
   DocumentWithPositionsPatch,
   EntityRef
 } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 
 export type OrderMetaType = 'customerorder' | 'purchaseorder'
 
@@ -24,4 +24,6 @@ export type OrderExpand<T extends OrderMetaType> = Pick<Order<T>, 'store'> &
 
 export type OrderPatch<T extends OrderMetaType> =
   DocumentWithPositionsPatch<T> &
-    PartialNullable<Pick<OrderFields, 'deliveryPlannedMoment' | 'store'>>
+    OptionalNullablePartial<
+      Pick<OrderFields, 'deliveryPlannedMoment' | 'store'>
+    >

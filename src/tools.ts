@@ -7,4 +7,11 @@ export function isType<T extends MetaType>(
   return (entity as any)?.meta?.type === metaType
 }
 
-export type PartialNullable<T> = { [P in keyof T]?: T[P] | undefined | null }
+/**
+ * Значения могут быть `null`, но не могут быть `undefined`
+ */
+export type NullablePartial<T> = { [P in keyof T]: T[P] | null }
+
+export type OptionalNullablePartial<T> = {
+  [P in keyof T]?: T[P] | undefined | null
+}

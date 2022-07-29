@@ -3,7 +3,7 @@ import type {
   DocumentWithPositionsPatch,
   HasVat
 } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 
 export type InvoiceMetaType = 'invoicein' | 'invoiceout'
 
@@ -21,5 +21,5 @@ export type Invoice<T extends InvoiceMetaType> = DocumentWithPositions<T> &
 
 export type InvoicePatch<T extends InvoiceMetaType> =
   DocumentWithPositionsPatch<T> &
-    PartialNullable<Pick<InvoiceFields, 'paymentPlannedMoment'>> &
+    OptionalNullablePartial<Pick<InvoiceFields, 'paymentPlannedMoment'>> &
     Partial<HasVat>

@@ -7,7 +7,7 @@ import type {
   OwnedPatch,
   Rate
 } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 
 type ContractTypeFileds =
   | {
@@ -87,7 +87,7 @@ type ContractFields = ContractTypeFileds & {
 
 export type Contract = Entity<'contract'> & Owned & ContractFields
 
-export type ContractPatch = PartialNullable<
+export type ContractPatch = OptionalNullablePartial<
   Pick<
     ContractFields,
     | 'name'

@@ -4,7 +4,7 @@ import type {
   EntityRef,
   HasVat
 } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 
 export type ReturnMetaType = 'salesreturn' | 'retailsalesreturn'
 
@@ -17,5 +17,5 @@ export type AbstractReturn<T extends ReturnMetaType> =
 
 export type AbstractReturnPatch<T extends ReturnMetaType> =
   DocumentWithPositionsPatch<T> &
-    PartialNullable<Pick<AbstractReturnFields, 'demand'>> &
+    OptionalNullablePartial<Pick<AbstractReturnFields, 'demand'>> &
     Partial<HasVat>

@@ -1,5 +1,5 @@
 import type { EntityRef, Position, PositionPatch } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 
 export type SalesReturnPositionFields = {
   /**
@@ -23,6 +23,6 @@ export type SalesReturnPosition = Position<'salesreturnposition'> &
   SalesReturnPositionFields
 
 export type SalesReturnPositionPatch = PositionPatch<'demandposition'> &
-  PartialNullable<
+  OptionalNullablePartial<
     Pick<SalesReturnPositionFields, 'vat' | 'vatEnabled' | 'gtd' | 'country'>
   >

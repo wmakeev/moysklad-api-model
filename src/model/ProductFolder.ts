@@ -1,5 +1,5 @@
 import type { Entity, EntityRef, Owned, OwnedPatch, TaxSystem } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 
 export type ProductFolderFields = Owned & {
   name: string
@@ -33,7 +33,7 @@ export type ProductFolder = Entity<'productfolder'> & ProductFolderFields
 export type ProductFolderPatch = Partial<
   Pick<ProductFolderFields, 'name' | 'archived'>
 > &
-  PartialNullable<
+  OptionalNullablePartial<
     Pick<
       ProductFolderFields,
       | 'description'

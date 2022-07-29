@@ -1,5 +1,5 @@
 import type { Document, DocumentPatch, EntityRef, MetaType } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 
 // TODO FinaceOperation: наложить ограничения на возможные MetaType
 export interface FinaceOperation extends EntityRef<MetaType> {
@@ -23,6 +23,6 @@ export type FinanceFields = {
 export type Finance<T extends FinanceMetaType> = Document<T> & FinanceFields
 
 export type FinancePatch = DocumentPatch &
-  PartialNullable<
+  OptionalNullablePartial<
     Pick<FinanceFields, 'operations' | 'paymentPurpose' | 'vatSum'>
   >

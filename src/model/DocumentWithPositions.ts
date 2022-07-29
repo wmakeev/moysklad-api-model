@@ -1,4 +1,4 @@
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 import type { CollectionRef } from './CollectionRef'
 import type { Document, DocumentExpand, DocumentPatch } from './Document'
 import type { EntityRef } from './EntityRef'
@@ -26,7 +26,7 @@ export type DocumentWithPositionsPatch<
   T extends DocumentWithPositionsMetaType
 > = DocumentPatch &
   // FIXME Где-то store не может быть null
-  PartialNullable<Pick<DocumentWithPositionsFields<T>, 'store'>> &
+  OptionalNullablePartial<Pick<DocumentWithPositionsFields<T>, 'store'>> &
   Partial<{
     // TODO Добавить вариант с коллекцией?
     // TODO Для каждого типа документа будет свой PositionPatch (брать из type map)

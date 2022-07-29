@@ -1,5 +1,5 @@
 import type { EntityRef, Invoice, InvoicePatch } from '.'
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 
 export type InvoiceInFields = {
   purchaseOrder?: EntityRef<'purchaseorder'>
@@ -13,4 +13,4 @@ export type InvoiceInFields = {
 export type InvoiceIn = Invoice<'invoicein'>
 
 export type InvoiceInPatch = InvoicePatch<'invoicein'> &
-  PartialNullable<Pick<InvoiceInFields, 'purchaseOrder'>>
+  OptionalNullablePartial<Pick<InvoiceInFields, 'purchaseOrder'>>

@@ -1,4 +1,4 @@
-import type { PartialNullable } from '../tools'
+import type { OptionalNullablePartial } from '../tools'
 import type { Entity } from './Entity'
 import type { EntityPatchRef, EntityRef } from './EntityRef'
 
@@ -61,4 +61,4 @@ export interface Position<T extends PositionMetaType> extends Entity<T> {
 export type PositionPatch<T extends PositionMetaType> = Partial<
   EntityPatchRef<T> & Pick<Position<T>, 'quantity' | 'price'>
 > &
-  PartialNullable<Pick<Position<T>, 'assortment' | 'discount'>>
+  OptionalNullablePartial<Pick<Position<T>, 'assortment' | 'discount'>>
