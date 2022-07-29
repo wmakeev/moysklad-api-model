@@ -1,4 +1,4 @@
-import type { PartialNullable } from '../tools'
+import type { NullablePartial } from '../tools'
 import type { Entity } from './Entity'
 import type { EntityPatchRef, EntityRef } from './EntityRef'
 import type { MediaType } from './MediaType'
@@ -92,10 +92,10 @@ export type Attribute<T extends AttributeType = AttributeType> =
 export type AttributePatch<T extends AttributeType = AttributeType> =
   T extends AttributeType.File
     ? EntityPatchRef<'attributemetadata'> & {
-      file?: {
+      file: {
         filename: string
         content: string
-      }
+      } | null
     }
 
   : T extends AttributeType.CustomEntity
@@ -103,4 +103,4 @@ export type AttributePatch<T extends AttributeType = AttributeType> =
       value: EntityRef<'customentity'>
     }
 
-  : EntityPatchRef<'attributemetadata'> & PartialNullable<Pick<Attribute<T>, 'value'>>
+  : EntityPatchRef<'attributemetadata'> & NullablePartial<Pick<Attribute<T>, 'value'>>

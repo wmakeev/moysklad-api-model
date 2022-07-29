@@ -60,6 +60,16 @@ t1.attributes = [
 ]
 
 t1.attributes = [
+  // @ts-expect-error Нельзя указывать атрибуты без значений
+  {
+    meta: {
+      type: 'attributemetadata',
+      href: ''
+    }
+  }
+]
+
+t1.attributes = [
   {
     meta: {
       type: 'attributemetadata',
@@ -71,7 +81,22 @@ t1.attributes = [
     meta: {
       type: 'attributemetadata',
       href: ''
-    }
+    },
+    file: null
+  },
+  {
+    meta: {
+      type: 'attributemetadata',
+      href: ''
+    },
+    value: 'foo'
+  },
+  {
+    meta: {
+      type: 'attributemetadata',
+      href: ''
+    },
+    value: null
   }
 ]
 
@@ -128,7 +153,32 @@ const t4: PatchCollection<'customerorder'> = [
         meta: {
           type: 'attributemetadata',
           href: ''
+        },
+        value: true
+      },
+      {
+        meta: {
+          type: 'attributemetadata',
+          href: ''
+        },
+        value: null
+      },
+      {
+        meta: {
+          type: 'attributemetadata',
+          href: ''
+        },
+        file: {
+          filename: 'foo.jpg',
+          content: ''
         }
+      },
+      {
+        meta: {
+          type: 'attributemetadata',
+          href: ''
+        },
+        file: null
       }
     ],
     positions: [
