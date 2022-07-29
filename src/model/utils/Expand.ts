@@ -9,7 +9,7 @@ import type {
 // prettier-ignore
 
 /**
- * Разворачивает конкретное поле в типе
+ * Возвращает развернутый тип для указанного поля
  */
 export type ExpandedField<T, K extends string> =
   T extends Array<infer U> | Collection<infer U>
@@ -53,7 +53,7 @@ export type ExpandedField<T, K extends string> =
 // prettier-ignore
 
 /**
- * Разворачивает конкретное поле в типе
+ * Возвращает тип в котором развернуто указанное поле
  */
 export type ExpandField<T, K extends keyof T> = {
   [P in keyof T]: K extends P
