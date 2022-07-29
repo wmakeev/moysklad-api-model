@@ -3,6 +3,9 @@ import type { Entity } from './Entity'
 import type { EntityPatchRef, EntityRef } from './EntityRef'
 import type { MediaType } from './MediaType'
 
+// TODO Надо отказываться от Enum (нельзя использовать просто строки там где
+// в типе указан Enum) #djbqpgnsda
+
 export enum AttributeType {
   // Base type
   String = 'string',
@@ -98,9 +101,9 @@ export type AttributePatch<T extends AttributeType = AttributeType> =
       } | null
     }
 
-  : T extends AttributeType.CustomEntity
+  : T extends EntityRefAttributeType
     ? EntityPatchRef<'attributemetadata'> & {
-      value: EntityRef<'customentity'>
+      value: EntityRef<T>
     }
 
   : EntityPatchRef<'attributemetadata'> & NullablePartial<Pick<Attribute<T>, 'value'>>

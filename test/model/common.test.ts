@@ -1,4 +1,9 @@
-import type { EntityRef, Patch, PrefilledDocument } from '../../src'
+import type {
+  AttributeType,
+  EntityRef,
+  Patch,
+  PrefilledDocument
+} from '../../src'
 import { testTypeEqual } from '../tools'
 
 const customerorder: Patch<'customerorder'> = {}
@@ -14,7 +19,7 @@ invoiceOut.paymentPlannedMoment
 
 //#region
 const t10_1 = {} as EntityRef<'attributemetadata'> & {
-  value: EntityRef<'customentity'>
+  value: EntityRef<AttributeType.CustomEntity>
 }
 
 const t10_2: Patch<'customerorder'> = {

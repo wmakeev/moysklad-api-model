@@ -1,4 +1,4 @@
-import type {
+import {
   Attribute,
   AttributeType,
   CustomerOrder,
@@ -135,7 +135,12 @@ t1.attributes = [
       href: ''
     },
     // foo: '', // #dhg06qfl
-    value: { meta: { type: 'customentity', href: '' } }
+    value: {
+      meta: {
+        type: AttributeType.CustomEntity,
+        href: ''
+      }
+    }
   }
 ]
 //#endregion

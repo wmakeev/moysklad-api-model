@@ -33,3 +33,16 @@ if ('file' in t11_1) {
 
   expectType<null>({} as any as Extract<typeof t11_1['file'], null>)
 }
+
+const t12_1: AttributePatch = {
+  meta: {
+    type: 'attributemetadata',
+    href: ''
+  },
+  value: {
+    meta: {
+      type: AttributeType.Store, // TODO Отказаться от Enum (нельзя указать просто "store") #djbqpgnsda
+      href: ''
+    }
+  }
+}
