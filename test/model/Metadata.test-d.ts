@@ -1,5 +1,11 @@
 import { expectType } from 'tsd'
-import type { CollectionRef, Metadata, State } from '../../src'
+import {
+  AttributeMetadata,
+  AttributeType,
+  CollectionRef,
+  Metadata,
+  State
+} from '../../src'
 
 // @ts-expect-error account не имеет метаданных
 const t0 = {} as Metadata<'account'>
@@ -55,3 +61,16 @@ t5.createShared
 expectType<`https://${string}/api/remap/1.2/entity/variant/metadata`>(
   t5.meta.href
 )
+
+// AttributeMetadata
+
+const t6 = {} as AttributeMetadata
+
+t6.show
+
+// @ts-expect-error Не проверен type
+t6.customEntityMeta.type
+
+if (t6.type === AttributeType.CustomEntity) {
+  expectType<'customentitymetadata'>(t6.customEntityMeta.type)
+}

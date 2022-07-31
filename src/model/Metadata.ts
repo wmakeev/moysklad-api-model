@@ -4,7 +4,9 @@ import type {
   AttributeType,
   Entity,
   CollectionRef,
-  State
+  State,
+  EntityRefAttributeType,
+  Meta
 } from '.'
 
 /**
@@ -20,17 +22,26 @@ export type MetadataMeta<T extends MetadataMetaType = MetadataMetaType> = {
   }
 }
 
-export interface AttributeMetadata extends Entity<'attributemetadata'> {
+export type AttributeMetadata = Entity<'attributemetadata'> & {
   /** Наименование пользовательского поля */
   readonly name: string
 
-  /** Тип значения пользовательского поля */
-  readonly type: AttributeType
-
   readonly required: boolean
 
-  readonly show: true
-}
+  // TODO Только для документов (нужно разделять ради этого?)
+  readonly show: boolean
+} & (
+    | {
+        /** Тип значения пользовательского поля */
+        readonly type: AttributeType.CustomEntity
+
+        readonly customEntityMeta: Meta<'customentitymetadata'>
+      }
+    | {
+        /** Тип значения пользовательского поля */
+        readonly type: Exclude<AttributeType, AttributeType.CustomEntity>
+      }
+  )
 
 export type DocumentMetadata<T extends DocumentMetaType = DocumentMetaType> =
   MetadataMeta<T> & {
