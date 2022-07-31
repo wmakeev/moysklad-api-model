@@ -3,7 +3,7 @@ import type {
   CollectionRef,
   EntityByMetaType,
   EntityRef,
-  MetadataAttribute,
+  AttributeMetadata,
   MetaType
 } from '../'
 
@@ -72,7 +72,7 @@ export type ExpandField<T, K extends keyof T> = {
 
       // - исключение для attributemetadata (если коллекция то, другая структура)
       : T[P] extends CollectionRef<'attributemetadata'>
-        ? Collection<MetadataAttribute>
+        ? Collection<AttributeMetadata>
 
       : T[P] extends CollectionRef<M>
         ? Collection<EntityByMetaType[M]>

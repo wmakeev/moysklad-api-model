@@ -20,7 +20,7 @@ export type MetadataMeta<T extends MetadataMetaType = MetadataMetaType> = {
   }
 }
 
-export interface MetadataAttribute extends Entity<'attributemetadata'> {
+export interface AttributeMetadata extends Entity<'attributemetadata'> {
   /** Наименование пользовательского поля */
   readonly name: string
 
