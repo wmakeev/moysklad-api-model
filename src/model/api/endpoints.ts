@@ -120,6 +120,8 @@ export type EndpointInterface<
               ExpandStr
             >
 
+        // GET ..
+
         // PUT entity/{type}/{..}
         : Method extends 'PUT'
           ? Endpoint extends `entity/${EntityType}/${infer Rest}`

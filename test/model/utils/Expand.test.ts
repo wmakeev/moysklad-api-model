@@ -17,7 +17,8 @@ import {
   AttributeBase,
   Entity,
   Product,
-  DocumentWithPositions
+  DocumentWithPositions,
+  Metadata
 } from '../../../src'
 
 //#region
@@ -338,3 +339,10 @@ t80.positions.rows[0].assortment.id
 // TODO 'positions.assortment,agent.attributes.value'
 // TODO 'attributes.value,agent.attributes.value'
 // TODO 'agent,operations,operations.customerOrder'
+
+//#region Expand Metadata
+const t90 = {} as Expand<Metadata<'demand'>, 'attributes'>
+
+t90.attributes.meta.href
+t90.attributes.rows[0].show
+//#endregion
