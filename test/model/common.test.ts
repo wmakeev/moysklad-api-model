@@ -19,7 +19,7 @@ invoiceOut.paymentPlannedMoment
 
 //#region
 const t10_1 = {} as EntityRef<'attributemetadata'> & {
-  value: EntityRef<AttributeType.CustomEntity>
+  value: EntityRef<'customentity'>
 }
 
 const t10_2: Patch<'customerorder'> = {

@@ -17,51 +17,49 @@ import type { Price } from './Price'
 import type { ProductFolderPatch } from './ProductFolder'
 import type { SalePrice } from './SalePrice'
 
-export enum TrackingType {
+export type TrackingType =
   /** Без маркировки */
-  NOT_TRACKED = 'NOT_TRACKED',
+  | 'NOT_TRACKED'
 
   /** Тип маркировки "Табак" */
-  TOBACCO = 'TOBACCO',
+  | 'TOBACCO'
 
   /** Тип маркировки "Обувь" */
-  SHOES = 'SHOES',
+  | 'SHOES'
 
   /** Тип маркировки "Одежда" */
-  LP_CLOTHES = 'LP_CLOTHES',
+  | 'LP_CLOTHES'
 
   /** Тип маркировки "Постельное белье" */
-  LP_LINENS = 'LP_LINENS',
+  | 'LP_LINENS'
 
   /** Духи и туалетная вода */
-  PERFUMERY = 'PERFUMERY',
+  | 'PERFUMERY'
 
   /** Фотокамеры и лампы-вспышки */
-  ELECTRONICS = 'ELECTRONICS',
+  | 'ELECTRONICS'
 
   /** Шины и покрышки */
-  TIRES = 'TIRES',
+  | 'TIRES'
 
   /** Молочная продукция */
-  MILK = 'MILK',
+  | 'MILK'
 
   /** Альтернативная табачная продукция */
-  OTP = 'OTP'
-}
+  | 'OTP'
 
-export enum PaymentItemType {
+export type PaymentItemType =
   /** Товар */
-  GOOD = 'GOOD',
+  | 'GOOD'
 
   /** Подакцизный товар */
-  EXCISABLE_GOOD = 'EXCISABLE_GOOD',
+  | 'EXCISABLE_GOOD'
 
   /** Составной предмет расчета */
-  COMPOUND_PAYMENT_ITEM = 'COMPOUND_PAYMENT_ITEM',
+  | 'COMPOUND_PAYMENT_ITEM'
 
   /** Иной предмет расчета   */
-  ANOTHER_PAYMENT_ITEM = 'ANOTHER_PAYMENT_ITEM'
-}
+  | 'ANOTHER_PAYMENT_ITEM'
 
 export type GoodMetaType = 'product' | 'service' | 'bundle'
 

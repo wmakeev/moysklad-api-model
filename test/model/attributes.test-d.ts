@@ -1,9 +1,9 @@
 import { expectType, expectNotType } from 'tsd'
-import { Attribute, AttributePatch, AttributeType } from '../../src'
+import type { Attribute, AttributePatch } from '../../src'
 
 const t10_1 = {} as Attribute
 
-if (t10_1.type === AttributeType.Boolean) {
+if (t10_1.type === 'boolean') {
   expectType<boolean>(t10_1.value)
 }
 
@@ -41,7 +41,7 @@ const t12_1: AttributePatch = {
   },
   value: {
     meta: {
-      type: AttributeType.Store, // TODO Отказаться от Enum (нельзя указать просто "store") #djbqpgnsda
+      type: 'store',
       href: ''
     }
   }

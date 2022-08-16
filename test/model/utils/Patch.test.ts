@@ -1,9 +1,5 @@
-import {
-  Attribute,
-  AttributeType,
-  CustomerOrder,
+import type {
   CustomerOrderPatch,
-  MetaType,
   Patch,
   PatchByMetaType,
   PatchCollection
@@ -75,6 +71,27 @@ t1.attributes = [
       type: 'attributemetadata',
       href: ''
     },
+    value: {
+      meta: {
+        type: 'customentity',
+        href: ''
+      }
+    }
+  },
+  {
+    meta: {
+      type: 'attributemetadata',
+      href: ''
+    },
+    value: {
+      name: ''
+    }
+  },
+  {
+    meta: {
+      type: 'attributemetadata',
+      href: ''
+    },
     file: { filename: '', content: '' }
   },
   {
@@ -102,7 +119,7 @@ t1.attributes = [
 
 t1.attributes = [
   {
-    // @ts-expect-error
+    // @ts-expect-error meta is missing
     value: ''
   }
 ]
@@ -137,7 +154,7 @@ t1.attributes = [
     // foo: '', // #dhg06qfl
     value: {
       meta: {
-        type: AttributeType.CustomEntity,
+        type: 'customentity',
         href: ''
       }
     }

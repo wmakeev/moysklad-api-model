@@ -3,8 +3,7 @@ import type {
   CollectionRef,
   EntityByMetaType,
   EntityRef,
-  AttributeMetadata,
-  MetaType
+  AttributeMetadata
 } from '../'
 
 // prettier-ignore

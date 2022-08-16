@@ -1,24 +1,21 @@
-import {
+import type {
   Account,
-  AttributeType,
   AssortmentMetaType,
+  Attribute,
   Collection,
   CompanyType,
+  Counterparty,
   CustomerOrder,
   CustomerOrderPosition,
+  DocumentWithPositions,
+  Entity,
   EntityRef,
   Expand,
   ExpandedField,
   ExpandField,
-  ExpandPath,
   Meta,
-  Counterparty,
-  Organization,
-  AttributeBase,
-  Entity,
-  Product,
-  DocumentWithPositions,
-  Metadata
+  Metadata,
+  Organization
 } from '../../../src'
 
 //#region
@@ -129,7 +126,7 @@ const customerOrderAttr = t13.attributes?.[0]
 const attrName: string | undefined = customerOrderAttr?.name
 attrName
 
-if (customerOrderAttr?.type === AttributeType.File) {
+if (customerOrderAttr?.type === 'file') {
   const attrValue: string = customerOrderAttr.value
   attrValue
 
@@ -137,7 +134,7 @@ if (customerOrderAttr?.type === AttributeType.File) {
   href
 }
 
-if (customerOrderAttr?.type === AttributeType.CustomEntity) {
+if (customerOrderAttr?.type === 'customentity') {
   const name: string = customerOrderAttr.value.name
   name
 
@@ -145,7 +142,7 @@ if (customerOrderAttr?.type === AttributeType.CustomEntity) {
   customerOrderAttr.download
 }
 
-if (customerOrderAttr?.type === AttributeType.Counterparty) {
+if (customerOrderAttr?.type === 'counterparty') {
   const counterpartyRef: EntityRef<'counterparty'> = customerOrderAttr.value
 
   const counterpartyType: 'counterparty' = counterpartyRef.meta.type
@@ -201,11 +198,11 @@ const t42 = {} as Expand<CustomerOrder, 'attributes.value'>
 
 const customerOrderAttrExpanded = t42.attributes?.[0]
 
-if (customerOrderAttrExpanded?.type === AttributeType.Counterparty) {
+if (customerOrderAttrExpanded?.type === 'counterparty') {
   const companyType: CompanyType = customerOrderAttrExpanded.value.companyType
 }
 
-if (customerOrderAttrExpanded?.type === AttributeType.Double) {
+if (customerOrderAttrExpanded?.type === 'double') {
   const doubleValue: number = customerOrderAttrExpanded.value
 }
 //#endregion
@@ -228,22 +225,16 @@ t50.agent.group.name // OK: 2-nd level expanded
 
 //#region Expand attributes.value
 // String
-const t55_1 = {} as ExpandField<AttributeBase<AttributeType.String>, 'value'>
+const t55_1 = {} as ExpandField<Attribute<'string'>, 'value'>
 const t55_2: string = t55_1.value
 t55_2
 
 // CustomEntity
-const t55_3 = {} as ExpandField<
-  AttributeBase<AttributeType.CustomEntity>,
-  'value'
->
+const t55_3 = {} as ExpandField<Attribute<'customentity'>, 'value'>
 const t55_4: Entity<'customentity'> = t55_3.value
 t55_4.id
 
-const t55_5 = {} as ExpandField<
-  AttributeBase<AttributeType.Counterparty>,
-  'value'
->
+const t55_5 = {} as ExpandField<Attribute<'counterparty'>, 'value'>
 const t55_6: Counterparty = t55_5.value
 t55_6.actualAddress
 
@@ -251,12 +242,12 @@ const t55_7 = {} as Expand<CustomerOrder, 'attributes.value'>
 
 const t55_attr = t55_7.attributes?.[0]
 
-if (t55_attr?.type === AttributeType.Counterparty) {
+if (t55_attr?.type === 'counterparty') {
   const t55_val: Counterparty = t55_attr.value
   t55_val.inn
 }
 
-if (t55_attr?.type === AttributeType.CustomEntity) {
+if (t55_attr?.type === 'customentity') {
   const t55_val = t55_attr.value
   const code: string | undefined = t55_val.code
 }
@@ -270,7 +261,7 @@ if (typeof t56_attr?.value === 'object') {
   t56_attr.value.id
 }
 
-if (t56_attr?.type === AttributeType.Counterparty) {
+if (t56_attr?.type === 'counterparty') {
   t56_attr.value.inn
 }
 //#endregion
@@ -283,7 +274,7 @@ if (typeof t57_attr?.value === 'object') {
   t57_attr.value.id
 }
 
-if (t57_attr?.type === AttributeType.Counterparty) {
+if (t57_attr?.type === 'counterparty') {
   t57_attr.value.inn
 }
 //#endregion
@@ -292,7 +283,7 @@ if (t57_attr?.type === AttributeType.Counterparty) {
 const t58_1 = {} as Expand<CustomerOrder, 'agent.attributes.value,agent.state'>
 const t58_attr = t58_1.agent.attributes?.[0]
 
-if (t58_attr?.type === AttributeType.Counterparty) {
+if (t58_attr?.type === 'counterparty') {
   t58_attr.value.inn
 }
 //#endregion
@@ -317,7 +308,7 @@ t60.agent.group.name // OK: 2-nd level expanded
 const t60_agentAttr = t60.agent.attributes?.[0]
 
 // TODO expand: attributes.value
-if (t60_agentAttr?.type === AttributeType.Counterparty) {
+if (t60_agentAttr?.type === 'counterparty') {
   const inn: string | undefined = t60_agentAttr.value.inn
 }
 

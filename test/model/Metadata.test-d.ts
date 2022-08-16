@@ -1,5 +1,5 @@
 import { expectType } from 'tsd'
-import {
+import type {
   AttributeMetadata,
   AttributeType,
   CollectionRef,
@@ -71,6 +71,6 @@ t6.show
 // @ts-expect-error Не проверен type
 t6.customEntityMeta.type
 
-if (t6.type === AttributeType.CustomEntity) {
+if (t6.type === 'customentity') {
   expectType<'customentitymetadata'>(t6.customEntityMeta.type)
 }

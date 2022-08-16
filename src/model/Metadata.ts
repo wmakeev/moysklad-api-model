@@ -1,12 +1,11 @@
 import type {
-  DocumentMetaType,
-  DictionaryMetaType,
   AttributeType,
-  Entity,
   CollectionRef,
-  State,
-  EntityRefAttributeType,
-  Meta
+  DictionaryMetaType,
+  DocumentMetaType,
+  Entity,
+  Meta,
+  State
 } from '.'
 
 /**
@@ -33,13 +32,13 @@ export type AttributeMetadata = Entity<'attributemetadata'> & {
 } & (
     | {
         /** Тип значения пользовательского поля */
-        readonly type: AttributeType.CustomEntity
+        readonly type: 'customentity'
 
         readonly customEntityMeta: Meta<'customentitymetadata'>
       }
     | {
         /** Тип значения пользовательского поля */
-        readonly type: Exclude<AttributeType, AttributeType.CustomEntity>
+        readonly type: Exclude<AttributeType, 'customentity'>
       }
   )
 

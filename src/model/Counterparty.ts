@@ -1,5 +1,5 @@
 import type { CollectionRef } from './CollectionRef'
-import type { Company, CompanyType } from './Company'
+import type { Company, companyType } from './Company'
 import type { EntityRef } from './EntityRef'
 import type { Legal } from './Legal'
 import type { Person } from './Person'
@@ -32,7 +32,7 @@ export interface CounterpartyEntrepreneur
   extends CounterpartyBase,
     Legal,
     Person {
-  companyType: CompanyType.Entrepreneur
+  companyType: typeof companyType.Entrepreneur
 
   /** КПП */
   kpp?: string
@@ -42,11 +42,11 @@ export interface CounterpartyEntrepreneur
 }
 
 export interface CounterpartyIndividual extends CounterpartyBase, Person {
-  companyType: CompanyType.Individual
+  companyType: typeof companyType.Individual
 }
 
 export interface CounterparyLegal extends CounterpartyBase, Legal {
-  companyType: CompanyType.Legal
+  companyType: typeof companyType.Legal
 
   /** КПП */
   kpp?: string

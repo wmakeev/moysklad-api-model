@@ -1,10 +1,4 @@
-export enum BarcodeType {
-  Code128 = 'code128',
-  EAN13 = 'ean13',
-  EAN8 = 'ean8',
-  GTIN = 'gtin',
-  UPC = 'upc'
-}
+export type BarcodeType = 'code128' | 'ean13' | 'ean8' | 'gtin' | 'upc'
 
 export type Barcode = {
   [type in BarcodeType]: string

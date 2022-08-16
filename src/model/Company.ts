@@ -2,11 +2,13 @@ import type { Address, Agent, CollectionRef, EntityRef } from '.'
 
 export type CompanyMetaType = 'counterparty' | 'organization'
 
-export enum CompanyType {
-  Legal = 'legal',
-  Entrepreneur = 'entrepreneur',
-  Individual = 'individual'
-}
+export const companyType = {
+  Legal: 'legal',
+  Entrepreneur: 'entrepreneur',
+  Individual: 'individual'
+} as const
+
+export type CompanyType = typeof companyType[keyof typeof companyType]
 
 export interface CompanyDiscountData {
   discount: EntityRef<'discount'>
@@ -20,10 +22,7 @@ export interface Company<T extends CompanyMetaType> extends Agent<T> {
   code: string
 
   /** Тип Контрагента */
-  companyType:
-    | CompanyType.Individual
-    | CompanyType.Entrepreneur
-    | CompanyType.Legal
+  companyType: CompanyType
 
   /** Счета */
   accounts: CollectionRef<'account'>

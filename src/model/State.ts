@@ -1,11 +1,7 @@
 import type { Entity } from './Entity'
 import type { MetaType } from './MetaType'
 
-export enum StateType {
-  Regular = 'Regular',
-  Successful = 'Successful',
-  Unsuccessful = 'Unsuccessful'
-}
+export type StateType = 'Regular' | 'Successful' | 'Unsuccessful'
 
 // TODO Чтобы выводился `entityType` необходима более сложная схема для Expand
 

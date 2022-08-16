@@ -1,109 +1,176 @@
 import type { NullablePartial } from '../tools'
 import type { Entity } from './Entity'
 import type { EntityPatchRef, EntityRef } from './EntityRef'
-import type { MediaType } from './MediaType'
+import type { mediaType, MediaType } from './MediaType'
 
-// TODO Надо отказываться от Enum (нельзя использовать просто строки там где
-// в типе указан Enum) #djbqpgnsda
-
-export enum AttributeType {
-  // Base type
-  String = 'string',
-  Long = 'long',
-  Time = 'time',
-  File = 'file',
-  Double = 'double',
-  Boolean = 'boolean',
-  Text = 'text',
-  Link = 'link',
-
-  // Embedded entity
-  Organization = 'organization',
-  Counterparty = 'counterparty',
-  Employee = 'employee',
-  Contract = 'contract',
-  Product = 'product',
-  Project = 'project',
-  Store = 'store',
-
-  // Custom entity
-  CustomEntity = 'customentity'
-}
+export const simpleAttributeTypes = [
+  'string',
+  'long',
+  'time',
+  'double',
+  'boolean',
+  'text',
+  'link'
+] as const
 
 /** Типы атрибутов, значение которых является сущностью (ссылкой на сущность) */
-export type EntityRefAttributeType =
-  | AttributeType.Organization
-  | AttributeType.Counterparty
-  | AttributeType.Employee
-  | AttributeType.Contract
-  | AttributeType.Product
-  | AttributeType.Project
-  | AttributeType.Store
-  | AttributeType.CustomEntity
+export type SimpleAttributeType = typeof simpleAttributeTypes[number]
 
-export type AttributeJsTypeMap = {
+export const embeddedEntityAttributeTypes = [
+  'organization',
+  'counterparty',
+  'employee',
+  'contract',
+  'product',
+  'project',
+  'store'
+] as const
+
+/** Типы атрибутов, значение которых является сущностью (ссылкой на сущность) */
+export type EmbeddedEntityRefAttributeType =
+  typeof embeddedEntityAttributeTypes[number]
+
+/** Типы атрибутов */
+export type AttributeType =
   // Base type
-  [AttributeType.String]: string
-  [AttributeType.Long]: number
-  [AttributeType.Time]: string
-  [AttributeType.File]: string
-  [AttributeType.Double]: number
-  [AttributeType.Boolean]: boolean
-  [AttributeType.Text]: string
-  [AttributeType.Link]: string
+  | SimpleAttributeType
 
   // Embedded entity
-  [AttributeType.Organization]: EntityRef<'organization'>
-  [AttributeType.Counterparty]: EntityRef<'counterparty'>
-  [AttributeType.Employee]: EntityRef<'employee'>
-  [AttributeType.Contract]: EntityRef<'contract'>
-  [AttributeType.Product]: EntityRef<'product'>
-  [AttributeType.Project]: EntityRef<'project'>
-  [AttributeType.Store]: EntityRef<'store'>
+  | EmbeddedEntityRefAttributeType
+
+  // File entity
+  | 'file'
 
   // Custom entity
-  [AttributeType.CustomEntity]: EntityRef<'customentity'> & {
-    readonly name: string
+  | 'customentity'
+
+// TODO Нужна отдельная мапа EntityRefAttributeType -> MetaType
+// Если перевести на union, то нужно ли?
+
+// file: {
+//       filename: string
+//       content: string
+//     }
+
+export type AttributeValueByTypeMap = {
+  // Base type
+  string: { value: string }
+
+  long: { value: number }
+
+  time: { value: string }
+
+  file: {
+    /** Наименование файла */
+    value: string
+
+    /** Ссылка для скачивания файла */
+    download: {
+      href: string
+      mediaType: typeof mediaType.ApplicationOctetStream
+    }
+  }
+
+  double: { value: number }
+
+  boolean: { value: boolean }
+
+  text: { value: string }
+
+  link: { value: string }
+
+  // Embedded entity
+  organization: { value: EntityRef<'organization'> }
+
+  counterparty: { value: EntityRef<'counterparty'> }
+
+  employee: { value: EntityRef<'employee'> }
+
+  contract: { value: EntityRef<'contract'> }
+
+  product: { value: EntityRef<'product'> }
+
+  project: { value: EntityRef<'project'> }
+
+  store: { value: EntityRef<'store'> }
+
+  customentity: {
+    value: EntityRef<'customentity'> & {
+      readonly name: string
+    }
   }
 }
 
-export interface AttributeBase<T extends AttributeType = AttributeType>
-  extends Entity<'attributemetadata'> {
-  /** Наименование пользовательского поля */
-  readonly name: string
-
-  /** Тип значения пользовательского поля */
-  readonly type: T
-
-  value: AttributeJsTypeMap[T]
-}
+// prettier-ignore
 
 export type Attribute<T extends AttributeType = AttributeType> =
-  T extends AttributeType.File
-    ? AttributeBase<T> & {
-        readonly download: {
-          readonly href: string
-          readonly mediaType: MediaType
+  Entity<'attributemetadata'> &
+    (
+      T extends SimpleAttributeType | EmbeddedEntityRefAttributeType | 'customentity'
+        ? {
+          /** Наименование пользовательского поля */
+          readonly name: string
+
+          /** Тип значения пользовательского поля */
+          readonly type: T
+
+          readonly value: AttributeValueByTypeMap[T]['value']
         }
-      }
-    : AttributeBase<T>
+
+      : T extends 'file'
+        ? {
+          /** Наименование пользовательского поля */
+          readonly name: string
+
+          /** Тип значения пользовательского поля */
+          readonly type: T
+
+          readonly value: AttributeValueByTypeMap[T]['value']
+
+          readonly download: AttributeValueByTypeMap[T]['download']
+        }
+
+      : never
+    )
 
 // TODO Попробовать оптимизировать см. #dhg06qfl
 
 // prettier-ignore
 
 export type AttributePatch<T extends AttributeType = AttributeType> =
-  T extends AttributeType.File
-    ? EntityPatchRef<'attributemetadata'> & {
-      file: {
-        filename: string
-        content: string
-      } | null
-    }
+  EntityPatchRef<'attributemetadata'> & (
+    T extends 'customentity'
+      ?  {
+        /** Наименование пользовательского поля */
+        name?: string
 
-  : T extends EntityRefAttributeType
-    ? EntityPatchRef<'attributemetadata'> & {
-      value: EntityRef<T>
-    }
+        /** Тип значения пользовательского поля */
+        type?: T
 
-  : EntityPatchRef<'attributemetadata'> & NullablePartial<Pick<Attribute<T>, 'value'>>
+        value: EntityRef<T> | { name: string } | null
+      }
+
+    : T extends 'file'
+      ? EntityPatchRef<'attributemetadata'> & {
+        /** Наименование пользовательского поля */
+        name?: string
+
+        /** Тип значения пользовательского поля */
+        type?: T
+
+        file: {
+          filename: string
+          content: string
+        } | null
+      }
+
+    : EntityPatchRef<'attributemetadata'> & {
+        /** Наименование пользовательского поля */
+        name?: string
+
+        /** Тип значения пользовательского поля */
+        type?: T
+
+        value: AttributeValueByTypeMap[T]['value'] | null
+      }
+  )

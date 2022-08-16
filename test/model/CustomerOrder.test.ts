@@ -1,5 +1,4 @@
 import type { CustomerOrder, CustomerOrderExpand, Patch } from '../../src'
-import { AttributeType, MediaType, MetaType, TaxSystem } from '../../src'
 
 const customerOrderFull1: CustomerOrder = {
   meta: {
@@ -93,7 +92,7 @@ const customerOrderFull1: CustomerOrder = {
       accountId: '',
       id: '',
       name: '',
-      type: AttributeType.Boolean,
+      type: 'boolean',
       value: true
     },
     {
@@ -104,11 +103,11 @@ const customerOrderFull1: CustomerOrder = {
       accountId: '',
       id: '',
       name: '',
-      type: AttributeType.File,
+      type: 'file',
       value: '',
       download: {
         href: '',
-        mediaType: MediaType.ApplicationJson
+        mediaType: 'application/octet-stream'
       }
     }
   ],
@@ -135,7 +134,7 @@ const customerOrderFull1: CustomerOrder = {
       size: 0
     }
   },
-  taxSystem: TaxSystem.GENERAL_TAX_SYSTEM,
+  taxSystem: 'GENERAL_TAX_SYSTEM',
   purchaseOrders: [],
   invoicesOut: [],
   payments: [],
