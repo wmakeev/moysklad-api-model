@@ -19,7 +19,7 @@ export type DocumentMetaType =
   | 'commissionreportin'
   | 'commissionreportout'
   | 'consignment'
-  | 'contract'
+  | 'contract' // TODO Договор это документ?
   | 'customerorder'
   | 'demand'
   | 'enter'
