@@ -1,5 +1,4 @@
 import type { Agent } from './Agent'
-import type { MetaType } from './MetaType'
 
 export interface Employee extends Agent<'employee'> {
   /** Логин Сотрудника */

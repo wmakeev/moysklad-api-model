@@ -3,6 +3,7 @@ import type {
   CashInPatch,
   CashOutPatch,
   ContractPatch,
+  CurrencyPatch,
   CustomEntityPatch,
   CustomerOrderPatch,
   CustomerOrderPositionPatch,
@@ -27,19 +28,20 @@ export type PatchByMetaType = {
   cashin: CashInPatch
   cashout: CashOutPatch
   contract: ContractPatch
+  currency: CurrencyPatch
+  customentity: CustomEntityPatch
   customerorder: CustomerOrderPatch
   customerorderposition: CustomerOrderPositionPatch
   demand: DemandPatch
   demandposition: DemandPosition
+  inventory: InventoryPatch
+  inventoryposition: InventoryPositionPatch
   invoicein: InvoiceInPatch
   invoiceout: InvoiceOutPatch
   invoiceposition: InvoicePositionPatch
-  inventory: InventoryPatch
-  inventoryposition: InventoryPositionPatch
   product: ProductPatch
   productfolder: ProductFolderPatch
   retaildemand: RetailDemand
-  customentity: CustomEntityPatch
   salesreturn: SalesReturnPatch
   salesreturnposition: SalesReturnPositionPatch
 }

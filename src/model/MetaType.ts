@@ -4,9 +4,11 @@ import type {
   Attribute,
   CashIn,
   CashOut,
+  CompanySettings,
   ContactPerson,
   Contract,
   Counterparty,
+  Currency,
   CustomEntity,
   CustomerOrder,
   CustomerOrderPosition,
@@ -143,13 +145,13 @@ export type EntityByMetaType = {
   commissionreportinposition: Position<'commissionreportinposition'>
   commissionreportout: DocumentWithPositions<'commissionreportout'>
   commissionreportoutposition: Position<'commissionreportoutposition'>
-  companysettings: Entity<'companysettings'>
+  companysettings: CompanySettings
   consignment: Entity<'consignment'>
   contactperson: ContactPerson
   contract: Contract
   counterparty: Counterparty
   country: Entity<'country'>
-  currency: Entity<'currency'>
+  currency: Currency
   customentity: CustomEntity
   customentitymetadata: Entity<'customentitymetadata'>
   customerorder: CustomerOrder
