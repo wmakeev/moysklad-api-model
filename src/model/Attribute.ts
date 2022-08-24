@@ -27,7 +27,7 @@ export const embeddedEntityAttributeTypes = [
 ] as const
 
 /** Типы атрибутов, значение которых является сущностью (ссылкой на сущность) */
-export type EmbeddedEntityRefAttributeType =
+export type EmbeddedEntityAttributeType =
   typeof embeddedEntityAttributeTypes[number]
 
 /** Типы атрибутов */
@@ -36,7 +36,7 @@ export type AttributeType =
   | SimpleAttributeType
 
   // Embedded entity
-  | EmbeddedEntityRefAttributeType
+  | EmbeddedEntityAttributeType
 
   // File entity
   | 'file'
@@ -106,7 +106,7 @@ export type AttributeValueByTypeMap = {
 export type Attribute<T extends AttributeType = AttributeType> =
   Entity<'attributemetadata'> &
     (
-      T extends SimpleAttributeType | EmbeddedEntityRefAttributeType | 'customentity'
+      T extends SimpleAttributeType | EmbeddedEntityAttributeType | 'customentity'
         ? {
           /** Наименование пользовательского поля */
           readonly name: string
