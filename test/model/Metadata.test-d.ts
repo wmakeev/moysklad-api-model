@@ -74,3 +74,8 @@ t6.customEntityMeta.type
 if (t6.type === 'customentity') {
   expectType<'customentitymetadata'>(t6.customEntityMeta.type)
 }
+
+const t7 = {} as AttributeMetadata<'customentity'>
+
+expectType<'customentity'>(t7.type)
+expectType<'customentitymetadata'>(t7.customEntityMeta.type)

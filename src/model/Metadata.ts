@@ -21,26 +21,25 @@ export type MetadataMeta<T extends MetadataMetaType = MetadataMetaType> = {
   }
 }
 
-export type AttributeMetadata = Entity<'attributemetadata'> & {
-  /** Наименование пользовательского поля */
-  readonly name: string
+export type AttributeMetadata<T extends AttributeType = AttributeType> =
+  Entity<'attributemetadata'> & {
+    /** Наименование пользовательского поля */
+    readonly name: string
 
-  readonly required: boolean
+    readonly required: boolean
 
-  // TODO Только для документов (нужно разделять ради этого?)
-  readonly show: boolean
-} & (
-    | {
-        /** Тип значения пользовательского поля */
-        readonly type: 'customentity'
-
-        readonly customEntityMeta: Meta<'customentitymetadata'>
-      }
-    | {
-        /** Тип значения пользовательского поля */
-        readonly type: Exclude<AttributeType, 'customentity'>
-      }
-  )
+    // TODO Только для документов (нужно разделять ради этого?)
+    readonly show: boolean
+  } & (T extends 'customentity'
+      ? {
+          /** Тип значения пользовательского поля */
+          readonly type: T
+          readonly customEntityMeta: Meta<'customentitymetadata'>
+        }
+      : {
+          /** Тип значения пользовательского поля */
+          readonly type: T
+        })
 
 export type DocumentMetadata<T extends DocumentMetaType = DocumentMetaType> =
   MetadataMeta<T> & {
