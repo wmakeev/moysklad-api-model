@@ -1,8 +1,10 @@
 import type { Document, DocumentPatch, EntityRef, MetaType } from '.'
 import type { OptionalNullablePartial } from '../tools'
 
-// TODO FinaceOperation: наложить ограничения на возможные MetaType
-export interface FinaceOperation extends EntityRef<MetaType> {
+// TODO Добавить прочие операции к которым может быть привязан платеж
+export type FinaceOperationMetaType = 'customerorder' | 'demand'
+
+export interface FinaceOperationRef extends EntityRef<FinaceOperationMetaType> {
   /** Связанная сумма из платежа */
   linkedSum: number
 }
@@ -17,7 +19,7 @@ export type FinanceFields = {
   vatSum: number
 
   /** Оплаченные документы */
-  operations: FinaceOperation[]
+  operations: FinaceOperationRef[]
 }
 
 export type Finance<T extends FinanceMetaType> = Document<T> & FinanceFields

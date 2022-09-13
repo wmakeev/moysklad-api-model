@@ -15,8 +15,10 @@ import type {
   ExpandField,
   Meta,
   Metadata,
-  Organization
+  Organization,
+  PaymentIn
 } from '../../../src'
+import type { FinaceOperationRef } from '../../../src/model/Finance'
 
 //#region
 // Expanded CustomerOrder.agent
@@ -336,4 +338,39 @@ const t90 = {} as Expand<Metadata<'demand'>, 'attributes'>
 
 t90.attributes.meta.href
 t90.attributes.rows[0].show
+//#endregion
+
+//#region
+const t100 = {} as Expand<PaymentIn, 'operations'>
+
+const financeOperation1 = t100.operations[0]
+
+const t100_1: boolean = financeOperation1.applicable
+
+if ('demands' in financeOperation1) {
+  financeOperation1.demands?.[0].meta.type
+}
+//#endregion
+
+//#region
+const t110 = {} as Expand<CustomerOrder, 'demands'>
+
+const financeOperation2 = t110.demands
+
+const t110_1: 'demand' | undefined = financeOperation2?.[0].meta.type
+//#endregion
+
+//#region
+const t120 = {} as Expand<typeof financeOperation1, 'demands'>
+
+const t120_1: number | undefined = t120.demands?.[0].sum
+//#endregion
+
+//#region
+const t130 = {} as Expand<PaymentIn, 'operations.demands'>
+
+const financeOperation3 = t130.operations[0]
+
+// @ts-expect-error Нужно доделать выведение типа
+financeOperation3.meta
 //#endregion

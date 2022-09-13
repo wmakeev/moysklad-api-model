@@ -5,6 +5,7 @@ import type {
   EntityRef,
   AttributeMetadata
 } from '../'
+import type { FinaceOperationMetaType, FinaceOperationRef } from '../Finance'
 
 // prettier-ignore
 
@@ -12,15 +13,15 @@ import type {
  * Возвращает развернутый тип для указанного поля
  */
 export type ExpandedField<T, K extends string> =
-  T extends Array<infer U> | Collection<infer U>
-    ? K extends keyof U
-      ? ExpandedField<U, K>
+  T extends Array<infer Item> | Collection<infer Item>
+    ? K extends keyof Item
+      ? ExpandedField<Item, K>
       : `[Error] ExpandedField: Неизвестое поле '${K}' внутри списка или коллекции`
 
-  : T extends CollectionRef<infer M>
-    ? K extends keyof EntityByMetaType[M]
-      ? Collection<ExpandField<EntityByMetaType[M], K>>
-      : `[Error] ExpandedField: Неизвестое поле '${K}' внутри CollectionRef<'${M}'>`
+  : T extends CollectionRef<infer Item>
+    ? K extends keyof EntityByMetaType[Item]
+      ? Collection<ExpandField<EntityByMetaType[Item], K>>
+      : `[Error] ExpandedField: Неизвестое поле '${K}' внутри CollectionRef<'${Item}'>`
 
   : K extends keyof T
     ? T[K] extends EntityRef<infer M> | undefined
@@ -57,8 +58,20 @@ export type ExpandedField<T, K extends string> =
  */
 export type ExpandField<T, K extends keyof T> = {
   [P in keyof T]: K extends P
+    // .operations
+    ? T[P] extends Array<EntityRef<infer M>> | undefined
+      ? P extends 'operations'
+        ? Array<EntityByMetaType[FinaceOperationMetaType] & { linkedSum: number }>
+
+      : T[P] extends Array<EntityRef<M>>
+        ? Array<EntityByMetaType[M]>
+
+      : T[P] extends Array<EntityRef<M>> | undefined
+        ? Array<EntityByMetaType[M]> | undefined
+        : 'never-3yswqc'
+
     // EntityRef | CollectionRef
-    ? T[P] extends EntityRef<infer M> | undefined
+    : T[P] extends EntityRef<infer M> | undefined
       // Уже раскрытая сущность
       ? T[P] extends { id: string }
         ? T[P]
@@ -89,7 +102,7 @@ export type ExpandField<T, K extends keyof T> = {
       : T[P]
 
     // default
-    : T[P]
+    :T[P]
 }
 
 // prettier-ignore
@@ -97,24 +110,24 @@ export type ExpandField<T, K extends keyof T> = {
 /**
  * Разворачивает только одно поле типа по строке expand в формате API МойСклад
  */
-export type ExpandPath<T, K extends string> =
-  string extends K
+export type ExpandPath<T, Path extends string> =
+  string extends Path
     ? never
 
   // i.e. `attributes`
   : T extends Array<infer M>
-      ? Array<ExpandPath<M, K>>
+      ? Array<ExpandPath<M, Path>>
 
   // i.e. `positions`
   : T extends Collection<infer U>
     ? {
         [P in keyof T]: P extends 'rows'
-          ? ExpandPath<U, K>[]
+          ? ExpandPath<U, Path>[]
           : T[P]
       }
 
   // 'foo.bar'
-  : K extends `${infer Field}.${infer Rest}`
+  : Path extends `${infer Field}.${infer Rest}`
     ? {
         [P in keyof T]: Field extends P
           ? ExpandPath<ExpandedField<T, Field>, Rest>
@@ -122,8 +135,8 @@ export type ExpandPath<T, K extends string> =
       }
 
   // 'foo'
-  : K extends keyof T
-    ? ExpandField<T, K>
+  : Path extends keyof T
+    ? ExpandField<T, Path>
 
   : never
 
@@ -132,21 +145,21 @@ export type ExpandPath<T, K extends string> =
 /**
  * Разворачивает поля типа по строке expand в формате API МойСклад
  */
-export type Expand<T, U extends string | undefined> =
+export type Expand<T, ExpandStr extends string | undefined> =
   // Исходный тип если expand не задан
-  U extends undefined
+  ExpandStr extends undefined
     ? T
 
-  : string extends U
+  : string extends ExpandStr
     ? never
 
   // 'foo.bar,baz'
-  : U extends `${infer Path},${infer Rest}`
-    ? Expand<ExpandPath<T, Path>, Rest>
+  : ExpandStr extends `${infer Tail},${infer Rest}`
+    ? Expand<ExpandPath<T, Tail>, Rest>
 
   // 'foo.bar'
-  : U extends string
-    ? ExpandPath<T, U>
+  : ExpandStr extends string
+    ? ExpandPath<T, ExpandStr>
 
 
   : never
