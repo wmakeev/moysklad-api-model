@@ -39,6 +39,7 @@ export type DomineEntityMetaType =
   | 'counterparty'
   | 'country'
   | 'currency'
+  | 'customentity'
   | 'customerorder'
   | 'demand'
   | 'discount'
@@ -82,6 +83,5 @@ export type DomineEntityMetaType =
   | 'uom'
   | 'variant'
 
-export type RemapApiHref<
-  T extends string
-> = `https://online.moysklad.ru/api/remap/${string}/${T}`
+export type RemapApiHref<T extends string> =
+  `https://online.moysklad.ru/api/remap/${string}/${T}`
