@@ -30,14 +30,20 @@ import type {
   PaymentIn,
   PaymentOut,
   Position,
+  PriceType,
   Product,
   ProductFolder,
   RetailDemand,
   RetailSalesReturn,
   SalesReturn,
   SalesReturnPosition,
-  State
+  Slot,
+  State,
+  StoreZone,
+  Uom,
+  Variant
 } from '.'
+import type { Store } from './Store'
 
 export type MetaType =
   | 'account'
@@ -122,9 +128,11 @@ export type MetaType =
   | 'salesreturn'
   | 'salesreturnposition'
   | 'service'
+  | 'slot'
   | 'specialpricediscount'
   | 'state'
   | 'store'
+  | 'storezone'
   | 'supply'
   | 'supplyposition'
   | 'task'
@@ -188,7 +196,7 @@ export type EntityByMetaType = {
   personaldiscount: Entity<'personaldiscount'>
   pricelist: Document<'pricelist'>
   pricelistrow: Entity<'pricelistrow'>
-  pricetype: Entity<'pricetype'>
+  pricetype: PriceType
   processing: Entity<'processing'>
   processingorder: Document<'processingorder'>
   processingorderposition: Position<'processingorderposition'>
@@ -214,12 +222,14 @@ export type EntityByMetaType = {
   salesreturn: SalesReturn
   salesreturnposition: SalesReturnPosition
   service: Entity<'service'>
+  slot: Slot
   specialpricediscount: Entity<'specialpricediscount'>
   state: State
-  store: Entity<'store'>
+  store: Store
+  storezone: StoreZone
   supply: DocumentWithPositions<'supply'>
   supplyposition: Position<'supplyposition'>
   task: Entity<'task'>
-  uom: Entity<'uom'>
-  variant: Entity<'variant'>
+  uom: Uom
+  variant: Variant
 }

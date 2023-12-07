@@ -5,7 +5,7 @@ export type CollectionPageInfo = {
   readonly size: number
   readonly limit: number
   readonly offset: number
-  readonly hextHref?: string
+  readonly nextHref?: string
 }
 
 export interface CollectionRef<T extends MetaType = MetaType>

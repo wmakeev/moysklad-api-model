@@ -18,7 +18,8 @@ function mapOrder1(row: Expand<CustomerOrder, 'state'>) {
       href: row.meta.href
     },
     id: row.id,
-    name: row.name
+    name: row.name,
+    stateName: row.state?.name
   }
 }
 
@@ -33,13 +34,5 @@ function mapOrder1(row: Expand<CustomerOrder, 'state'>) {
 
 // .. до этого map обрезал исходный тип до CustomerOrder
 const t10_3 = t10_1.rows.map(row => mapOrder1(row))
-const name: string = t10_3[0].name
+const name: string | undefined = t10_3[0].stateName
 name
-
-// Но такой вариант тоже не работает
-
-// @ts-expect-error
-const t10_4: Expand<CustomerOrder, 'state'>[] = t10_1.rows.map(row =>
-  mapOrder1(row)
-)
-t10_4[0].state?.name

@@ -31,25 +31,26 @@ const expandedOrder = {} as Expand<
 >
 
 //#region Такой вариант расширения не работает с .map (тип обрезается)
-// const expandedOrder = {} as CustomerOrder & {
-//   agent: Counterparty | Organization
-// } & { state: State<MetaType> | undefined } & {
-//   positions: {
-//     rows: CustomerOrderPosition[]
-//   }
-// } & {
-//   positions: {
-//     rows: Array<{
-//       assortment: Product
-//     }>
-//   }
-// } & {
-//   positions: {
-//     rows: Array<{
-//       assortment: { supplier: Counterparty | Organization }
-//     }>
-//   }
-// }
+const expandedOrderEx = {} as CustomerOrder & {
+  agent: Counterparty | Organization
+} & { state: State<MetaType> | undefined } & {
+  positions: {
+    rows: CustomerOrderPosition[]
+  }
+} & {
+  positions: {
+    rows: Array<{
+      assortment: Product
+    }>
+  }
+} & {
+  positions: {
+    rows: Array<{
+      assortment: { supplier: Counterparty | Organization }
+    }>
+  }
+}
+expandedOrderEx
 //#endregion
 
 expandedOrder.agent.name
@@ -59,15 +60,17 @@ expandedOrder.positions.rows[0].assortment.name
 expandedOrder.positions.rows[0].assortment.supplier?.companyType
 
 //#region Нативный map - медленно!!!
-// const productNames = expandedOrder.positions.rows.map(row => {
-//   return row.assortment.name
-// })
+const productNamesEx = expandedOrder.positions.rows.map(row => {
+  return row.assortment
+})
+productNamesEx[0].buyPrice.value
 //#endregion
 
 //#region Обернутый map - быстро
 const productNames3 = map(expandedOrder.positions.rows, row => {
-  return row.assortment.name
+  return row.assortment.country
 })
+productNames3[0]?.meta.type
 //#endregion
 
 //#region Обернутый flatMap - быстро
@@ -75,27 +78,29 @@ const productNames4 = flatMap(expandedOrder.positions.rows, row => {
   return [row.assortment]
 })
 
-productNames4[0].alcoholic
+productNames4[0].alcoholic?.excise
 //#endregion
 
 //#region lodash.fp.map - быстро
 const productNames5 = fp.map((row: { assortment: { name: string } }) => {
-  return row.assortment.name
+  return row.assortment
 })(expandedOrder.positions.rows)
 //#endregion
 
 //#region lodash.map
 const productNames6 = _.map(expandedOrder.positions.rows, row => {
-  return row.assortment.name
+  return row.assortment.group
 })
+productNames6[0].meta
 //#endregion
 
 //#region lodash.map - медленно !!!
-// const productNames6 = _(expandedOrder.positions.rows)
-//   .map(row => {
-//     return row.assortment.name
-//   })
-//   .flatMap(it => it.trim())
+const productNames6ex = _(expandedOrder.positions.rows)
+  .map(row => {
+    return row.assortment.name
+  })
+  .flatMap(it => it.trim())
+productNames6ex
 //#endregion
 
 //#region sample 3 (map через цикл - быстро)

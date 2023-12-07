@@ -12,8 +12,7 @@ export type OrderFields = {
   /** Планируемая дата отгрузки */
   deliveryPlannedMoment?: string
 
-  /** Склад */
-  store?: EntityRef<'store'>
+  // TODO В заказе поставщику может быть не указан склад (это во всех заказах?)
 }
 
 export type Order<T extends OrderMetaType> = DocumentWithPositions<T> &
@@ -24,6 +23,4 @@ export type OrderExpand<T extends OrderMetaType> = Pick<Order<T>, 'store'> &
 
 export type OrderPatch<T extends OrderMetaType> =
   DocumentWithPositionsPatch<T> &
-    OptionalNullablePartial<
-      Pick<OrderFields, 'deliveryPlannedMoment' | 'store'>
-    >
+    OptionalNullablePartial<Pick<OrderFields, 'deliveryPlannedMoment'>>

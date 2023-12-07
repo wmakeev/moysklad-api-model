@@ -33,11 +33,11 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/lodash": "^4.14.182",
+    "@types/lodash": "^4.14.202",
     "auto-changelog": "^2.4.0",
-    "moysklad": "^0.10.1",
-    "prettier": "^2.7.1",
-    "tsd": "^0.22.0",
-    "typescript": "^4.7.4"
+    "moysklad": "^0.16.0",
+    "prettier": "^3.1.0",
+    "tsd": "^0.29.0",
+    "typescript": "^5.3.3"
   }
 }

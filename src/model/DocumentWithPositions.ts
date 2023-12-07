@@ -10,7 +10,7 @@ export type DocumentWithPositionsMetaType = keyof DocumentPositionType
 export type DocumentWithPositionsFields<
   T extends DocumentWithPositionsMetaType
 > = {
-  store: EntityRef<'store'>
+  store?: EntityRef<'store'>
   positions: CollectionRef<DocumentPositionType[T]>
 }
 

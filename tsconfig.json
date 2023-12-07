@@ -32,7 +32,6 @@
     // -- Advanced
     "allowUnreachableCode": false,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
     "newLine": "lf",
     "resolveJsonModule": true,
     "skipLibCheck": true,

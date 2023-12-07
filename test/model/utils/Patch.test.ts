@@ -118,8 +118,8 @@ t1.attributes = [
 ]
 
 t1.attributes = [
+  // @ts-expect-error meta is missing
   {
-    // @ts-expect-error meta is missing
     value: ''
   }
 ]

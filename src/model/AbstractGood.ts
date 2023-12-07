@@ -1,11 +1,8 @@
 import type {
   AttributePatch,
   Entity,
-  Owned,
-  OwnedPatch,
-  ProductFolder,
-  ProductFolderFields,
-  TaxSystem
+  HasAttributes,
+  ProductFolderFields
 } from '.'
 import type { OptionalNullablePartial } from '../tools'
 import type { Attribute } from './Attribute'
@@ -74,7 +71,7 @@ export type AbstractGoodFields = ProductFolderFields & {
 
   /**
    * Массив метаданных Изображений (Максимальное количество изображений - 10)
-   * */
+   */
   images: CollectionRef<'image'>
 
   minPrice: Price
@@ -84,8 +81,6 @@ export type AbstractGoodFields = ProductFolderFields & {
   buyPrice: Price
 
   supplier?: EntityRef<'counterparty' | 'organization'>
-
-  attributes: Attribute[]
 
   country?: EntityRef<'country'>
 
@@ -170,7 +165,7 @@ export type AbstractGoodFields = ProductFolderFields & {
   ppeType?: string
 
   files: CollectionRef<'files'>
-}
+} & HasAttributes
 
 export type AbstractGood<T extends GoodMetaType> = Entity<T> &
   AbstractGoodFields

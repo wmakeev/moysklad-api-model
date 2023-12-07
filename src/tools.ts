@@ -12,6 +12,7 @@ export function isType<T extends MetaType>(
  */
 export type NullablePartial<T> = { [P in keyof T]: T[P] | null }
 
+/** Значения могут быть `null` и `undefined` */
 export type OptionalNullablePartial<T> = {
   [P in keyof T]?: T[P] | undefined | null
 }
