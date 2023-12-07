@@ -84,4 +84,4 @@ export type DomineEntityMetaType =
   | 'variant'
 
 export type RemapApiHref<T extends string> =
-  `https://online.moysklad.ru/api/remap/${string}/${T}`
+  `https://api.moysklad.ru/api/remap/${string}/${T}`

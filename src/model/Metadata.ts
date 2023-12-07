@@ -15,7 +15,7 @@ export type MetadataMetaType = DocumentMetaType | DictionaryMetaType
 
 export type MetadataMeta<T extends MetadataMetaType = MetadataMetaType> = {
   meta: {
-    /** `https://online.moysklad.ru/api/remap/1.2/entity/product/metadata` */
+    /** `https://api.moysklad.ru/api/remap/1.2/entity/product/metadata` */
     href: `https://${string}/api/remap/1.2/entity/${T}/metadata`
     mediaType: 'application/json'
   }
