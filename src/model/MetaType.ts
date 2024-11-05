@@ -100,6 +100,7 @@ export type MetaType =
   | 'paymentin'
   | 'paymentout'
   | 'personaldiscount'
+  | 'prepayment'
   | 'pricelist'
   | 'pricelistrow'
   | 'pricetype'
@@ -194,6 +195,7 @@ export type EntityByMetaType = {
   paymentin: PaymentIn
   paymentout: PaymentOut
   personaldiscount: Entity<'personaldiscount'>
+  prepayment: Entity<'prepayment'>
   pricelist: Document<'pricelist'>
   pricelistrow: Entity<'pricelistrow'>
   pricetype: PriceType
@@ -231,5 +233,5 @@ export type EntityByMetaType = {
   supplyposition: Position<'supplyposition'>
   task: Entity<'task'>
   uom: Uom
-  variant: Variant
+  variant: Variant,
 }
