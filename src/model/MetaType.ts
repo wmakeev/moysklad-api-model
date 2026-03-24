@@ -143,7 +143,6 @@ export type MetaType =
   | 'task'
   | 'uom'
   | 'variant'
-  | ''
 
 export type EntityByMetaType = {
   account: Account

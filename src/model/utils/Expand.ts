@@ -16,12 +16,12 @@ export type ExpandedField<T, K extends string> =
   T extends Array<infer Item> | Collection<infer Item>
     ? K extends keyof Item
       ? ExpandedField<Item, K>
-      : `[Error] ExpandedField: Неизвестое поле '${K}' внутри списка или коллекции`
+      : `[Error] ExpandedField: Неизвестное поле '${K}' внутри списка или коллекции`
 
   : T extends CollectionRef<infer Item>
     ? K extends keyof EntityByMetaType[Item]
-      ? Collection<ExpandField<EntityByMetaType[Item], K>>
-      : `[Error] ExpandedField: Неизвестое поле '${K}' внутри CollectionRef<'${Item}'>`
+      ? Collection<ExpandField<EntityByMetaType[Item], K> & EntityByMetaType[Item]>
+      : `[Error] ExpandedField: Неизвестное поле '${K}' внутри CollectionRef<'${Item}'>`
 
   : K extends keyof T
     ? T[K] extends EntityRef<infer M> | undefined
