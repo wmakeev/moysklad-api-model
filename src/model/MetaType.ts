@@ -105,9 +105,13 @@ export type MetaType =
   | 'pricelistrow'
   | 'pricetype'
   | 'processing'
+  | 'processingprocess'
+  | 'processingprocessposition'
   | 'processingorder'
   | 'processingorderposition'
   | 'processingplan'
+  | 'processingplanfolder'
+  | 'processingplanstage'
   | 'processingplanmaterial'
   | 'processingplanresult'
   | 'processingpositionmaterial'
@@ -139,6 +143,7 @@ export type MetaType =
   | 'task'
   | 'uom'
   | 'variant'
+  | ''
 
 export type EntityByMetaType = {
   account: Account
@@ -200,9 +205,13 @@ export type EntityByMetaType = {
   pricelistrow: Entity<'pricelistrow'>
   pricetype: PriceType
   processing: Entity<'processing'>
+  processingprocess: Entity<'processingprocess'>
+  processingprocessposition: Entity<'processingprocessposition'>
   processingorder: Document<'processingorder'>
   processingorderposition: Position<'processingorderposition'>
   processingplan: Entity<'processingplan'>
+  processingplanfolder: Entity<'processingplanfolder'>
+  processingplanstage: Entity<'processingplanstage'>
   processingplanmaterial: Entity<'processingplanmaterial'>
   processingplanresult: Entity<'processingplanresult'>
   processingpositionmaterial: Entity<'processingpositionmaterial'>
